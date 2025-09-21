@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import Lander from './Lander';
 import Login from './Login';
 import Signup from './Signup';
+import Home from './Home';
 
 // Protected Route wrapper component
 const ProtectedRoute = ({ children }) => {
@@ -14,7 +15,8 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return null;
   }
-  return currentUser ? children : <Navigate to="/login" />;
+  // return currentUser ? children : <Navigate to="/login" />;
+  return currentUser ? children : <Navigate to="/" />;
 };
 
 export default function PageRoutes() {
@@ -31,9 +33,10 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      
+
       {/* Protected Routes */}
       <Route path="/" element={<ProtectedRoute><Lander /></ProtectedRoute>} />
+      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
     </Routes>
   );
 }
