@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './styles/Navbar.css';
 
 export default function Navbar() {
@@ -15,6 +16,8 @@ export default function Navbar() {
   const projectsRef = useRef(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -45,13 +48,19 @@ export default function Navbar() {
   const toggleLanguageDropdown = () => setLanguageDropdownOpen(!languageDropdownOpen);
   const toggleUserMenu = () => setUserMenuOpen(!userMenuOpen);
 
-  if (isAuthPage) {
-    return null;
-  }
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+      setUserMenuOpen(false);
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const languages = [
     { code: 'en', name: 'Eng', nativeName: 'English' },
-    { code: 'hi', name: 'Hin', nativeName: 'हिन्दी' },
+    { code: 'hi', name: 'Hin', nativeName: 'हिंदी' },
     { code: 'bn', name: 'Ben', nativeName: 'বাংলা' },
     { code: 'te', name: 'Tel', nativeName: 'తెలుగు' },
     { code: 'ta', name: 'Tam', nativeName: 'தமிழ்' },
@@ -190,7 +199,7 @@ export default function Navbar() {
               </li>
             </ul>
 
-            <div className="d-flex flex-lg-row gap-2">
+            <div className="d-flex flex-lg-row gap-2 align-items-center">
               <div className="nav-item dropdown" ref={languageRef}>
                 <button
                   className="btn dropdown-toggle btn-sm"
@@ -225,26 +234,77 @@ export default function Navbar() {
                   className="btn btn-outline-dark dropdown-toggle nav-login-btn"
                   onClick={toggleUserMenu}
                 >
-                  <span className="material-symbols-outlined" id="navIcon2">account_circle</span>
+                  {currentUser && currentUser.photoURL ? (
+                    <img 
+                      src={currentUser.photoURL} 
+                      alt="Profile" 
+                      className="profile-image"
+                    />
+                  ) : (
+                    <span className="material-symbols-outlined" id="navIcon2">account_circle</span>
+                  )}
                 </button>
                 <ul className={`dropdown-menu user-menu ${userMenuOpen ? 'show' : ''}`}>
-                  <li className='dropdown-item'>
-                    <Link to='/help'>
-                      <span className="material-symbols-outlined">help</span>
-                      Help
-                    </Link>
-                  </li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li className='dropdown-item'>
-                    <Link to='/farmers'> For Farmers</Link>
-                  </li>
-                  <li className='dropdown-item'>
-                    <Link to='/civil'> For Civilian</Link>
-                  </li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li className='dropdown-item'>
-                    <Link to='/auth/login'>Login/Signup</Link>
-                  </li>
+                  {currentUser ? (
+                    <>
+                      <li className='dropdown-item user-info'>
+                        <div className="user-name">{currentUser.displayName || currentUser.email}</div>
+                      </li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li className='dropdown-item'>
+                        <Link to='/profile'>
+                          <span className="material-symbols-outlined">person</span>
+                          Account Settings
+                        </Link>
+                      </li>
+                      <li className='dropdown-item'>
+                        <button onClick={handleLogout} className="logout-btn">
+                          <span className="material-symbols-outlined">logout</span>
+                          Logout
+                        </button>
+                      </li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li className='dropdown-item'>
+                        <Link to='/dashboard'>
+                          <span className="material-symbols-outlined">dashboard</span>
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li className='dropdown-item'>
+                        <Link to='/analytics'>
+                          <span className="material-symbols-outlined">analytics</span>
+                          Analytics
+                        </Link>
+                      </li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li className='dropdown-item'>
+                        <Link to='/help'>
+                          <span className="material-symbols-outlined">help</span>
+                          Help & FAQ
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className='dropdown-item'>
+                        <Link to='/help'>
+                          <span className="material-symbols-outlined">help</span>
+                          Help
+                        </Link>
+                      </li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li className='dropdown-item'>
+                        <Link to='/farmers'>For Farmers</Link>
+                      </li>
+                      <li className='dropdown-item'>
+                        <Link to='/civil'>For Civilian</Link>
+                      </li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li className='dropdown-item'>
+                        <Link to='/auth/login'>Login/Signup</Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>

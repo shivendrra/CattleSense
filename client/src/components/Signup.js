@@ -65,7 +65,9 @@ export default function Signup() {
           <h3 className="sign-in-title">Sign in with:</h3>
 
           <div className="google-login">
-            <button className='btn google-btn' onClick={handleGoogleSignIn}> Signup with Google </button>
+            <button className='btn google-btn' onClick={handleGoogleSignIn} disabled={loading}>
+              {loading ? 'Loading...' : 'Signup with Google'}
+            </button>
           </div>
 
           <div className="divider">
