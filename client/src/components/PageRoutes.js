@@ -15,8 +15,8 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return null;
   }
-  // return currentUser ? children : <Navigate to="/login" />;
-  return currentUser ? children : <Navigate to="/" />;
+  return currentUser ? children : <Navigate to="/auth/login" />;
+  // return currentUser ? children : <Navigate to="/" />;
 };
 
 export default function PageRoutes() {
