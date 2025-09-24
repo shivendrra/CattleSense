@@ -31,10 +31,9 @@ export default function PageRoutes() {
 
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/auth/login" element={<Login />} />
+      <Route path="/auth/signup" element={<Signup />} />
 
-      {/* Protected Routes */}
       <Route path="/" element={<ProtectedRoute><Lander /></ProtectedRoute>} />
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
     </Routes>

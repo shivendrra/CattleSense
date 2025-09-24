@@ -15,18 +15,45 @@ export default function Navbar() {
   const projectsRef = useRef(null);
 
   const location = useLocation();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setLanguageDropdownOpen(false);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setUserMenuOpen(false);
+      }
+      if (resourcesRef.current && !resourcesRef.current.contains(event.target)) {
+        setResourcesMenuOpen(false);
+      }
+      if (projectsRef.current && !projectsRef.current.contains(event.target)) {
+        setProjectsMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const isAuthPage = location.pathname.includes('/auth/login') || location.pathname.includes('/auth/signup');
+
+  if (isAuthPage) {
+    return null;
+  }
+
   const toggleNavbar = () => setIsOpen(!isOpen);
   const toggleLanguageDropdown = () => setLanguageDropdownOpen(!languageDropdownOpen);
   const toggleUserMenu = () => setUserMenuOpen(!userMenuOpen);
-  // const toggleResourcesMenu = () => setResourcesMenuOpen(!resourcesMenuOpen);
-  // const toggleProjectsMenu = () => setProjectsMenuOpen(!projectsMenuOpen);
+
+  if (isAuthPage) {
+    return null;
+  }
 
   const languages = [
     { code: 'en', name: 'Eng', nativeName: 'English' },
     { code: 'hi', name: 'Hin', nativeName: 'हिन्दी' },
     { code: 'bn', name: 'Ben', nativeName: 'বাংলা' },
-    { code: 'te', name: 'Tel', nativeName: 'తెলుగు' },
-    { code: 'mr', name: 'Mar', nativeName: 'मराठी' },
+    { code: 'te', name: 'Tel', nativeName: 'తెలుగు' },
     { code: 'ta', name: 'Tam', nativeName: 'தமிழ்' },
     { code: 'gu', name: 'Guj', nativeName: 'ગુજરાતી' },
     { code: 'ur', name: 'Urd', nativeName: 'اردو' },
@@ -47,25 +74,6 @@ export default function Navbar() {
     { title: 'Research Projects', items: ['Disease Research', 'Genetic Studies', 'Nutrition Studies'] },
     { title: 'Technology Solutions', items: ['IoT Monitoring', 'Mobile Apps', 'Data Analytics'] }
   ];
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (languageRef.current && !languageRef.current.contains(event.target)) {
-        setLanguageDropdownOpen(false);
-      }
-      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-        setUserMenuOpen(false);
-      }
-      if (resourcesRef.current && !resourcesRef.current.contains(event.target)) {
-        setResourcesMenuOpen(false);
-      }
-      if (projectsRef.current && !projectsRef.current.contains(event.target)) {
-        setProjectsMenuOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language.name);
@@ -235,7 +243,7 @@ export default function Navbar() {
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li className='dropdown-item'>
-                    <Link to='/auth'>Login/Signup</Link>
+                    <Link to='/auth/login'>Login/Signup</Link>
                   </li>
                 </ul>
               </div>
