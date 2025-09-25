@@ -1,16 +1,14 @@
-/* pre-requisites */
-
 body {
-  margin: auto;
+  margin: 0;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
   background-color: black;
   color: white;
+}
+
+#root {
+  height: 100vh;
 }
 
 *,
@@ -28,7 +26,18 @@ body {
   max-width: 100%;
 }
 
-/* loading spinner */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .loader-overlay {
   position: fixed;
   top: 0;
@@ -57,7 +66,6 @@ body {
   }
 }
 
-/* handling the dark & light themes */
 :root {
   --bg: #ffffff;
   --text: #000000;
@@ -74,7 +82,6 @@ body {
   --faded-bg: #131010;
 }
 
-/* styles/global.css */
 body {
   background-color: var(--bg);
   color: var(--text);

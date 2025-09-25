@@ -1,6 +1,7 @@
 .navbar {
   width: 100vw !important;
   margin-left: calc(-50vw + 50%);
+  background-color: #F6EFD2;
 }
 
 .navbar-brand {
@@ -115,9 +116,9 @@
   align-items: center;
   justify-content: center;
   gap: 18px;
-  padding: 0.45rem 0.45rem;
+  padding: 0.6rem 0.6rem;
   font-size: 0.875rem;
-  background-color: whitesmoke;
+  background-color: transparent;
   color: #1c1f23ba;
   border: 0.8px solid #1c1f236f;
   border-radius: 100px;
