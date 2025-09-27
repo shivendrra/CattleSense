@@ -134,7 +134,7 @@ export default function Navbar() {
           <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/" className={`nav-link px-3 ${location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}`}>
+                <Link to="/" className={`nav-link fw-medium px-3 ${location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}`}>
                   Home
                 </Link>
               </li>

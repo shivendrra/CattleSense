@@ -26,6 +26,10 @@ body {
   max-width: 100%;
 }
 
+.btn {
+  border-radius: 0px;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
