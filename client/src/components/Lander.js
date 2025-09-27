@@ -1,5 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles/Lander.css';
+
+import consumer from '../assets/svg/consumer.svg';
+import farmer from '../assets/svg/farmers.svg';
+import veterinary from '../assets/svg/veterinary.svg';
 
 export default function Lander() {
   function handleDemo() {
@@ -8,43 +13,61 @@ export default function Lander() {
 
   return (
     <div className="lander">
-      <section className="hero-section">
+      <section className="hero-section bg-danger text-white d-flex align-items-center">
         <div className="container">
-          <div className="hero-grid">
-            <div className="hero-content">
-              <h1 className="hero-title">
+          <div className="row g-5 align-items-center">
+            <div className="col-lg-6">
+              <h1 className="display-5 fw-bold lh-sm mb-4 hero-title">
                 Monitor Livestock Health from Farm to Fork
               </h1>
-              <p className="hero-subtitle">
+              <p className="lead mb-4 hero-subtitle">
                 A centralized portal for farmers, veterinarians, and consumers to track
                 antimicrobial usage and ensure food safety through transparent livestock monitoring.
               </p>
-              <div className="hero-buttons">
-                <button className="btn-primary">
-                  Get Started
+              <div className="d-flex gap-3 hero-buttons">
+                <button className="btn btn-light btn-lg fw-semibold px-4 hero-btn-primary">
+                  <Link to='/auth/signup' className="text-decoration-none">
+                    Get Started
+                  </Link>
                 </button>
-                <button className="btn-secondary" onClick={handleDemo}>
+                <button className="btn btn-outline-light btn-lg fw-semibold px-4 hero-btn-secondary" onClick={handleDemo}>
                   View Demo
                 </button>
               </div>
             </div>
-            <div className="hero-stats">
-              <div className="stats-grid">
-                <div className="stats-card">
-                  <div className="stats-number">1000+</div>
-                  <div className="stats-label">Livestock Monitored</div>
+            <div className="col-lg-6">
+              <div className="row g-3">
+                <div className="col-6">
+                  <div className="card h-100 stats-card border-0 text-center">
+                    <div className="card-body p-3">
+                      <div className="display-6 fw-bold stats-number">1000+</div>
+                      <div className="small stats-label">Livestock Monitored</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="stats-card">
-                  <div className="stats-number">50+</div>
-                  <div className="stats-label">Registered Farmers</div>
+                <div className="col-6">
+                  <div className="card h-100 stats-card border-0 text-center">
+                    <div className="card-body p-3">
+                      <div className="display-6 fw-bold stats-number">50+</div>
+                      <div className="small stats-label">Registered Farmers</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="stats-card">
-                  <div className="stats-number">25+</div>
-                  <div className="stats-label">Veterinarians</div>
+                <div className="col-6">
+                  <div className="card h-100 stats-card border-0 text-center">
+                    <div className="card-body p-3">
+                      <div className="display-6 fw-bold stats-number">25+</div>
+                      <div className="small stats-label">Veterinarians</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="stats-card">
-                  <div className="stats-number">99%</div>
-                  <div className="stats-label">Safety Compliance</div>
+                <div className="col-6">
+                  <div className="card h-100 stats-card border-0 text-center">
+                    <div className="card-body p-3">
+                      <div className="display-6 fw-bold stats-number">99%</div>
+                      <div className="small stats-label">Safety Compliance</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,7 +121,7 @@ export default function Lander() {
       </section>
 
       <section className="solution-section">
-        <div className="container">
+        <div className="container mx-auto justify-content-center">
           <h2 className="section-title">
             Our Comprehensive Solution
           </h2>
@@ -109,7 +132,7 @@ export default function Lander() {
             <div className="col-lg-4">
               <div className="feature-box">
                 <div className="feature-icon">
-                  <span className="material-symbols-outlined">agriculture</span>
+                  <img src={farmer} alt="" className='feature-img' />
                 </div>
                 <h3>For Farmers</h3>
                 <p>
@@ -120,7 +143,7 @@ export default function Lander() {
             <div className="col-lg-4">
               <div className="feature-box">
                 <div className="feature-icon">
-                  <span className="material-symbols-outlined">local_hospital</span>
+                  <img src={veterinary} alt="" className='feature-img' />
                 </div>
                 <h3>For Veterinarians</h3>
                 <p>
@@ -131,7 +154,7 @@ export default function Lander() {
             <div className="col-lg-4">
               <div className="feature-box">
                 <div className="feature-icon">
-                  <span className="material-symbols-outlined">receipt_long</span>
+                  <img src={consumer} alt="" className='feature-img' />
                 </div>
                 <h3>For Consumers</h3>
                 <p>

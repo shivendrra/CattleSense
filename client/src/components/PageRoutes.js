@@ -7,16 +7,25 @@ import Lander from './Lander';
 import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
+import NotFound from './NotFound';
 
-// Protected Route wrapper component
 const ProtectedRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
 
   if (loading) {
     return null;
   }
-  return currentUser ? children : <Navigate to="/auth/login" />;
-  // return currentUser ? children : <Navigate to="/" />;
+  // return currentUser ? children : <Navigate to="/auth/login" />;
+  return currentUser ? children : <Navigate to="/" />;
+};
+
+const PublicRoute = ({ children }) => {
+  const { currentUser, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+  return !currentUser ? children : <Navigate to="/home" />;
 };
 
 export default function PageRoutes() {
@@ -31,11 +40,13 @@ export default function PageRoutes() {
 
   return (
     <Routes>
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/signup" element={<Signup />} />
+      <Route path="/auth/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/auth/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 
-      <Route path="/" element={<ProtectedRoute><Lander /></ProtectedRoute>} />
+      <Route path="/" element={<PublicRoute><Lander /></PublicRoute>} />
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -139,7 +139,7 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item dropdown-mega" ref={resourcesRef} onMouseEnter={handleResourcesEnter} onMouseLeave={handleResourcesLeave}>
-                <a 
+                <a
                   href="/"
                   className={`nav-link fw-medium px-3 ${location.pathname === '/resources' ? 'active' : ''}`}
                   onClick={handleResourcesClick}
@@ -166,7 +166,7 @@ export default function Navbar() {
                 </div>
               </li>
               <li className="nav-item dropdown-mega" ref={projectsRef} onMouseEnter={handleProjectsEnter} onMouseLeave={handleProjectsLeave}>
-                <a 
+                <a
                   href="/"
                   className={`nav-link fw-medium px-3 ${location.pathname === '/projects' ? 'active' : ''}`}
                   onClick={handleProjectsClick}
@@ -235,9 +235,9 @@ export default function Navbar() {
                   onClick={toggleUserMenu}
                 >
                   {currentUser && currentUser.photoURL ? (
-                    <img 
-                      src={currentUser.photoURL} 
-                      alt="Profile" 
+                    <img
+                      src={currentUser.photoURL}
+                      alt="Profile"
                       className="profile-image"
                     />
                   ) : (
@@ -248,11 +248,13 @@ export default function Navbar() {
                   {currentUser ? (
                     <>
                       <li className='dropdown-item user-info'>
-                        <div className="user-name">{currentUser.displayName || currentUser.email}</div>
+                        <Link to='/profile'>
+                          <p className="user-name">{currentUser.displayName || currentUser.email}</ p>
+                        </Link>
                       </li>
                       <li><hr className="dropdown-divider" /></li>
                       <li className='dropdown-item'>
-                        <Link to='/profile'>
+                        <Link to='/account'>
                           <span className="material-symbols-outlined">person</span>
                           Account Settings
                         </Link>
