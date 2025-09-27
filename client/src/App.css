@@ -71,24 +71,19 @@ body {
 }
 
 :root {
-  --bg: #ffffff;
-  --text: #000000;
-  --primary: #1e90ff;
-  --faded-text: #000;
-  --faded-bg: #F7F7F7;
-}
-
-[data-theme='dark'] {
-  --bg: #000000;
-  --text: #f5f5f5;
-  --primary: #bb86fc;
-  --faded-text: #a0a0a0;
-  --faded-bg: #131010;
+  --primary-color: #B45253;
+  --secondary-color: #F6EFD2;
+  --tertiary-color: whitesmoke;
+  --background-color: white;
+  --text-dark: #333;
+  --text-light: #666;
+  --border-color: #ddd;
+  --shadow: 0 2px 10px rgba(180, 82, 83, 0.1);
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: var(--background-color);
+  color: var(--text-dark);
 }
 
 .navbar {

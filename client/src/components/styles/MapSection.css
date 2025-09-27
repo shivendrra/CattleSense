@@ -1,0 +1,254 @@
+.map-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  padding: 24px;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.map-header h4 {
+  margin: 0;
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-header .material-symbols-outlined {
+  font-size: 30px;
+}
+
+.map-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 8px 16px;
+  border: 1px solid #b45253;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #b45253;
+  color: white;
+}
+
+.btn-secondary {
+  background: white;
+  color: #b45253;
+}
+
+.btn-primary:hover {
+  background: #a04445;
+  border-color: #a04445;
+}
+
+.btn-secondary:hover {
+  background: #a04445;
+  color: white;
+}
+
+.btn-primary .material-symbols-outlined,
+.btn-secondary .material-symbols-outlined {
+  font-size: 26px;
+}
+
+.map-container {
+  position: relative;
+  height: 400px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(180, 82, 83, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 75% 75%, rgba(180, 82, 83, 0.05) 0%, transparent 40%);
+}
+
+.region-marker {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+
+.region-marker:hover {
+  transform: scale(1.1);
+}
+
+.marker-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.high-compliance .marker-dot {
+  background: #10b981;
+}
+
+.medium-compliance .marker-dot {
+  background: #f59e0b;
+}
+
+.low-compliance .marker-dot {
+  background: #ef4444;
+}
+
+.region-label {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  z-index: 3;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.region-label::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: white;
+}
+
+.current-location {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #b45253;
+  color: white;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(180, 82, 83, 0.3);
+  z-index: 4;
+}
+
+.current-location .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.map-legend {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.legend-dot.high-compliance {
+  background: #10b981;
+}
+
+.legend-dot.medium-compliance {
+  background: #f59e0b;
+}
+
+.legend-dot.low-compliance {
+  background: #ef4444;
+}
+
+@media (max-width: 991.98px) {
+  .map-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .map-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .map-legend {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .map-card {
+    padding: 16px;
+  }
+
+  .map-header h4 {
+    font-size: 16px;
+  }
+
+  .map-container {
+    height: 300px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .map-legend {
+    gap: 16px;
+  }
+
+  .legend-item {
+    font-size: 12px;
+  }
+}
