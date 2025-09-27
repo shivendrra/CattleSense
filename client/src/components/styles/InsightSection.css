@@ -127,7 +127,7 @@
 }
 
 .stat-row:not(:last-child) {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid lightgrey;
 }
 
 .stat-label {
@@ -143,9 +143,11 @@
 }
 
 .risk-row {
-  background: rgba(239, 68, 68, 0.05);
+  background: rgba(239, 68, 68, 0.171);
   margin: 0 -16px -16px -16px;
   padding: 12px 16px;
+  /* border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px; */
 }
 
 .risk-value {

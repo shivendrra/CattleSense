@@ -88,10 +88,13 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <div className="row align-items-center">
-            <div className="col-md-6">
+            <div className="col-md-4">
               <p className="copyright">© 2025 <span className='web-title-footer'>CattleSense</span>™ by <strong>TwoFold</strong></p>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
+              <p class="middle">Made for responsible livestock stewardship • India</p>
+            </div>
+            <div className="col-md-4">
               <div className="social-links">
                 {socialLinks.map((social, index) => (
                   renderLink(social, <i className={social.icon}></i>, social.label)

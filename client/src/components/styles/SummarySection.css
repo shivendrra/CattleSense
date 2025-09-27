@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .summary-modal {
@@ -63,14 +63,14 @@
 }
 
 .action-btn:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #475569;
+  background: #c0dd78;
+  border-color: #84994F;
+  color: #505f0f;
 }
 
 .action-btn.close-btn:hover {
-  background: #fee2e2;
-  border-color: #fecaca;
+  background: #e89778;
+  border-color: #DD0303;
   color: #dc2626;
 }
 

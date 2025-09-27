@@ -90,7 +90,8 @@ body {
   background-color: var(--bg);
 }
 
-.navbar .nav-link, .navbar .navbar-brand {
+.navbar .nav-link,
+.navbar .navbar-brand {
   color: #ffffff;
 }
 
@@ -100,4 +101,12 @@ body {
   font-size: 1.25rem;
   color: #ffffff;
   cursor: pointer;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
 }

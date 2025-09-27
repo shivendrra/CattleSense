@@ -74,7 +74,7 @@
 .map-container {
   position: relative;
   height: 400px;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #f8f9fa, var(--secondary-color));
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   overflow: hidden;
@@ -85,8 +85,8 @@
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(180, 82, 83, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 75% 75%, rgba(180, 82, 83, 0.05) 0%, transparent 40%);
+    radial-gradient(circle at 30% 20%, rgba(180, 82, 83, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(246, 239, 210, 0.3) 0%, transparent 50%);
 }
 
 .region-marker {
