@@ -25,9 +25,9 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { name: 'Privacy Policy', href: '/privacy', external: false },
-    { name: 'Licensing', href: '/licensing', external: false },
-    { name: 'Terms & Conditions', href: '/terms', external: false }
+    { name: 'Privacy Policy', href: '/legal#privacy-policy', external: false },
+    { name: 'Licensing', href: '/legal#licensing', external: false },
+    { name: 'Terms & Conditions', href: '/legal#terms-and-conditions', external: false }
   ];
 
   const socialLinks = [

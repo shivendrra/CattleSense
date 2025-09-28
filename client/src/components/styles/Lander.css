@@ -168,7 +168,7 @@
   border-radius: 0;
 }
 
-.feature-icon .material-icons {
+.feature-icon .feature-img {
   font-size: 1.8rem;
   color: white;
 }
@@ -204,12 +204,11 @@
 }
 
 .feature-item-icon {
-  width: 44px;
-  height: 44px;
-  background-color: #B45253;
+  width: 96px;
+  height: 96px;
   color: white;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   flex-shrink: 0;
   border-radius: 0;
@@ -408,11 +407,11 @@
   }
 
   .feature-icon {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
   }
   
-  .feature-icon .material-icons {
+  .feature-icon .feature-imgw {
     font-size: 1.5rem;
   }
   

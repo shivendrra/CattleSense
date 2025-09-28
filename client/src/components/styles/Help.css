@@ -7,7 +7,7 @@
   text-align: center;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #B45253;
+  color: #234C6A;
   margin-bottom: 20px;
 }
 
@@ -15,7 +15,6 @@
   max-width: 800px;
   margin: 0 auto 40px auto;
   text-align: center;
-  color: #234C6A;
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -31,12 +30,11 @@
 .help-section h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #B45253;
+  color: #8FA31E;
   margin-bottom: 12px;
 }
 
 .help-section p {
-  color: #234C6A;
   line-height: 1.6;
 }
 

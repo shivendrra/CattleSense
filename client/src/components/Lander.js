@@ -5,6 +5,10 @@ import './styles/Lander.css';
 import consumer from '../assets/svg/consumer.svg';
 import farmer from '../assets/svg/farmers.svg';
 import veterinary from '../assets/svg/veterinary.svg';
+import livestock from '../assets/svg/livestock.svg';
+import analytics from '../assets/svg/analytics.svg';
+import scanqr from '../assets/svg/scanqr.svg';
+import phonealerts from '../assets/svg/phonealert.svg';
 
 export default function Lander() {
   function handleDemo() {
@@ -128,7 +132,7 @@ export default function Lander() {
           <p className="section-subtitle">
             CattleSense provides end-to-end livestock health monitoring with transparency and ease of use.
           </p>
-          <div className="row g-4">
+          <div className="row g-3">
             <div className="col-lg-4">
               <div className="feature-box">
                 <div className="feature-icon">
@@ -170,11 +174,11 @@ export default function Lander() {
           <h2 className="section-title">
             Key Features
           </h2>
-          <div className="row g-4">
+          <div className="row g-5">
             <div className="col-lg-6">
               <div className="feature-item">
                 <div className="feature-item-icon">
-                  <span className="material-symbols-outlined">pets</span>
+                  <img src={livestock} alt="" className='feature-img' />
                 </div>
                 <div className="feature-item-content">
                   <h3>Livestock Profiling</h3>
@@ -187,7 +191,7 @@ export default function Lander() {
             <div className="col-lg-6">
               <div className="feature-item">
                 <div className="feature-item-icon">
-                  <span className="material-symbols-outlined">qr_code</span>
+                  <img src={scanqr} alt="" className='feature-img' />
                 </div>
                 <div className="feature-item-content">
                   <h3>QR Code Scanning</h3>
@@ -200,7 +204,7 @@ export default function Lander() {
             <div className="col-lg-6">
               <div className="feature-item">
                 <div className="feature-item-icon">
-                  <span className="material-symbols-outlined">notifications_active</span>
+                  <img src={phonealerts} alt="" className='feature-img' />
                 </div>
                 <div className="feature-item-content">
                   <h3>Automated Alerts</h3>
@@ -213,7 +217,7 @@ export default function Lander() {
             <div className="col-lg-6">
               <div className="feature-item">
                 <div className="feature-item-icon">
-                  <span className="material-symbols-outlined">analytics</span>
+                  <img src={analytics} alt="" className='feature-img' />
                 </div>
                 <div className="feature-item-content">
                   <h3>Analytics Dashboard</h3>
