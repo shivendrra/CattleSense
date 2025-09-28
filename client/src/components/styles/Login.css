@@ -155,7 +155,6 @@
   margin-bottom: 25px;
 }
 
-
 .form-check {
   display: flex;
   align-items: center;
@@ -192,6 +191,7 @@
   padding: 15px;
   background: #007bff;
   border: none;
+  text-align: center;
   border-radius: 0px;
   color: white;
   font-weight: 600;

@@ -296,10 +296,13 @@ export default function Navbar() {
                       </li>
                       <li><hr className="dropdown-divider" /></li>
                       <li className='dropdown-item'>
-                        <Link to='/farmers'>For Farmers</Link>
+                        <Link to='/for/farmers'>For Farmers</Link>
                       </li>
                       <li className='dropdown-item'>
-                        <Link to='/civil'>For Civilian</Link>
+                        <Link to='/for/consumer'>For Consumer</Link>
+                      </li>
+                      <li className='dropdown-item'>
+                        <Link to='/for/veterinary'>For Veterinary</Link>
                       </li>
                       <li><hr className="dropdown-divider" /></li>
                       <li className='dropdown-item'>

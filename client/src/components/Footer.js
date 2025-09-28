@@ -20,7 +20,7 @@ const Footer = () => {
 
   const helpLinks = [
     { name: 'Contact Us', href: '/contact', external: false },
-    { name: 'FAQs', href: '#', external: true },
+    { name: 'FAQs', href: '/help#faq', external: false },
     { name: 'Twitter', href: 'https://x.com/shivendrra_', external: true },
   ];
 

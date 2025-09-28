@@ -8,6 +8,11 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
 import NotFound from './NotFound';
+import FAQ from './FAQ';
+import Help from './Help';
+import Consumer from './Consumer';
+import Farmers from './Farmers';
+import Veterinary from './Veterinary';
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
@@ -15,7 +20,6 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return null;
   }
-  // return currentUser ? children : <Navigate to="/auth/login" />;
   return currentUser ? children : <Navigate to="/" />;
 };
 
@@ -26,6 +30,15 @@ const PublicRoute = ({ children }) => {
     return null;
   }
   return !currentUser ? children : <Navigate to="/home" />;
+};
+
+const HomeRoute = () => {
+  const { currentUser, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+  return currentUser ? <Home /> : <Lander />;
 };
 
 export default function PageRoutes() {
@@ -42,11 +55,16 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/auth/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/auth/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+      <Route path="/for/farmers" element={<PublicRoute><Farmers /></PublicRoute>} />
+      <Route path="/for/veterinary" element={<PublicRoute><Veterinary /></PublicRoute>} />
+      <Route path="/for/consumer" element={<PublicRoute><Consumer /></PublicRoute>} />
+      <Route path="/faq" element={<PublicRoute><FAQ/></PublicRoute>} />
+      <Route path="/help" element={<PublicRoute><Help/></PublicRoute>} />
 
-      <Route path="/" element={<PublicRoute><Lander /></PublicRoute>} />
-      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-      
+      <Route path="/" element={<HomeRoute />} />
       <Route path="*" element={<NotFound />} />
+
+      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
     </Routes>
   );
 }
