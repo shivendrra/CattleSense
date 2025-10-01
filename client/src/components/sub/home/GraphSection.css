@@ -1,0 +1,119 @@
+.chart-card {
+  background: var(--background-color, white);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 0;
+  padding: 25px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.chart-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--secondary-color, #F6EFD2);
+  position: relative;
+}
+
+.chart-header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--primary-color, #B45253);
+}
+
+.chart-header h4 {
+  margin: 0;
+  color: var(--text-dark, #333);
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.2;
+}
+
+.chart-header .material-symbols-outlined {
+  color: var(--primary-color, #B45253);
+  font-size: 22px;
+}
+
+.chart-subtitle {
+  color: var(--text-light, #666);
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 32px;
+  letter-spacing: 0.3px;
+}
+
+.chart-container {
+  position: relative;
+  height: 280px;
+  margin: 10px -5px -5px -5px;
+}
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(180, 82, 83, 0.02) 0%, 
+    rgba(246, 239, 210, 0.05) 50%, 
+    transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #f0f0f0;
+  stroke-width: 1;
+}
+
+.recharts-tooltip-wrapper {
+  z-index: 1000;
+}
+
+@media (max-width: 992px) {
+  .chart-card {
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    height: 280px;
+  }
+  
+  .chart-header h4 {
+    font-size: 16px;
+  }
+  
+  .chart-subtitle {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-card {
+    padding: 20px 15px;
+    margin-bottom: 25px;
+  }
+  
+  .chart-container {
+    height: 300px;
+    margin: 15px -10px -10px -10px;
+  }
+  
+  .chart-header {
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+  }
+}
