@@ -1,7 +1,17 @@
 .farmer-profile {
   background-color: #f8f9fa;
   min-height: 100vh;
-  padding: 20px 0;
+  padding-bottom: 20px;
+}
+
+.profile-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-right-col {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {

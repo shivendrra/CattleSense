@@ -10,16 +10,21 @@ export default function StatsSection() {
   ];
 
   return (
-    <div className="stats-grid">
-      {stats.map((stat, index) => (
-        <div key={index} className="stat-card">
-          <div className="stat-icon">
-            <span className="material-symbols-outlined">{stat.icon}</span>
+    <div className="stats-section">
+      {stats.map((stat, index) => {
+        const uniqueClass = stat.icon.replace(/_/g, '-'); 
+        return (
+          <div key={index} className={`stats-card ${uniqueClass}-card`}>
+            <div className={`stat-icon ${uniqueClass}-icon`}>
+              <span className="material-symbols-outlined">{stat.icon}</span>
+            </div>
+            <div className={`stat-number ${uniqueClass}-number`}>{stat.number}</div>
+            <div className={`stat-label ${uniqueClass}-label text-muted`}>
+              {stat.label}
+            </div>
           </div>
-          <div className="stat-number">{stat.number}</div>
-          <div className="text-muted">{stat.label}</div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

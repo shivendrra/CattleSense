@@ -1,16 +1,17 @@
 .quick-actions {
   background: white;
   border-radius: 0;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
   border: 1px solid #ddd;
+  height: 100%;
 }
 
 .quick-actions h5 {
   color: #234c6a;
   font-weight: 600;
   font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .action-buttons {
@@ -19,7 +20,7 @@
   flex-wrap: wrap;
 }
 
-.btn-custom {
+.quick-actions .btn-custom {
   background: #b45253;
   border: none;
   color: white;
@@ -30,13 +31,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
 }
 
-.btn-custom:hover {
+.quick-actions .btn-custom:hover {
   background: #a04445;
   color: white;
-  transform: translateY(-2px);
 }
 
 .btn-outline-custom {
@@ -50,13 +49,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
 }
 
 .btn-outline-custom:hover {
   background: #b45253;
   color: white;
-  transform: translateY(-2px);
 }
 
 .btn-custom .material-symbols-outlined,

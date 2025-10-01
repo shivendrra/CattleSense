@@ -7,7 +7,6 @@ export default function QuickActions() {
     { icon: 'medication', label: 'Update Medication', variant: 'btn-custom' },
     { icon: 'thermostat', label: 'Record Health Data', variant: 'btn-custom' },
     { icon: 'description', label: 'Generate Report', variant: 'btn-outline-custom' },
-    { icon: 'warning', label: 'Alert Settings', variant: 'btn-outline-custom' }
   ];
 
   return (
