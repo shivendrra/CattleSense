@@ -29,12 +29,12 @@ export default function Lander() {
                 antimicrobial usage and ensure food safety through transparent livestock monitoring.
               </p>
               <div className="d-flex gap-3 hero-buttons">
-                <button className="btn btn-light btn-lg fw-semibold px-4 hero-btn-primary">
+                <button className="btn btn-lg fw-semibold px-4 hero-btn-primary">
                   <Link to='/auth/signup' className="text-decoration-none">
                     Get Started
                   </Link>
                 </button>
-                <button className="btn btn-outline-light btn-lg fw-semibold px-4 hero-btn-secondary" onClick={handleDemo}>
+                <button className="btn btn-lg fw-semibold px-4 hero-btn-secondary" onClick={handleDemo}>
                   View Demo
                 </button>
               </div>

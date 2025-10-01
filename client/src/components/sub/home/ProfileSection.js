@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProfileSection.css';
 
 import prof from '../../../assets/img/lalu.jpg';
@@ -27,7 +28,11 @@ export default function ProfileSection() {
               <span className="material-symbols-outlined">phone</span> +91 98765 43210 &nbsp;|&nbsp;
               <span className="material-symbols-outlined">mail</span> lalu@farm.com
             </p>
-            <button className='btn btn-outline-dark mt-3'>Go to Profile</button>
+            <button className='btn btn-outline-dark mt-3'>
+              <Link to='/profile' className='text-dark text-decoration-none'>
+                Go to Profile
+              </Link>
+            </button>
           </div>
         </div>
         <div className="d-none d-lg-block col-lg-1 divider-col">

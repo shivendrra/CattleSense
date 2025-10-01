@@ -1,50 +1,73 @@
 .hero-section {
-  background-color: #E43636 !important;
-  color: #F6EFD2 !important;
+  /* background-color: #EFE4D2 !important; */
+  background-color: #F6EFD2 !important;
+  color: #254D70 !important;
   padding: 100px 0px;
+  background-image: url(../../assets/svg/mainbackground.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f6efd270;
+  /* backdrop-filter: blur(1px); */
+  z-index: 1;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
-  color: #F6EFD2 !important;
+  color: #11151d !important;
   font-size: 2.2rem !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .hero-subtitle {
-  color: #F6EFD2 !important;
-  opacity: 0.9;
+  color: #11151d !important;
+  opacity: 1;
   line-height: 1.6;
+  font-weight: 500;
 }
 
-.hero-btn-primary {
-  background-color: #F6EFD2 !important;
-  color: #E43636 !important;
+.lander .hero-btn-primary {
+  background-color: #FFB823 !important;
+  width: 100%;
+  color: white !important;
   border: none !important;
   border-radius: 0 !important;
-  transition: all 0.3s ease;
 }
 
-.hero-btn-primary:hover {
-  background-color: #E2DDB4 !important;
-  color: #E43636 !important;
-  transform: translateY(-2px);
+.lander .hero-btn-primary:hover {
+  background-color: #eda200 !important;
+  color: white !important;
 }
 
-.hero-btn-primary a {
-  color: #E43636 !important;
+.lander .hero-btn-primary a {
+  color: white !important;
 }
 
-.hero-btn-secondary {
-  background-color: transparent !important;
-  color: #F6EFD2 !important;
-  border: 2px solid #F6EFD2 !important;
+.lander .hero-btn-secondary {
+  background-color: #98CD00 !important;
+  width: 100%;
+  color: white !important;
+  border: none !important;
   border-radius: 0 !important;
-  transition: all 0.3s ease;
 }
 
-.hero-btn-secondary:hover {
-  background-color: #F6EFD2 !important;
-  color: #E43636 !important;
-  border-color: #F6EFD2 !important;
+.lander .hero-btn-secondary:hover {
+  background-color: #77a200 !important;
+  color: white !important;
 }
 
 .stats-card {
@@ -61,12 +84,12 @@
 }
 
 .stats-number {
-  color: #F6EFD2 !important;
+  color: #254D70 !important;
   font-size: 2rem !important;
 }
 
 .stats-label {
-  color: #F6EFD2 !important;
+  color: #254D70 !important;
   opacity: 0.8;
   font-size: 0.8rem !important;
 }
@@ -101,7 +124,7 @@
 .problem-card {
   background-color: white;
   padding: 28px 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
 
@@ -295,26 +318,27 @@
 @media (max-width: 768px) {
   .hero-section {
     padding: 50px 0px;
-  }  
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 28px;
     text-align: center;
   }
-  
+
   .hero-title {
     font-size: 1.8rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn-primary,
   .btn-secondary,
   .btn-light,
@@ -322,39 +346,39 @@
     width: 100%;
     max-width: 260px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  
+
   .stats-number {
     font-size: 1.7rem;
   }
-  
+
   .section-title {
     font-size: 1.7rem;
   }
-  
+
   .problem-grid,
   .solution-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .feature-item {
     flex-direction: column;
     text-align: center;
     gap: 10px;
   }
-  
+
   .cta-title {
     font-size: 1.7rem;
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
@@ -365,43 +389,43 @@
   .container {
     padding: 0 16px;
   }
-  
+
   .hero-section {
     padding: 50px 0;
   }
-  
+
   .problem-section,
   .solution-section,
   .features-section,
   .cta-section {
     padding: 50px 0;
   }
-  
+
   .hero-title {
     font-size: 1.6rem;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
-  
+
   .stats-card {
     padding: 16px 10px;
   }
-  
+
   .stats-number {
     font-size: 1.5rem;
   }
-  
+
   .problem-card,
   .alert-card {
     padding: 20px 16px;
   }
-  
+
   .feature-box {
     padding: 14px;
   }
-  
+
   .feature-item-icon {
     margin: auto;
   }
@@ -410,11 +434,11 @@
     width: 64px;
     height: 64px;
   }
-  
+
   .feature-icon .feature-imgw {
     font-size: 1.5rem;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
