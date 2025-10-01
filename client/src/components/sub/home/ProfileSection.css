@@ -43,6 +43,14 @@
   line-height: 1.2;
 }
 
+.prof-section .btn-outline-dark .text-decoration-none {
+  color: #1e1e1e;
+}
+
+.prof-section .btn-outline-dark:hover .text-decoration-none{
+  color: white;
+}
+
 .user-tag {
   display: inline-block;
   background: #b45253;

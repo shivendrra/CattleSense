@@ -116,7 +116,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light shadow-sm">
+      <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid px-4">
           <a className="navbar-brand fw-bold text-dark fs-4" href="/">
             CattleSense
