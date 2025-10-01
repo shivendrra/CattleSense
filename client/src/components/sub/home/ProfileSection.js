@@ -29,7 +29,7 @@ export default function ProfileSection() {
               <span className="material-symbols-outlined">mail</span> lalu@farm.com
             </p>
             <button className='btn btn-outline-dark mt-3'>
-              <Link to='/profile' className='text-dark text-decoration-none'>
+              <Link to='/profile' className='text-decoration-none'>
                 Go to Profile
               </Link>
             </button>

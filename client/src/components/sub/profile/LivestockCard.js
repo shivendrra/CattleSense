@@ -81,7 +81,7 @@ export default function LivestockCard({ animal }) {
         <div className="mt-3 d-flex gap-2">
           {animal.status === 'critical' ? (
             <>
-              <button className="btn btn-custom btn-sm">
+              <button className="btn btn-custom btn-sm" onClick={() => setIsModalOpen(true)}>
                 <span className="material-symbols-outlined">emergency</span> Emergency
               </button>
               <button className="btn btn-outline-custom btn-sm">Contact Vet</button>
