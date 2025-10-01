@@ -1,0 +1,496 @@
+.livestock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.livestock-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.livestock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 12px 12px 0 0;
+}
+
+.livestock-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.livestock-icon {
+  font-size: 32px;
+}
+
+.livestock-title {
+  margin: 0;
+  color: #234c6a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.livestock-badge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  background: #FFB823;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.livestock-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.livestock-action-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.livestock-action-btn:hover {
+  background: #c0dd78;
+  border-color: #84994F;
+  color: #505f0f;
+}
+
+.livestock-action-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.livestock-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.livestock-section {
+  margin-bottom: 32px;
+}
+
+.livestock-section:last-child {
+  margin-bottom: 0;
+}
+
+.livestock-section-title {
+  color: #234c6a;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.livestock-status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.livestock-overlay .status-healthy {
+  background: #adcb01;
+  border-radius: 0px;
+}
+
+.livestock-overlay .status-treatment {
+  background: #f59e0b;
+  border-radius: 0px;
+}
+
+.livestock-overlay .status-critical {
+  background: #fa5238;
+  border-radius: 0px;
+}
+
+.livestock-overlay .status-unknown {
+  background: #64748b;
+  border-radius: 0px;
+}
+
+.livestock-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.livestock-info-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #8FA31E;
+  padding: 16px;
+}
+
+.livestock-info-label {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.livestock-info-value {
+  font-weight: 600;
+  font-size: 16px;
+  color: #374151;
+}
+
+.livestock-vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.livestock-vital-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.livestock-vital-icon {
+  font-size: 36px;
+  margin-right: 16px;
+}
+
+.livestock-vital-icon.temperature {
+  color: #ef4444;
+}
+
+.livestock-vital-icon.heartrate {
+  color: #ef4444;
+}
+
+.livestock-vital-info {
+  flex: 1;
+}
+
+.livestock-vital-label {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.livestock-vital-value {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.livestock-vital-value.temp-critical,
+.livestock-vital-value.hr-elevated {
+  color: #ef4444;
+}
+
+.livestock-vital-value.temp-elevated {
+  color: #f59e0b;
+}
+
+.livestock-vital-value.temp-normal,
+.livestock-vital-value.hr-normal {
+  color: #374151;
+}
+
+.livestock-vital-status {
+  color: #64748b;
+}
+
+.livestock-production-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #57B4BA;
+}
+
+.livestock-production-icon {
+  font-size: 36px;
+  color: #57B4BA;
+  margin-right: 16px;
+}
+
+.livestock-production-label {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.livestock-production-value {
+  font-weight: 700;
+  font-size: 20px;
+  color: #374151;
+}
+
+.livestock-medications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.livestock-medication-badge {
+  padding: 6px 12px;
+  background: #57B4BA;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.livestock-amu-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: #f0fdf4;
+  border: 1px dashed;
+  /* border-left: 3px solid #10b981; */
+}
+
+.livestock-amu-icon {
+  font-size: 20px;
+  color: #10b981;
+  margin-top: 2px;
+}
+
+.livestock-amu-content {
+  color: #374151;
+  line-height: 1.5;
+}
+
+.livestock-amu-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #234c6a;
+}
+
+.livestock-amu-text {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.livestock-timeline-wrapper {
+  position: relative;
+  padding-left: 30px;
+}
+
+.livestock-timeline-item-wrapper {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.livestock-timeline-item-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.livestock-timeline-dot {
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #8FA31E;
+}
+
+.livestock-timeline-line {
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  bottom: -25px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.livestock-timeline-content {
+  flex: 1;
+}
+
+.livestock-timeline-title {
+  display: block;
+  margin-bottom: 4px;
+  color: #234c6a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.livestock-timeline-desc {
+  margin: 0 0 4px 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.livestock-timeline-date {
+  color: #64748b;
+}
+
+.livestock-vet-card {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #FFB823;
+}
+
+.livestock-vet-icon {
+  font-size: 36px;
+  color: #FFB823;
+  margin-right: 16px;
+}
+
+.livestock-vet-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #234c6a;
+  margin-bottom: 4px;
+}
+
+.livestock-vet-phone {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.livestock-vet-license {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.livestock-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.livestock-footer-btn {
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.livestock-footer-btn.update-btn {
+  background: #8FA31E;
+}
+
+.livestock-footer-btn.update-btn:hover {
+  background: #7a8c1a;
+}
+
+.livestock-footer-btn.report-btn {
+  background: #FFB823;
+}
+
+.livestock-footer-btn.report-btn:hover {
+  background: #e5a51f;
+}
+
+@media (max-width: 768px) {
+  .livestock-overlay {
+    padding: 10px;
+  }
+
+  .livestock-modal {
+    width: 95%;
+    height: 95%;
+    border-radius: 8px;
+  }
+
+  .livestock-header {
+    padding: 16px 20px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .livestock-title {
+    font-size: 18px;
+  }
+
+  .livestock-icon {
+    font-size: 28px;
+  }
+
+  .livestock-content {
+    padding: 20px;
+  }
+
+  .livestock-info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .livestock-vitals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .livestock-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .livestock-action-btn .material-symbols-outlined {
+    font-size: 16px;
+  }
+
+  .livestock-footer {
+    flex-wrap: wrap;
+  }
+
+  .livestock-footer-btn {
+    flex: 1;
+    min-width: 120px;
+  }
+}

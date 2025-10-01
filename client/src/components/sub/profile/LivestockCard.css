@@ -54,17 +54,17 @@
   margin-bottom: 15px;
 }
 
-.status-healthy {
+.livestock-card .status-healthy {
   background: #d4edda;
   color: #155724;
 }
 
-.status-treatment {
+.livestock-card .status-treatment {
   background: #fff3cd;
   color: #856404;
 }
 
-.status-critical {
+.livestock-card .status-critical {
   background: #f8d7da;
   color: #721c24;
 }
