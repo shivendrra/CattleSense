@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './styles/Home.css';
-import './styles/GraphSection.css';
-import SummarySection from './sub/SummarySection';
-import ProfileSection from './sub/ProfileSection';
-import MapSection from './sub/MapSection';
-import InsightSection from './sub/InsightSection';
-import GraphSection from './sub/GraphSection';
+import './sub/home/GraphSection.css';
+import SummarySection from './sub/home/SummarySection';
+import ProfileSection from './sub/home/ProfileSection';
+import MapSection from './sub/home/MapSection';
+import InsightSection from './sub/home/InsightSection';
+import GraphSection from './sub/home/GraphSection';
 
 export default function Home() {
   const [isSummaryOpen, setIsSummaryOpen] = useState(false);

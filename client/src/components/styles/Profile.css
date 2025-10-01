@@ -1,0 +1,11 @@
+.farmer-profile {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .farmer-profile {
+    padding: 10px 0;
+  }
+}

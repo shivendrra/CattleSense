@@ -19,6 +19,7 @@ import Legal from './Legal';
 import Consumer from './Consumer';
 import Farmers from './Farmers';
 import Veterinary from './Veterinary';
+import Profile from './Profile';
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
@@ -57,6 +58,7 @@ export default function PageRoutes() {
       <Route path="/for/veterinary" element={<ProtectedRoute><Veterinary /></ProtectedRoute>} />
       <Route path="/for/consumer" element={<ProtectedRoute><Consumer /></ProtectedRoute>} />
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
 
       <Route path="/faq" element={<FAQ />} />
       <Route path="/help" element={<Help />} />

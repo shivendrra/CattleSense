@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/MapSection.css';
+import './MapSection.css';
 
 export default function MapSection() {
   const [currentView, setCurrentView] = useState('compliance');

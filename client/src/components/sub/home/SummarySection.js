@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/SummarySection.css';
+import './SummarySection.css';
 
 export default function SummarySection({ isOpen, onClose }) {
   if (!isOpen) return null;

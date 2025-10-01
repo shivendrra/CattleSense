@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/ProfileSection.css';
+import './ProfileSection.css';
 
-import prof from '../../assets/img/lalu.jpg';
-import defaultqr from '../../assets/svg/defaultqr.svg';
+import prof from '../../../assets/img/lalu.jpg';
+import defaultqr from '../../../assets/svg/defaultqr.svg';
 
 export default function ProfileSection() {
   return (

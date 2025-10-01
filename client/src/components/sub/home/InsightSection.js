@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/InsightSection.css';
+import './InsightSection.css';
 
 export default function InsightSection({ onExpandClick }) {
   return (
