@@ -15,7 +15,7 @@ const Footer = () => {
     { name: 'About', href: '/about', external: false },
     { name: 'Careers', href: '/careers', external: false },
     { name: 'Brand Center', href: '/brand-center', external: false },
-    { name: 'Blogs', href: '/blog', external: false }
+    { name: 'Blogs', href: '/blogs', external: false }
   ];
 
   const helpLinks = [

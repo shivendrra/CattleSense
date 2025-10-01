@@ -8,8 +8,10 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
 import About from './About';
+import Blog from './Blog';
+import BlogPost from './BlogPage';
 import NotFound from './NotFound';
-import Conatct from './Conatct';
+import Contact from './Conatct';
 import Career from './Career';
 import FAQ from './FAQ';
 import Help from './Help';
@@ -20,28 +22,19 @@ import Veterinary from './Veterinary';
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
-
-  if (loading) {
-    return null;
-  }
+  if (loading) return null;
   return currentUser ? children : <Navigate to="/" />;
 };
 
 const PublicRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
-
-  if (loading) {
-    return null;
-  }
+  if (loading) return null;
   return !currentUser ? children : <Navigate to="/home" />;
 };
 
 const HomeRoute = () => {
   const { currentUser, loading } = useAuth();
-
-  if (loading) {
-    return null;
-  }
+  if (loading) return null;
   return currentUser ? <Home /> : <Lander />;
 };
 
@@ -59,20 +52,23 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/auth/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/auth/signup" element={<PublicRoute><Signup /></PublicRoute>} />
-      <Route path="/for/farmers" element={<PublicRoute><Farmers /></PublicRoute>} />
-      <Route path="/for/veterinary" element={<PublicRoute><Veterinary /></PublicRoute>} />
-      <Route path="/for/consumer" element={<PublicRoute><Consumer /></PublicRoute>} />
-      <Route path="/faq" element={<PublicRoute><FAQ /></PublicRoute>} />
-      <Route path="/help" element={<PublicRoute><Help /></PublicRoute>} />
-      <Route path="/about" element={<PublicRoute><About /></PublicRoute>} />
-      <Route path="/contact" element={<PublicRoute><Conatct /></PublicRoute>} />
-      <Route path="/careers" element={<PublicRoute><Career /></PublicRoute>} />
-      <Route path="/legal" element={<PublicRoute><Legal /></PublicRoute>} />
+
+      <Route path="/for/farmers" element={<ProtectedRoute><Farmers /></ProtectedRoute>} />
+      <Route path="/for/veterinary" element={<ProtectedRoute><Veterinary /></ProtectedRoute>} />
+      <Route path="/for/consumer" element={<ProtectedRoute><Consumer /></ProtectedRoute>} />
+      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/help" element={<Help />} />
+      <Route path="/blogs" element={<Blog />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/careers" element={<Career />} />
+      <Route path="/legal" element={<Legal />} />
 
       <Route path="/" element={<HomeRoute />} />
       <Route path="*" element={<NotFound />} />
-
-      <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
     </Routes>
   );
 }

@@ -193,6 +193,11 @@ export default function Navbar() {
                 </div>
               </li>
               <li className="nav-item">
+                <Link to="/blogs" className={`nav-link fw-medium px-3 ${location.pathname === '/blogs' ? 'active' : ''}`}>
+                  Blogs
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/about" className={`nav-link fw-medium px-3 ${location.pathname === '/about' ? 'active' : ''}`}>
                   About
                 </Link>

@@ -12,8 +12,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  background: #fafafa;
+  border-bottom: 1px solid lightgrey;
+  background: whitesmoke;
 }
 
 .summary-title {
@@ -74,7 +74,7 @@
 }
 
 .section-heading {
-  color: #b45253;
+  color: #8FA31E;
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 8px;
