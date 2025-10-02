@@ -4,16 +4,13 @@ import { useAuth } from '../contexts/AuthContext';
 import './styles/Navbar.css';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+  const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [resourcesMenuOpen, setResourcesMenuOpen] = useState(false);
   const [projectsMenuOpen, setProjectsMenuOpen] = useState(false);
+  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('Eng');
-  const languageRef = useRef(null);
-  const userMenuRef = useRef(null);
-  const resourcesRef = useRef(null);
-  const projectsRef = useRef(null);
+  const mainMenuRef = useRef(null), userMenuRef = useRef(null), resourcesRef = useRef(null), projectsRef = useRef(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,32 +18,27 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (languageRef.current && !languageRef.current.contains(event.target)) {
-        setLanguageDropdownOpen(false);
-      }
+      if (mainMenuRef.current && !mainMenuRef.current.contains(event.target)) setMainMenuOpen(false);
       if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
         setUserMenuOpen(false);
+        setLanguageDropdownOpen(false);
       }
-      if (resourcesRef.current && !resourcesRef.current.contains(event.target)) {
-        setResourcesMenuOpen(false);
-      }
-      if (projectsRef.current && !projectsRef.current.contains(event.target)) {
-        setProjectsMenuOpen(false);
-      }
+      if (resourcesRef.current && !resourcesRef.current.contains(event.target)) setResourcesMenuOpen(false);
+      if (projectsRef.current && !projectsRef.current.contains(event.target)) setProjectsMenuOpen(false);
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const isAuthPage = location.pathname.includes('/auth/login') || location.pathname.includes('/auth/signup');
+  if (isAuthPage) return null;
 
-  if (isAuthPage) {
-    return null;
-  }
-
-  const toggleNavbar = () => setIsOpen(!isOpen);
+  const toggleMainMenu = () => setMainMenuOpen(!mainMenuOpen);
+  const toggleUserMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+    setLanguageDropdownOpen(false);
+  };
   const toggleLanguageDropdown = () => setLanguageDropdownOpen(!languageDropdownOpen);
-  const toggleUserMenu = () => setUserMenuOpen(!userMenuOpen);
 
   const handleLogout = async () => {
     try {
@@ -65,7 +57,6 @@ export default function Navbar() {
     { code: 'te', name: 'Tel', nativeName: 'తెలుగు' },
     { code: 'ta', name: 'Tam', nativeName: 'தமிழ்' },
     { code: 'gu', name: 'Guj', nativeName: 'ગુજરાતી' },
-    { code: 'ur', name: 'Urd', nativeName: 'اردو' },
     { code: 'kn', name: 'Kan', nativeName: 'ಕನ್ನಡ' },
     { code: 'or', name: 'Ori', nativeName: 'ଓଡ଼ିଆ' },
     { code: 'pa', name: 'Pun', nativeName: 'ਪੰਜਾਬੀ' },
@@ -89,238 +80,201 @@ export default function Navbar() {
     setLanguageDropdownOpen(false);
   };
 
-  const handleResourcesEnter = () => {
-    if (window.innerWidth > 991) setResourcesMenuOpen(true);
-  };
-  const handleResourcesLeave = () => {
-    if (window.innerWidth > 991) setResourcesMenuOpen(false);
-  };
-  const handleProjectsEnter = () => {
-    if (window.innerWidth > 991) setProjectsMenuOpen(true);
-  };
-  const handleProjectsLeave = () => {
-    if (window.innerWidth > 991) setProjectsMenuOpen(false);
-  };
+  const handleResourcesEnter = () => { if (window.innerWidth > 991) setResourcesMenuOpen(true); };
+  const handleResourcesLeave = () => { if (window.innerWidth > 991) setResourcesMenuOpen(false); };
+  const handleProjectsEnter = () => { if (window.innerWidth > 991) setProjectsMenuOpen(true); };
+  const handleProjectsLeave = () => { if (window.innerWidth > 991) setProjectsMenuOpen(false); };
   const handleResourcesClick = (e) => {
     e.preventDefault();
-    if (window.innerWidth <= 991) {
-      setResourcesMenuOpen(!resourcesMenuOpen);
-    }
+    if (window.innerWidth <= 991) setResourcesMenuOpen(!resourcesMenuOpen);
   };
   const handleProjectsClick = (e) => {
     e.preventDefault();
-    if (window.innerWidth <= 991) {
-      setProjectsMenuOpen(!projectsMenuOpen);
-    }
+    if (window.innerWidth <= 991) setProjectsMenuOpen(!projectsMenuOpen);
   };
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container-fluid px-4">
-          <a className="navbar-brand fw-bold text-dark fs-4" href="/">
-            CattleSense
-          </a>
+    <nav className="navbar navbar-expand-lg navbar-light">
+      <div className="container-fluid px-4">
+        <a className="navbar-brand fw-bold text-dark fs-4" href="/">CattleSense</a>
 
-          <button
-            className="navbar-toggler border-0"
-            type="button"
-            onClick={toggleNavbar}
-            aria-expanded={isOpen}
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
-            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link to="/" className={`nav-link fw-medium px-3 ${location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}`}>
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item dropdown-mega" ref={resourcesRef} onMouseEnter={handleResourcesEnter} onMouseLeave={handleResourcesLeave}>
-                <a
-                  href="/"
-                  className={`nav-link fw-medium px-3 ${location.pathname === '/resources' ? 'active' : ''}`}
-                  onClick={handleResourcesClick}
-                >
-                  Resources
-                </a>
-                <div className={`mega-menu resources-mega ${resourcesMenuOpen ? 'show' : ''}`}>
-                  <div className="mega-content">
-                    {resourcesData.map((category, index) => (
-                      <div key={index} className="mega-category">
-                        <h3 className="mega-category-title">{category.title}</h3>
-                        <ul className="mega-category-list">
-                          {category.items.map((item, itemIndex) => (
-                            <li key={itemIndex}>
-                              <Link to={`/resources/${category.title.toLowerCase().replace(/\s+/g, '-')}/${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                                {item}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
+        <button className="navbar-toggler border-0" type="button" onClick={toggleMainMenu} aria-expanded={mainMenuOpen}>
+          <span class="material-symbols-outlined">
+            dehaze
+          </span>
+        </button>
+        <div className={`collapse navbar-collapse ${mainMenuOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to="/" className={`nav-link fw-medium px-3 ${location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}`}>
+                Home
+              </Link>
+            </li>
+            <li className="nav-item dropdown-mega" ref={resourcesRef} onMouseEnter={handleResourcesEnter} onMouseLeave={handleResourcesLeave}>
+              <a href="/" className={`nav-link fw-medium px-3 ${location.pathname === '/resources' ? 'active' : ''}`} onClick={handleResourcesClick}>
+                Resources
+              </a>
+              <div className={`mega-menu resources-mega ${resourcesMenuOpen ? 'show' : ''}`}>
+                <div className="mega-content">
+                  {resourcesData.map((category, index) => (
+                    <div key={index} className="mega-category">
+                      <h3 className="mega-category-title">{category.title}</h3>
+                      <ul className="mega-category-list">
+                        {category.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>
+                            <Link to={`/resources/${category.title.toLowerCase().replace(/\s+/g, '-')}/${item.toLowerCase().replace(/\s+/g, '-')}`}>
+                              {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              </li>
-              <li className="nav-item dropdown-mega" ref={projectsRef} onMouseEnter={handleProjectsEnter} onMouseLeave={handleProjectsLeave}>
-                <a
-                  href="/"
-                  className={`nav-link fw-medium px-3 ${location.pathname === '/projects' ? 'active' : ''}`}
-                  onClick={handleProjectsClick}
-                >
-                  Projects
-                </a>
-                <div className={`mega-menu projects-mega ${projectsMenuOpen ? 'show' : ''}`}>
-                  <div className="mega-content">
-                    {projectsData.map((category, index) => (
-                      <div key={index} className="mega-category">
-                        <h3 className="mega-category-title">{category.title}</h3>
-                        <ul className="mega-category-list">
-                          {category.items.map((item, itemIndex) => (
-                            <li key={itemIndex}>
-                              <Link to={`/projects/${category.title.toLowerCase().replace(/\s+/g, '-')}/${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                                {item}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
+              </div>
+            </li>
+            <li className="nav-item dropdown-mega" ref={projectsRef} onMouseEnter={handleProjectsEnter} onMouseLeave={handleProjectsLeave}>
+              <a href="/" className={`nav-link fw-medium px-3 ${location.pathname === '/projects' ? 'active' : ''}`} onClick={handleProjectsClick}>
+                Projects
+              </a>
+              <div className={`mega-menu projects-mega ${projectsMenuOpen ? 'show' : ''}`}>
+                <div className="mega-content">
+                  {projectsData.map((category, index) => (
+                    <div key={index} className="mega-category">
+                      <h3 className="mega-category-title">{category.title}</h3>
+                      <ul className="mega-category-list">
+                        {category.items.map((item, itemIndex) => (
+                          <li key={itemIndex}>
+                            <Link to={`/projects/${category.title.toLowerCase().replace(/\s+/g, '-')}/${item.toLowerCase().replace(/\s+/g, '-')}`}>
+                              {item}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-              </li>
-              <li className="nav-item">
-                <Link to="/blogs" className={`nav-link fw-medium px-3 ${location.pathname === '/blogs' ? 'active' : ''}`}>
-                  Blogs
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/about" className={`nav-link fw-medium px-3 ${location.pathname === '/about' ? 'active' : ''}`}>
-                  About
-                </Link>
-              </li>
-            </ul>
-
-            <div className="d-flex flex-lg-row gap-2 align-items-center">
-              <div className="nav-item dropdown" ref={languageRef}>
-                <button
-                  className="btn dropdown-toggle btn-sm"
-                  type="button"
-                  onClick={toggleLanguageDropdown}
-                >
-                  <span className="material-symbols-outlined" id="navIcon3">
-                    language
-                  </span>
-                </button>
-                <div className={`language-pane ${languageDropdownOpen ? 'show' : ''}`}>
-                  <div className="language-header">
-                    Choose a language
-                  </div>
-                  <div className="language-grid">
-                    {languages.map((language) => (
-                      <button
-                        key={language.code}
-                        className={`language-item ${selectedLanguage === language.name ? 'active' : ''}`}
-                        onClick={() => handleLanguageSelect(language)}
-                      >
-                        <span className="language-name">{language.name}</span>
-                        <span className="language-native">{language.nativeName}</span>
+              </div>
+            </li>
+            <li className="nav-item">
+              <Link to="/blogs" className={`nav-link fw-medium px-3 ${location.pathname === '/blogs' ? 'active' : ''}`}>
+                Blogs
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/about" className={`nav-link fw-medium px-3 ${location.pathname === '/about' ? 'active' : ''}`}>
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {mainMenuOpen && <div className="navbar-backdrop" onClick={() => setMainMenuOpen(false)} />}
+        <div className="navbar-right">
+          <div className="d-flex flex-lg-row gap-2 align-items-center">
+            <div className="nav-item dropdown" ref={userMenuRef}>
+              <button className="btn btn-outline-dark dropdown-toggle nav-login-btn" onClick={toggleUserMenu}>
+                {currentUser && currentUser.photoURL ? (
+                  <img src={currentUser.photoURL} alt="Profile" className="profile-image" />
+                ) : (
+                  <span className="material-symbols-outlined" id="navIcon2">account_circle</span>
+                )}
+              </button>
+              <ul className={`dropdown-menu user-menu ${userMenuOpen ? 'show' : ''}`}>
+                {currentUser ? (
+                  <>
+                    <li className='dropdown-item user-info'>
+                      <Link to='/profile' onClick={() => setUserMenuOpen(false)}>
+                        <p className="user-name">{currentUser.displayName || currentUser.email}</p>
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li className='dropdown-item'>
+                      <Link to='/account' onClick={() => setUserMenuOpen(false)}>
+                        <span className="material-symbols-outlined">person</span>
+                        Account Settings
+                      </Link>
+                    </li>
+                    <li className='dropdown-item'>
+                      <button onClick={handleLogout} className="logout-btn">
+                        <span className="material-symbols-outlined">logout</span>
+                        Logout
                       </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="nav-item dropdown" ref={userMenuRef}>
-                <button
-                  className="btn btn-outline-dark dropdown-toggle nav-login-btn"
-                  onClick={toggleUserMenu}
-                >
-                  {currentUser && currentUser.photoURL ? (
-                    <img
-                      src={currentUser.photoURL}
-                      alt="Profile"
-                      className="profile-image"
-                    />
-                  ) : (
-                    <span className="material-symbols-outlined" id="navIcon2">account_circle</span>
-                  )}
-                </button>
-                <ul className={`dropdown-menu user-menu ${userMenuOpen ? 'show' : ''}`}>
-                  {currentUser ? (
-                    <>
-                      <li className='dropdown-item user-info'>
-                        <Link to='/profile'>
-                          <p className="user-name">{currentUser.displayName || currentUser.email}</ p>
-                        </Link>
-                      </li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li className='dropdown-item'>
-                        <Link to='/account'>
-                          <span className="material-symbols-outlined">person</span>
-                          Account Settings
-                        </Link>
-                      </li>
-                      <li className='dropdown-item'>
-                        <button onClick={handleLogout} className="logout-btn">
-                          <span className="material-symbols-outlined">logout</span>
-                          Logout
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li className='dropdown-item'>
+                      <Link to='/dashboard' onClick={() => setUserMenuOpen(false)}>
+                        <span className="material-symbols-outlined">dashboard</span>
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li className='dropdown-item'>
+                      <Link to='/analytics' onClick={() => setUserMenuOpen(false)}>
+                        <span className="material-symbols-outlined">analytics</span>
+                        Analytics
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                  </>
+                ) : (
+                  <>
+                    <li className='dropdown-item'>
+                      <Link to='/help' onClick={() => setUserMenuOpen(false)}>
+                        <span className="material-symbols-outlined">help</span>
+                        Help
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li className='dropdown-item'>
+                      <Link to='/for/farmers' onClick={() => setUserMenuOpen(false)}>For Farmers</Link>
+                    </li>
+                    <li className='dropdown-item'>
+                      <Link to='/for/consumer' onClick={() => setUserMenuOpen(false)}>For Consumer</Link>
+                    </li>
+                    <li className='dropdown-item'>
+                      <Link to='/for/veterinary' onClick={() => setUserMenuOpen(false)}>For Veterinary</Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li className='dropdown-item'>
+                      <Link to='/auth/login' onClick={() => setUserMenuOpen(false)}>Login/Signup</Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                  </>
+                )}
+                <li className='dropdown-item language-trigger'>
+                  <button className="language-toggle-btn" onClick={toggleLanguageDropdown}>
+                    <span className="material-symbols-outlined">language</span>
+                    Language ({selectedLanguage})
+                    <span className="material-symbols-outlined chevron">{languageDropdownOpen ? 'expand_less' : 'expand_more'}</span>
+                  </button>
+                </li>
+                {languageDropdownOpen && (
+                  <li className='dropdown-item language-section'>
+                    <div className="language-grid">
+                      {languages.map((language) => (
+                        <button key={language.code} className={`language-item ${selectedLanguage === language.name ? 'active' : ''}`} onClick={() => handleLanguageSelect(language)}>
+                          <span className="language-name">{language.name}</span>
+                          <span className="language-native">{language.nativeName}</span>
                         </button>
-                      </li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li className='dropdown-item'>
-                        <Link to='/dashboard'>
-                          <span className="material-symbols-outlined">dashboard</span>
-                          Dashboard
-                        </Link>
-                      </li>
-                      <li className='dropdown-item'>
-                        <Link to='/analytics'>
-                          <span className="material-symbols-outlined">analytics</span>
-                          Analytics
-                        </Link>
-                      </li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li className='dropdown-item'>
-                        <Link to='/help'>
-                          <span className="material-symbols-outlined">help</span>
-                          Help & FAQ
-                        </Link>
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li className='dropdown-item'>
-                        <Link to='/help'>
-                          <span className="material-symbols-outlined">help</span>
-                          Help
-                        </Link>
-                      </li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li className='dropdown-item'>
-                        <Link to='/for/farmers'>For Farmers</Link>
-                      </li>
-                      <li className='dropdown-item'>
-                        <Link to='/for/consumer'>For Consumer</Link>
-                      </li>
-                      <li className='dropdown-item'>
-                        <Link to='/for/veterinary'>For Veterinary</Link>
-                      </li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li className='dropdown-item'>
-                        <Link to='/auth/login'>Login/Signup</Link>
-                      </li>
-                    </>
-                  )}
-                </ul>
-              </div>
+                      ))}
+                    </div>
+                  </li>
+                )}
+                {currentUser && (
+                  <>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li className='dropdown-item'>
+                      <Link to='/help' onClick={() => setUserMenuOpen(false)}>
+                        <span className="material-symbols-outlined">help</span>
+                        Help & FAQ
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
