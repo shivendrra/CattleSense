@@ -1,16 +1,189 @@
-.account {
-  display: flex;
-  height: 100vh;
-  align-items: start;
-  justify-content: center;
+.account-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.account-container .header {
+  background: linear-gradient(135deg, #b45253, #234c6a);
+  color: white;
+  border-radius: 0;
+  padding: 30px;
   margin-bottom: 20px;
 }
 
-.account .container {
-  padding: 40px 0px;
+.account-container .header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-.account .mainheading {
-  font-size: larger;
+.account-container .header p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.account-container .tabs {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-radius: 0;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-container .tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: white;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s;
+  white-space: nowrap;
+  position: relative;
+}
+
+.account-container .tab-btn .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.account-container .tab-btn:hover {
+  background: #f9f9f9;
+  color: #b45253;
+}
+
+.account-container .tab-btn.active {
+  color: #b45253;
+  border-bottom-color: #b45253;
+  background: #fff;
+}
+
+.account-container .badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ef4444;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
   font-weight: 600;
+}
+
+.account-container .content {
+  background: white;
+  border-radius: 0;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-container .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+}
+
+.account-container .btn {
+  padding: 12px 28px;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.account-container .btn-primary {
+  background: #b45253;
+  color: white;
+}
+
+.account-container .btn-primary:hover {
+  background: #a04243;
+  /* transform: translateY(-2px); */
+  box-shadow: 0 4px 12px rgba(180, 82, 83, 0.3);
+}
+
+.account-container .btn-secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.account-container .btn-secondary:hover {
+  background: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .account-container {
+    padding: 15px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .account-container .header {
+    padding: 20px;
+  }
+
+  .account-container .header h1 {
+    font-size: 24px;
+  }
+
+  .account-container .content {
+    padding: 20px;
+    overflow-x: hidden;
+    word-break: break-word;
+  }
+
+  .account-container .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .account-container .tab-btn {
+    flex: 1 1 calc(50% - 12px);
+    min-width: 120px;
+    max-width: 100%;
+    text-align: center;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .account-container input,
+  .account-container textarea,
+  .account-container select,
+  .account-container img,
+  .account-container .content * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+  }
+
+  .account-container .actions {
+    flex-direction: column-reverse;
+  }
+
+  .account-container .btn {
+    width: 100%;
+  }
+
+  .account-container .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
