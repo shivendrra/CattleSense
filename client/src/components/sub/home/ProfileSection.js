@@ -36,7 +36,7 @@ export default function ProfileSection() {
           </div>
         </div>
         <div className="d-none d-lg-block col-lg-1 divider-col">
-          <div className="vertical-divider m-auto"></div>
+          <div className="vertical-divider"></div>
         </div>
         <div className="col-12 col-lg-2">
           <div className="prof-stats">
@@ -51,7 +51,7 @@ export default function ProfileSection() {
           </div>
         </div>
         <div className="d-none d-lg-block col-lg-1 divider-col">
-          <div className="vertical-divider m-auto"></div>
+          <div className="vertical-divider"></div>
         </div>
         <div className="col-lg-2 d-none d-lg-flex">
           <div className="qr-section">
