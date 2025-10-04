@@ -25,6 +25,16 @@
   font-weight: 600 !important;
 }
 
+.navbar .navbar-toggler:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.navbar .navbar-toggler-icon::after {
+  border: none;
+  box-shadow: none;
+}
+
 .btn-outline-secondary {
   border-color: #6c757d;
   color: #6c757d;
@@ -135,77 +145,6 @@
   display: none;
 }
 
-.language-pane {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  border: 1px solid #e9ecef;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
-  width: 320px;
-  max-height: 400px;
-  overflow-y: auto;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-}
-
-.language-pane.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.language-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid #e9ecef;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #212529;
-}
-
-.language-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background-color: #f8f9fa;
-}
-
-.language-item {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  background-color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  border: none;
-  text-align: left;
-}
-
-.language-item:hover {
-  background-color: #e9ecef !important;
-}
-
-.language-item.active {
-  background-color: #f8f9fa;
-  border-left: 3px solid #007bff;
-}
-
-.language-name {
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-bottom: 4px;
-}
-
-.language-native {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #212529;
-}
-
 .user-menu {
   min-width: 280px;
   right: 0;
@@ -282,6 +221,78 @@
 .user-menu .dropdown-divider {
   margin: 8px 0;
   border-color: #e9ecef;
+}
+
+.language-trigger {
+  padding: 0 !important;
+}
+
+.language-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.language-toggle-btn:hover {
+  color: #212529;
+}
+
+.language-toggle-btn .chevron {
+  margin-left: auto;
+  font-size: 18px;
+}
+
+.language-section {
+  padding: 16px !important;
+  background-color: #f8f9fa;
+}
+
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.language-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.language-item:hover {
+  background-color: #e9ecef !important;
+}
+
+.language-item.active {
+  background-color: #e7f3ff;
+  border-color: #007bff;
+}
+
+.language-name {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 4px;
+}
+
+.language-native {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #212529;
 }
 
 .dropdown-mega {
@@ -373,96 +384,125 @@
 }
 
 @media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-toggler {
+    order: 1;
+    padding: 0px;
+    color: #1c1f23;
+  }
+
+  .navbar-toggler .material-symbols-outlined {
+    font-size: 36px;
+    margin: auto;
+  }
+
+  .navbar-brand {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .navbar-right {
+    order: 3;
+  }
+
   .navbar-collapse {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e9ecef;
-  }
-
-  .d-flex.flex-column {
-    margin-top: 1rem;
-  }
-
-  .dropdown-menu {
-    position: static;
-    display: none;
-    float: none;
-    width: auto;
-    margin: 0.5rem 0;
-    background-color: #f8f9fa;
-    border: none;
-    box-shadow: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background: #fff;
+    z-index: 1050;
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
-    max-height: 0;
-    overflow: hidden;
+    transform: translateX(-100%);
     transition: all 0.3s ease;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 0;
   }
 
-  .dropdown-menu.show {
-    display: block;
+  .navbar-collapse.show {
     opacity: 1;
     visibility: visible;
-    max-height: 400px;
+    transform: translateX(0);
   }
 
-  .language-pane {
-    position: static;
-    width: auto;
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: none;
-    margin: 0;
-    box-shadow: none;
-    overflow: hidden;
-    transition: all 0.3s ease;
+  .navbar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
   }
 
-  .language-pane.show {
-    opacity: 1;
-    visibility: visible;
-    max-height: 400px;
-    margin: 0.5rem 0;
+  .navbar-nav {
+    flex-direction: column;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .nav-item .nav-link {
+    font-size: 1rem;
+    padding: 10px 0;
+    color: #3b3f43;
+  }
+
+  .nav-item .nav-link.active {
+    font-weight: 600;
+    color: black;
+  }
+
+  .navbar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
   }
 
   .mega-menu {
     position: static;
-    width: 100%;
-    max-width: none;
-    left: auto;
     transform: none;
-    margin: 0;
+    width: 100%;
+    max-width: 100%;
     box-shadow: none;
     border: none;
-    background-color: #f8f9fa;
+    margin: 0;
     opacity: 0;
-    visibility: hidden;
     max-height: 0;
     overflow: hidden;
+    visibility: hidden;
     transition: all 0.3s ease;
   }
 
   .mega-menu.show {
     opacity: 1;
     visibility: visible;
-    max-height: 500px;
-    margin: 0.5rem 0;
+    max-height: 600px;
+    overflow: auto;
+    padding-left: 20px;
   }
 
   .mega-content {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    grid-template-columns: 1fr !important;
+    padding: 10px 0;
   }
 
-  .mega-category-title {
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-
-  .mega-category-list a {
-    font-size: 0.9rem;
-    padding: 6px 0;
+  .mega-category {
+    width: 100%;
   }
 }

@@ -15,6 +15,7 @@
 }
 
 .action-buttons {
+  width: 100%;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -70,9 +71,15 @@
     justify-content: center;
   }
 
+  .action-buttons {
+    display: flex;
+  }
+
   .btn-custom, .btn-outline-custom {
     font-size: 13px;
+    justify-content: center;
     padding: 8px 14px;
+    width: 100%;
   }
 }
 

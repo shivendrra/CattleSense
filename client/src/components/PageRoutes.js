@@ -12,6 +12,7 @@ import Blog from './Blog';
 import BlogPost from './BlogPage';
 import NotFound from './NotFound';
 import Contact from './Conatct';
+import Account from './Account';
 import Career from './Career';
 import FAQ from './FAQ';
 import Help from './Help';
@@ -59,6 +60,7 @@ export default function PageRoutes() {
       <Route path="/for/consumer" element={<ProtectedRoute><Consumer /></ProtectedRoute>} />
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
 
       <Route path="/faq" element={<FAQ />} />
       <Route path="/help" element={<Help />} />
