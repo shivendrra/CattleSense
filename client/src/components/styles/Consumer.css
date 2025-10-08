@@ -123,6 +123,12 @@
   padding: 30px;
   height: 100%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.concerns-box:hover,
+.solution-box-consumer:hover {
+  transform: translateY(-4px);
 }
 
 .concerns-box h3,
@@ -130,8 +136,7 @@
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 24px;
-    color: #8FA31E;
-
+  color: #8FA31E;
 }
 
 .concerns-list {
@@ -234,7 +239,6 @@
 }
 
 .benefit-card-consumer {
-  background: #f8f9fa;
   padding: 30px 20px;
   text-align: center;
   height: 100%;
@@ -242,15 +246,10 @@
   border: 2px solid transparent;
 }
 
-.benefit-card-consumer:hover {
-  border-color: #4A90E2;
-  transform: translateY(-4px);
-}
-
 .benefit-icon-consumer {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #4A90E2, #357ABD);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   color: white;
   font-size: 2.2rem;
   display: flex;
@@ -258,6 +257,10 @@
   justify-content: center;
   margin: 0 auto 16px;
   font-weight: bold;
+}
+
+.benefit-icon-consumer .material-symbols-outlined {
+  font-size: 5rem;
 }
 
 .benefit-card-consumer h4 {
@@ -339,17 +342,10 @@
   border: 2px dashed transparent;
 }
 
-.step-card-consumer:hover {
-  border-color: #4A90E2;
-  background: white;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
 .step-number-consumer {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #FFB823, #eda200);
+  background: linear-gradient(135deg, #FFB823, #916506);
   color: white;
   font-size: 2rem;
   font-weight: 700;

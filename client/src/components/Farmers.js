@@ -10,10 +10,30 @@ import analytics from '../assets/svg/analytics.svg';
 
 export default function Farmers() {
   const benefits = [
-    { icon: '✓', title: 'Better Yield', desc: 'Optimize livestock health for maximum productivity' },
-    { icon: '✓', title: 'Export Ready', desc: 'Meet international MRL standards easily' },
-    { icon: '✓', title: 'Compliance', desc: 'Stay updated with regulatory requirements' },
-    { icon: '✓', title: 'Smart Alerts', desc: 'Get notified about withdrawal periods' }
+    {
+      icon: 'compost',
+      title: 'Better Yield',
+      desc: 'Optimize livestock health for maximum productivity',
+      color: 'linear-gradient(135deg, #6DBE45 0%, #2b830dff 100%)'
+    },
+    {
+      icon: 'directions_boat',
+      title: 'Export Ready',
+      desc: 'Meet international MRL standards easily',
+      color: 'linear-gradient(135deg, #2E8BFF 0%, #15467dff 100%)'
+    },
+    {
+      icon: 'policy',
+      title: 'Compliance',
+      desc: 'Stay updated with regulatory requirements',
+      color: 'linear-gradient(135deg, #FFB400 0%, #57350dff 100%)'
+    },
+    {
+      icon: 'siren_check',
+      title: 'Smart Alerts',
+      desc: 'Get notified about withdrawal periods',
+      color: 'linear-gradient(135deg, #E74C3C 0%, #93201dff 100%)'
+    }
   ];
 
   const features = [
@@ -68,10 +88,18 @@ export default function Farmers() {
                 <span className="material-symbols-outlined problem-icon">report_problem</span>
                 <h3>Current Challenges</h3>
                 <ul className="problem-list">
-                  <li>Manual record-keeping is time-consuming and error-prone</li>
-                  <li>Risk of excessive antimicrobial usage without proper tracking</li>
-                  <li>Missing export opportunities due to compliance issues</li>
-                  <li>No real-time alerts for withdrawal periods</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    close
+                  </span>Manual record-keeping is time-consuming and error-prone</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    close
+                  </span>Risk of excessive antimicrobial usage without proper tracking</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    close
+                  </span>Missing export opportunities due to compliance issues</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    close
+                  </span>No real-time alerts for withdrawal periods</li>
                 </ul>
               </div>
             </div>
@@ -80,10 +108,18 @@ export default function Farmers() {
                 <span className="material-symbols-outlined solution-icon">verified</span>
                 <h3>How We Help</h3>
                 <ul className="solution-list">
-                  <li>Digital profiles for every animal with automated tracking</li>
-                  <li>Smart alerts prevent overdosing and ensure safety</li>
-                  <li>Meet MRL standards for better market access</li>
-                  <li>Get instant notifications before sale or processing</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    check
+                  </span>Digital profiles for every animal with automated tracking</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    check
+                  </span>Smart alerts prevent overdosing and ensure safety</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    check
+                  </span>Meet MRL standards for better market access</li>
+                  <li><span class="pe-2 material-symbols-outlined">
+                    check
+                  </span>Get instant notifications before sale or processing</li>
                 </ul>
               </div>
             </div>
@@ -94,12 +130,19 @@ export default function Farmers() {
       <section className="benefits-farmer">
         <div className="container">
           <h2 className="section-heading">Benefits for Your Farm</h2>
-          <p className="section-subtext">CattleSense isn't just about compliance—it's about growing your business</p>
+          <p className="section-subtext">
+            CattleSense isn't just about compliance—it's about growing your business
+          </p>
           <div className="row g-3">
             {benefits.map((item, idx) => (
               <div key={idx} className="col-md-6 col-lg-3">
                 <div className="benefit-card">
-                  <div className="benefit-icon">{item.icon}</div>
+                  <div
+                    className="benefit-icon d-flex"
+                    style={{ background: item.color }}
+                  >
+                    <span className="material-symbols-outlined m-auto">{item.icon}</span>
+                  </div>
                   <h4>{item.title}</h4>
                   <p>{item.desc}</p>
                 </div>
@@ -150,7 +193,7 @@ export default function Farmers() {
 
       <section className="trust-section">
         <div className="container">
-          <h2 className="section-heading text-white">Trusted by Farmers, Verified by Experts</h2>
+          <h2 className="section-heading">Trusted by Farmers, Verified by Experts</h2>
           <div className="row g-4 align-items-center">
             <div className="col-lg-6">
               <div className="trust-content">

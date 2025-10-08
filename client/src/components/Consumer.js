@@ -9,11 +9,35 @@ import livestock from '../assets/svg/livestock.svg';
 
 export default function Consumer() {
   const benefits = [
-    { icon: '🔍', title: 'Full Traceability', desc: 'Track your food from farm to fork with complete transparency' },
-    { icon: '✓', title: 'Safety First', desc: 'Verified MRL compliance ensures safe consumption' },
-    { icon: '📊', title: 'Detailed Reports', desc: 'Access complete health and treatment history' },
-    { icon: '🛡️', title: 'Peace of Mind', desc: 'Know exactly what you\'re feeding your family' }
+    {
+      icon: 'footprint',
+      title: 'Full Traceability',
+      desc: 'Track your food from farm to fork with complete transparency',
+      color: 'linear-gradient(135deg, #6DBE45 0%, #2b830dff 100%)'
+    },
+    {
+      icon: 'verified_user',
+      title: 'Safety First',
+      desc: 'Verified MRL compliance ensures safe consumption',
+      color: 'linear-gradient(135deg, #2E8BFF 0%, #15467dff 100%)'
+
+    },
+    {
+      icon: 'bar_chart',
+      title: 'Detailed Reports',
+      desc: 'Access complete health and treatment history',
+      color: 'linear-gradient(135deg, #FFB400 0%, #57350dff 100%)'
+
+    },
+    {
+      icon: 'shield',
+      title: 'Peace of Mind',
+      desc: "Know exactly what you're feeding your family",
+      color: 'linear-gradient(135deg, #E74C3C 0%, #93201dff 100%)'
+
+    }
   ];
+
 
   const features = [
     { img: scanqr, title: 'QR Code Scanning', desc: 'Simply scan the QR code on product packaging to instantly access complete livestock history and health records' },
@@ -155,7 +179,12 @@ export default function Consumer() {
             {benefits.map((item, idx) => (
               <div key={idx} className="col-md-6 col-lg-3">
                 <div className="benefit-card-consumer">
-                  <div className="benefit-icon-consumer">{item.icon}</div>
+                  <div
+                    className="benefit-icon-consumer d-flex"
+                    style={{ background: item.color }}
+                  >
+                    <span className="material-symbols-outlined m-auto">{item.icon}</span>
+                  </div>
                   <h4>{item.title}</h4>
                   <p>{item.desc}</p>
                 </div>

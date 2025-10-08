@@ -167,27 +167,23 @@
 
 .problem-list li,
 .solution-list li {
-  padding: 10px 0;
-  padding-left: 28px;
-  position: relative;
+  padding: 8px 0;
   color: #234C6A;
   line-height: 1.6;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.problem-list li::before {
-  content: '✗';
-  position: absolute;
-  left: 0;
+.problem-list li .material-symbols-outlined {
   color: #E43636;
-  font-weight: bold;
+  /* margin: auto; */
 }
-
-.solution-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
+.solution-list li .material-symbols-outlined {
   color: #98CD00;
-  font-weight: bold;
+  /* margin: auto; */
 }
 
 .benefits-farmer {
@@ -196,28 +192,29 @@
 }
 
 .benefit-card {
-  background: #f8f9fa;
-  padding: 30px 20px;
   text-align: center;
+  background: #fff;
+  padding: 30px 20px;
   height: 100%;
-  border: 2px solid transparent;
-}
-
-.benefit-card:hover {
-  border-color: #98CD00;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
 }
 
 .benefit-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #98CD00, #77a200);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* background: linear-gradient(135deg, #98CD00, #77a200); */
   color: white;
-  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 16px;
   font-weight: bold;
+}
+
+.benefit-icon .material-symbols-outlined {
+  font-size: 5rem;
 }
 
 .benefit-card h4 {
@@ -292,22 +289,15 @@
 .step-card {
   text-align: center;
   padding: 30px 20px;
-  background: #f8f9fa;
   height: 100%;
   position: relative;
   transition: all 0.3s ease;
 }
 
-.step-card:hover {
-  background: #98CD00;
-  color: white;
-  transform: translateY(-4px);
-}
-
 .step-number {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #FFB823, #eda200);
+  background: linear-gradient(135deg, #FFB823, #916506);
   color: white;
   font-size: 2rem;
   font-weight: 700;
@@ -324,11 +314,6 @@
   color: #234C6A;
 }
 
-.step-card:hover h4,
-.step-card:hover p {
-  color: white;
-}
-
 .step-card p {
   font-size: 0.95rem;
   color: #234C6A;
@@ -341,6 +326,10 @@
   padding: 70px 0;
   background: linear-gradient(135deg, #234C6A 0%, #11151d 100%);
   color: white;
+}
+
+.trust-section .section-heading {
+  color: #98CD00;
 }
 
 .trust-content h3 {
@@ -378,12 +367,10 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 30px 20px;
   text-align: center;
-  transition: all 0.3s ease;
 }
 
 .trust-stat-box:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.05);
 }
 
 .big-num {
