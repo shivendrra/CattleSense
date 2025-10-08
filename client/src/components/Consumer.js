@@ -41,22 +41,28 @@ export default function Consumer() {
       <section className="consumer-hero">
         <div className="container">
           <div className="row g-5 align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-8">
               <h1 className="hero-heading">Know What's On Your Plate - From Farm to Fork</h1>
               <p className="hero-text">CattleSense gives you complete transparency about the animal products you consume. Scan, verify, and eat with confidence.</p>
-              <div className="d-flex gap-3 flex-wrap">
+              <div className="d-flex gap-3 hero-btns">
                 <button className="btn-primary-consumer">
                   <Link to='/auth/signup' className="text-decoration-none text-white">Try Demo Scan</Link>
                 </button>
                 <button className="btn-secondary-consumer">Learn More</button>
               </div>
               <div className="hero-badges mt-4">
-                <div className="badge-item">✓ 100% Transparent</div>
-                <div className="badge-item">✓ Verified Safe</div>
-                <div className="badge-item">✓ Instant Access</div>
+                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                  check
+                </span> 100% Transparent</div>
+                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                  check
+                </span> Verified Safe</div>
+                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                  check
+                </span> Instant Access</div>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-4">
               <div className="hero-image">
                 <img src={consumer} alt="Consumer" className="img-fluid" />
               </div>
@@ -115,7 +121,7 @@ export default function Consumer() {
       <section className="why-matters">
         <div className="container">
           <h2 className="section-heading text-white">Why Food Traceability Matters</h2>
-          <div className="row g-4 align-items-center">
+          <div className="row g-4 ">
             <div className="col-lg-4">
               <div className="matter-card">
                 <div className="matter-icon">⚠️</div>
@@ -247,19 +253,27 @@ export default function Consumer() {
               <p className="trust-text">Food transparency isn't a luxury—it's your fundamental right as a consumer. CattleSense empowers you with verified, real-time information about the animal products you consume.</p>
               <div className="trust-features">
                 <div className="trust-feature-item">
-                  <span className="check-icon">✓</span>
+                  <span class="material-symbols-outlined check-icon">
+                    check
+                  </span>
                   <span>No hidden information</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span className="check-icon">✓</span>
+                  <span class="material-symbols-outlined check-icon">
+                    check
+                  </span>
                   <span>Verified by experts</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span className="check-icon">✓</span>
+                  <span class="material-symbols-outlined check-icon">
+                    check
+                  </span>
                   <span>Updated in real-time</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span className="check-icon">✓</span>
+                  <span class="material-symbols-outlined check-icon">
+                    check
+                  </span>
                   <span>Easy to understand</span>
                 </div>
               </div>

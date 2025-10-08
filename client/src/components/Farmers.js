@@ -35,7 +35,7 @@ export default function Farmers() {
       <section className="farmer-hero">
         <div className="container">
           <div className="row g-5 align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-8">
               <h1 className="hero-heading">Simplify Livestock Health Management & Boost Your Farm's Success</h1>
               <p className="hero-text">CattleSense helps you track antimicrobial usage, ensure MRL compliance, and access better export opportunities—all through an easy-to-use digital platform.</p>
               <div className="d-flex gap-3 hero-btns">
@@ -50,7 +50,7 @@ export default function Farmers() {
                 <div className="stat-item"><strong>99%</strong> Compliance</div>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-4">
               <div className="hero-image">
                 <img src={farmer} alt="Farmer" className="img-fluid" />
               </div>

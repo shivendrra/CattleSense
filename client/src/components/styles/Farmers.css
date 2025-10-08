@@ -523,10 +523,10 @@
   color: #B45253;
 }
 
-.cta-footnote {
+.farmer-lander .cta-footnote {
   font-size: 0.95rem;
   opacity: 0.85;
-  margin-top: 16px;
+  margin-top: 30px;
 }
 
 @media (max-width: 991px) {

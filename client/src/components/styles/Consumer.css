@@ -38,7 +38,8 @@
   opacity: 0.95;
 }
 
-.btn-primary-consumer, .btn-secondary-consumer {
+.btn-primary-consumer,
+.btn-secondary-consumer {
   padding: 14px 32px;
   font-size: 1rem;
   font-weight: 600;
@@ -91,7 +92,7 @@
 
 .hero-image img {
   max-width: 100%;
-  height: auto;
+  height: 80%;
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
 }
 
@@ -106,7 +107,7 @@
 .section-subtext {
   text-align: center;
   font-size: 1.1rem;
-  color: #234C6A;
+  color: #11151d;
   opacity: 0.8;
   margin-bottom: 40px;
 }
@@ -116,18 +117,21 @@
   background-color: #f8f9fa;
 }
 
-.concerns-box, .solution-box-consumer {
+.concerns-box,
+.solution-box-consumer {
   background: white;
   padding: 30px;
   height: 100%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.concerns-box h3, .solution-box-consumer h3 {
+.concerns-box h3,
+.solution-box-consumer h3 {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 24px;
-  color: #234C6A;
+    color: #8FA31E;
+
 }
 
 .concerns-list {
@@ -140,7 +144,7 @@
   padding: 14px 0;
   padding-left: 32px;
   position: relative;
-  color: #234C6A;
+  color: #11151d;
   line-height: 1.6;
   font-size: 1.05rem;
 }
@@ -148,7 +152,8 @@
 .concerns-list li::before {
   content: '?';
   position: absolute;
-  left: 0;
+  top: 11px;
+  left: 10px;
   color: #E43636;
   font-weight: bold;
   font-size: 1.3rem;
@@ -196,11 +201,11 @@
   padding: 30px 24px;
   text-align: center;
   height: 100%;
-  transition: transform 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .matter-card:hover {
-  transform: translateY(-4px);
+  border: 2px dashed #eda200;
 }
 
 .matter-icon {
@@ -278,15 +283,17 @@
 .feature-card-consumer {
   display: flex;
   gap: 20px;
+  justify-content: flex-start;
   align-items: flex-start;
+  height: 100%;
   background: white;
   padding: 30px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
 }
 
 .feature-card-consumer:hover {
-  transform: translateY(-4px);
+  border: 2px dashed #eda200;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .feature-img-wrap {
@@ -307,7 +314,6 @@
 .feature-content h3 {
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 12px;
   color: #234C6A;
 }
 
@@ -316,7 +322,6 @@
   color: #234C6A;
   opacity: 0.85;
   line-height: 1.7;
-  margin: 0;
 }
 
 .how-to-use {
@@ -331,7 +336,7 @@
   height: 100%;
   position: relative;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 2px dashed transparent;
 }
 
 .step-card-consumer:hover {
@@ -378,12 +383,12 @@
   background: white;
   padding: 0;
   height: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .info-card:hover {
-  transform: translateY(-4px);
+  border-bottom: 2px dashed #4A90E2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .info-header {
@@ -396,26 +401,16 @@
 }
 
 .info-list {
-  list-style: none;
+  list-style: circle;
   padding: 24px;
-  margin: 0;
+  margin: auto;
 }
 
 .info-list li {
-  padding: 10px 0;
-  padding-left: 28px;
+  padding: 4px 0px;
+  margin-left: 20px;
   position: relative;
-  color: #234C6A;
   line-height: 1.6;
-}
-
-.info-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #4A90E2;
-  font-size: 1.5rem;
-  font-weight: bold;
 }
 
 .trust-section-consumer {
@@ -478,7 +473,6 @@
 
 .stat-box-consumer:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.05);
 }
 
 .stat-num {
@@ -489,6 +483,7 @@
 }
 
 .stat-label {
+  color: #b8b8b8;
   font-size: 0.95rem;
   opacity: 0.9;
 }
@@ -524,7 +519,8 @@
   flex-wrap: wrap;
 }
 
-.btn-cta-primary-consumer, .btn-cta-secondary-consumer {
+.btn-cta-primary-consumer,
+.btn-cta-secondary-consumer {
   padding: 16px 40px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -556,34 +552,40 @@
   color: #4A90E2;
 }
 
-.cta-footnote {
+.consumer-lander .cta-footnote {
   font-size: 0.95rem;
   opacity: 0.85;
-  margin-top: 16px;
+  margin-top: 30px;
 }
 
 @media (max-width: 991px) {
   .hero-heading {
     font-size: 2rem;
   }
-  
+
+  .consumer-hero .hero-btns {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
   .section-heading {
     font-size: 1.8rem;
   }
-  
+
   .feature-card-consumer {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .feature-img-wrap {
     margin: 0 auto;
   }
-  
+
   .trust-features {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-grid-consumer {
     grid-template-columns: 1fr;
   }
@@ -593,21 +595,24 @@
   .consumer-hero {
     padding: 60px 0;
   }
-  
+
   .hero-heading {
     font-size: 1.8rem;
   }
-  
+
   .hero-text {
     font-size: 1rem;
   }
-  
+
   .hero-badges {
     justify-content: center;
   }
-  
+
   .section-heading {
     font-size: 1.6rem;
   }
-  
+
+  .section-subtext {
+    font-size: 1rem;
+  }
 }
