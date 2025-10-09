@@ -198,25 +198,49 @@
 
 .why-matters {
   padding: 70px 0;
-  background: linear-gradient(135deg, #E43636 0%, #b82828 100%);
+  background-color: #d32e2e;
+  /* background: linear-gradient(135deg, #E43636 0%, #b82828 100%); */
 }
 
 .matter-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: #f7aeae;
+  border-radius: 20px;
   padding: 30px 24px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
   height: 100%;
-  border: 2px solid transparent;
-}
-
-.matter-card:hover {
-  border: 2px dashed #eda200;
 }
 
 .matter-icon {
   font-size: 3rem;
   margin-bottom: 16px;
 }
+
+.matter-icon .material-symbols-outlined {
+  font-size: 7.5rem;
+  font-weight: 600;
+  display: inline-block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #DD0303, #550000);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #3D74B6, #022f67);
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #399918, #185c01);
+}
+
 
 .matter-card h4 {
   font-size: 1.3rem;
@@ -291,12 +315,12 @@
   height: 100%;
   background: white;
   padding: 30px;
-  border: 2px solid transparent;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)
 }
 
 .feature-card-consumer:hover {
-  border: 2px dashed #eda200;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
 }
 
 .feature-img-wrap {

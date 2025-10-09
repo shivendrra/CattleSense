@@ -8,13 +8,34 @@ import livestock from '../assets/svg/livestock.svg';
 import phonealerts from '../assets/svg/phonealert.svg';
 import analytics from '../assets/svg/analytics.svg';
 
-export default function VeterinaryLander() {
+export default function Veterinary() {
   const benefits = [
-    { icon: '📋', title: 'Digital Prescriptions', desc: 'Issue and verify prescriptions digitally with complete tracking' },
-    { icon: '🔔', title: 'Real-Time Alerts', desc: 'Get notified instantly when dosages are reported by farmers' },
-    { icon: '📊', title: 'Practice Analytics', desc: 'Monitor treatment outcomes and AMU trends across patients' },
-    { icon: '⚡', title: 'Efficient Workflow', desc: 'Streamline your practice with automated record-keeping' }
+    {
+      icon: 'prescriptions',
+      title: 'Digital Prescriptions',
+      desc: 'Issue and verify prescriptions digitally with complete tracking',
+      color: 'linear-gradient(135deg, #2E8BFF 0%, #15467dff 100%)'
+    },
+    {
+      icon: 'notifications_active',
+      title: 'Real-Time Alerts',
+      desc: 'Get notified instantly when dosages are reported by farmers',
+      color: 'linear-gradient(135deg, #E74C3C 0%, #93201dff 100%)'
+    },
+    {
+      icon: 'monitoring',
+      title: 'Practice Analytics',
+      desc: 'Monitor treatment outcomes and AMU trends across patients',
+      color: 'linear-gradient(135deg, #6DBE45 0%, #2b830dff 100%)'
+    },
+    {
+      icon: 'bolt',
+      title: 'Efficient Workflow',
+      desc: 'Streamline your practice with automated record-keeping',
+      color: 'linear-gradient(135deg, #FFB400 0%, #57350dff 100%)'
+    }
   ];
+
 
   const features = [
     { img: veterinary, title: 'Prescription Management', desc: 'Create, verify, and track digital prescriptions with automatic dosage calculations and withdrawal period alerts' },
@@ -42,7 +63,7 @@ export default function VeterinaryLander() {
       <section className="veterinary-hero">
         <div className="container">
           <div className="row g-5 align-items-center">
-            <div className="col-lg-6">
+            <div className="col-lg-8">
               <h1 className="hero-heading">Modernize Your Veterinary Practice with Digital AMU Monitoring</h1>
               <p className="hero-text">CattleSense empowers veterinarians with comprehensive tools to prescribe, monitor, and ensure safe antimicrobial usage in livestock.</p>
               <div className="d-flex gap-3 flex-wrap">
@@ -57,7 +78,7 @@ export default function VeterinaryLander() {
                 <div className="stat-item-vet"><strong>100%</strong> Digital</div>
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-4">
               <div className="hero-image">
                 <img src={veterinary} alt="Veterinary" className="img-fluid" />
               </div>
@@ -72,36 +93,40 @@ export default function VeterinaryLander() {
           <div className="row g-4">
             <div className="col-md-6">
               <div className="problem-box-vet">
-                <span className="material-symbols-outlined problem-icon-vet">report</span>
-                <h3>Current Pain Points</h3>
+                <div className='d-flex align-items-center gx-4'>
+                  <span className="material-symbols-outlined problem-icon-vet my-auto">report</span>
+                  <h3 className='my-auto ps-3'>Current Pain Points</h3>
+                </div>
                 <ul className="problem-list-vet">
                   {challenges.map((item, idx) => (
-                    <li key={idx}>{item}</li>
+                    <li key={idx}><span class="pe-2 material-symbols-outlined">close</span>{item}</li>
                   ))}
                 </ul>
               </div>
             </div>
             <div className="col-md-6">
               <div className="solution-box-vet">
-                <span className="material-symbols-outlined solution-icon-vet">verified_user</span>
-                <h3>CattleSense Solutions</h3>
+                <div className='d-flex align-items-center gx-4'>
+                  <span className="material-symbols-outlined solution-icon-vet my-auto">verified_user</span>
+                  <h3 className='my-auto ps-3'>CattleSense Solutions</h3>
+                </div>
                 <div className="solution-points-vet">
                   <div className="point-item-vet">
-                    <span className="point-icon-vet">✓</span>
+                    <span class="material-symbols-outlined">check</span>
                     <div>
                       <strong>Digital Workflow</strong>
                       <p>Automated prescription management and tracking</p>
                     </div>
                   </div>
                   <div className="point-item-vet">
-                    <span className="point-icon-vet">✓</span>
+                    <span class="material-symbols-outlined">check</span>
                     <div>
                       <strong>Real-Time Monitoring</strong>
                       <p>Instant alerts and compliance notifications</p>
                     </div>
                   </div>
                   <div className="point-item-vet">
-                    <span className="point-icon-vet">✓</span>
+                    <span class="material-symbols-outlined">check</span>
                     <div>
                       <strong>Data-Driven Insights</strong>
                       <p>Comprehensive analytics for better decision-making</p>
@@ -121,21 +146,33 @@ export default function VeterinaryLander() {
           <div className="row g-4">
             <div className="col-lg-4">
               <div className="value-card">
-                <div className="value-icon">🎯</div>
+                <div className="value-icon">
+                  <span class="material-symbols-outlined" style={{ color: "#842A3B", fontSize: "5.5rem", fontWeight: "700"}}>
+                    target
+                  </span>
+                </div>
                 <h4>Professional Credibility</h4>
                 <p>Verified digital profile showcasing your expertise and credentials to farmers and authorities</p>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="value-card">
-                <div className="value-icon">📈</div>
+                <div className="value-icon">
+                  <span class="material-symbols-outlined" style={{ color: "#3A6F43", fontSize: "5.5rem", fontWeight: "700"}}>
+                    multiline_chart
+                  </span>
+                </div>
                 <h4>Practice Growth</h4>
                 <p>Expand your reach with digital prescriptions and attract tech-savvy farmers</p>
               </div>
             </div>
             <div className="col-lg-4">
               <div className="value-card">
-                <div className="value-icon">🛡️</div>
+                <div className="value-icon">
+                  <span class="material-symbols-outlined" style={{ color: "#3E3F5B", fontSize: "5.5rem", fontWeight: "700"}}>
+                    balance
+                  </span>
+                </div>
                 <h4>Legal Protection</h4>
                 <p>Complete audit trail of all prescriptions and approvals for regulatory compliance</p>
               </div>
@@ -152,7 +189,12 @@ export default function VeterinaryLander() {
             {benefits.map((item, idx) => (
               <div key={idx} className="col-md-6 col-lg-3">
                 <div className="benefit-card-vet">
-                  <div className="benefit-icon-vet">{item.icon}</div>
+                  <div
+                    className="benefit-icon-vet d-flex"
+                    style={{ background: item.color }}
+                  >
+                    <span className="material-symbols-outlined m-auto">{item.icon}</span>
+                  </div>
                   <h4>{item.title}</h4>
                   <p>{item.desc}</p>
                 </div>
@@ -161,6 +203,7 @@ export default function VeterinaryLander() {
           </div>
         </div>
       </section>
+
 
       <section className="features-vet">
         <div className="container">
@@ -250,27 +293,27 @@ export default function VeterinaryLander() {
               <p className="trust-text-vet">CattleSense respects your expertise and provides professional-grade tools that enhance your practice without compromising your authority.</p>
               <div className="trust-features-vet">
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>Full control over prescriptions</span>
                 </div>
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>Secure data encryption</span>
                 </div>
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>Verified credentials display</span>
                 </div>
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>Mobile app for field work</span>
                 </div>
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>24/7 technical support</span>
                 </div>
                 <div className="trust-feature-item-vet">
-                  <span className="check-icon-vet">✓</span>
+                  <span className="material-symbols-outlined check-icon-vet">check</span>
                   <span>Regulatory compliance tools</span>
                 </div>
               </div>
@@ -309,11 +352,11 @@ export default function VeterinaryLander() {
                 <h3>Your Role in AMR Prevention</h3>
                 <p>As a veterinarian, you play a crucial role in preventing antimicrobial resistance. CattleSense helps you:</p>
                 <ul className="stewardship-list">
-                  <li>Monitor and optimize antimicrobial usage patterns</li>
-                  <li>Ensure proper dosage and treatment duration</li>
-                  <li>Track withdrawal periods for food safety</li>
-                  <li>Contribute to national AMR surveillance data</li>
-                  <li>Educate farmers on responsible drug use</li>
+                  <li><span className='material-symbols-outlined'>check</span>Monitor and optimize antimicrobial usage patterns</li>
+                  <li><span className='material-symbols-outlined'>check</span>Ensure proper dosage and treatment duration</li>
+                  <li><span className='material-symbols-outlined'>check</span>Track withdrawal periods for food safety</li>
+                  <li><span className='material-symbols-outlined'>check</span>Contribute to national AMR surveillance data</li>
+                  <li><span className='material-symbols-outlined'>check</span>Educate farmers on responsible drug use</li>
                 </ul>
               </div>
             </div>

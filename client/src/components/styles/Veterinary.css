@@ -38,7 +38,8 @@
   opacity: 0.95;
 }
 
-.btn-primary-vet, .btn-secondary-vet {
+.btn-primary-vet,
+.btn-secondary-vet {
   padding: 14px 32px;
   font-size: 1rem;
   font-weight: 600;
@@ -127,7 +128,8 @@
   background-color: #f8f9fa;
 }
 
-.problem-box-vet, .solution-box-vet {
+.problem-box-vet,
+.solution-box-vet {
   background: white;
   padding: 30px;
   height: 100%;
@@ -135,13 +137,14 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-.problem-box-vet:hover, .solution-box-vet:hover {
+.problem-box-vet:hover,
+.solution-box-vet:hover {
   transform: translateY(-4px);
 }
 
-.problem-icon-vet, .solution-icon-vet {
+.problem-icon-vet,
+.solution-icon-vet {
   font-size: 2.5rem;
-  margin-bottom: 16px;
   display: block;
 }
 
@@ -153,52 +156,54 @@
   color: #7B5BA8;
 }
 
-.problem-box-vet h3, .solution-box-vet h3 {
+.problem-box-vet h3,
+.solution-box-vet h3 {
   font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 20px;
-  color: #234C6A;
+  margin-bottom: 24px;
+  color: #8FA31E;
 }
 
 .problem-list-vet {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  padding-top: 10px;
+  margin: auto;
 }
 
 .problem-list-vet li {
-  padding: 10px 0;
-  padding-left: 28px;
-  position: relative;
-  color: #234C6A;
-  line-height: 1.6;
+  padding: 14px 0;
+  padding-left: 18px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  font-size: 1.05rem;
 }
 
-.problem-list-vet li::before {
-  content: '✗';
-  position: absolute;
-  left: 0;
+.problem-list-vet .material-symbols-outlined {
   color: #E43636;
-  font-weight: bold;
 }
 
 .solution-points-vet {
+  padding: 0px;
+  padding-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .point-item-vet {
+  padding-inline-start: 10px;
   display: flex;
   gap: 16px;
   align-items: flex-start;
 }
 
-.point-icon-vet {
-  font-size: 1.5rem;
-  flex-shrink: 0;
-  color: #7B5BA8;
-  font-weight: bold;
+.point-item-vet .material-symbols-outlined {
+  margin: auto 5px;
+  color: #98CD00;
+  font-size: 2rem;
 }
 
 .point-item-vet strong {
@@ -210,7 +215,6 @@
 
 .point-item-vet p {
   font-size: 0.95rem;
-  color: #234C6A;
   opacity: 0.85;
   line-height: 1.6;
   margin: 0;
@@ -218,19 +222,20 @@
 
 .value-proposition {
   padding: 70px 0;
-  background: linear-gradient(135deg, #234C6A 0%, #11151d 100%);
+  background-color: #696FC7;
+  /* background: linear-gradient(135deg, #af88e5 0%, #696FC7 100%); */
 }
 
 .value-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: #bbbff3;
+  border-radius: 20px;
   padding: 30px 24px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
   height: 100%;
-  transition: transform 0.3s ease;
-}
-
-.value-card:hover {
-  transform: translateY(-4px);
 }
 
 .value-icon {
@@ -259,23 +264,15 @@
 }
 
 .benefit-card-vet {
-  background: #f8f9fa;
   padding: 30px 20px;
   text-align: center;
   height: 100%;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.benefit-card-vet:hover {
-  border-color: #7B5BA8;
-  transform: translateY(-4px);
 }
 
 .benefit-icon-vet {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #7B5BA8, #5d4380);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   color: white;
   font-size: 2.2rem;
   display: flex;
@@ -283,6 +280,10 @@
   justify-content: center;
   margin: 0 auto 16px;
   font-weight: bold;
+}
+
+.benefit-icon-vet .material-symbols-outlined {
+  font-size: 5rem;
 }
 
 .benefit-card-vet h4 {
@@ -308,11 +309,13 @@
 .feature-card-vet {
   display: flex;
   gap: 20px;
+  justify-content: flex-start;
   align-items: flex-start;
+  height: 100%;
   background: white;
   padding: 30px;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)
 }
 
 .feature-card-vet:hover {
@@ -360,21 +363,12 @@
   background: #f8f9fa;
   height: 100%;
   position: relative;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.step-card-vet:hover {
-  border-color: #7B5BA8;
-  background: white;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .step-number-vet {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #FFB823, #eda200);
+  background: linear-gradient(135deg, #FFB823, #916506);
   color: white;
   font-size: 2rem;
   font-weight: 700;
@@ -408,12 +402,12 @@
   background: white;
   padding: 0;
   height: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border-bottom: 2px dashed transparent;
 }
 
 .capability-card:hover {
-  transform: translateY(-4px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-color: #5d4380;
 }
 
 .capability-header {
@@ -426,45 +420,35 @@
 }
 
 .capability-list {
-  list-style: none;
+  list-style: circle;
   padding: 24px;
-  margin: 0;
+  margin: auto;
 }
 
 .capability-list li {
-  padding: 10px 0;
-  padding-left: 28px;
+  padding: 4px 0px;
+  margin-left: 20px;
   position: relative;
-  color: #234C6A;
   line-height: 1.6;
-}
-
-.capability-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #7B5BA8;
-  font-size: 1.3rem;
-  font-weight: bold;
 }
 
 .trust-section-vet {
   padding: 70px 0;
-  background-color: white;
+  background: linear-gradient(135deg, #234C6A 0%, #11151d 100%);
 }
 
 .trust-heading-vet {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #234C6A;
+  color: #f8f9fa;
 }
 
 .trust-text-vet {
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 30px;
-  color: #234C6A;
+  color: #f8f9fa;
   opacity: 0.85;
 }
 
@@ -479,7 +463,8 @@
   align-items: center;
   gap: 12px;
   font-size: 1.05rem;
-  color: #234C6A;
+  color: #f8f9fa;
+
 }
 
 .check-icon-vet {
@@ -501,28 +486,26 @@
 }
 
 .stat-box-vet {
-  background: #f8f9fa;
+  background: rgba(255, 255, 255, 0.1);
   padding: 30px 20px;
   text-align: center;
-  transition: all 0.3s ease;
-  border: 2px solid #e9ecef;
 }
 
 .stat-box-vet:hover {
-  border-color: #7B5BA8;
-  transform: scale(1.05);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .stat-num-vet {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #7B5BA8;
+  color: #af88e5;
 }
 
 .stat-label-vet {
   font-size: 0.95rem;
-  color: #234C6A;
+  color: #b8b8b8;
   opacity: 0.85;
 }
 
@@ -554,18 +537,15 @@
 
 .stewardship-list li {
   padding: 10px 0;
-  padding-left: 32px;
+  padding-left: 12px;
   position: relative;
   font-size: 1.05rem;
   line-height: 1.7;
-}
-
-.stewardship-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  font-size: 1.3rem;
-  font-weight: bold;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 10px;
 }
 
 .impact-stats {
@@ -582,7 +562,6 @@
 
 .impact-item:hover {
   background: rgba(255, 255, 255, 0.25);
-  transform: translateX(10px);
 }
 
 .impact-number {
@@ -628,7 +607,8 @@
   flex-wrap: wrap;
 }
 
-.btn-cta-primary-vet, .btn-cta-secondary-vet {
+.btn-cta-primary-vet,
+.btn-cta-secondary-vet {
   padding: 16px 40px;
   font-size: 1.1rem;
   font-weight: 600;
@@ -660,36 +640,42 @@
   color: #7B5BA8;
 }
 
-.cta-footnote {
+.veterinary-lander .cta-footnote {
   font-size: 0.95rem;
   opacity: 0.85;
-  margin-top: 16px;
+  margin-top: 30px;
 }
 
 @media (max-width: 991px) {
   .hero-heading {
     font-size: 2rem;
   }
-  
+
   .section-heading {
     font-size: 1.8rem;
   }
-  
+
   .feature-card-vet {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .feature-img-wrap {
     margin: 0 auto;
   }
-  
+
   .trust-features-vet {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-grid-vet {
     grid-template-columns: 1fr;
+  }
+
+  .impact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -697,49 +683,58 @@
   .veterinary-hero {
     padding: 60px 0;
   }
-  
+
   .hero-heading {
     font-size: 1.8rem;
   }
-  
+
   .hero-text {
     font-size: 1rem;
   }
-  
+
   .hero-stats-vet {
     justify-content: center;
   }
-  
+
   .section-heading {
     font-size: 1.6rem;
   }
-  
-  .section-subtext, .section-subtext-white {
+
+  .section-subtext,
+  .section-subtext-white {
     font-size: 1rem;
   }
-  
-  .problem-vet, .benefits-vet, .features-vet, .how-it-works-vet, .capabilities-section, .trust-section-vet, .stewardship-section, .value-proposition {
+
+  .problem-vet,
+  .benefits-vet,
+  .features-vet,
+  .how-it-works-vet,
+  .capabilities-section,
+  .trust-section-vet,
+  .stewardship-section,
+  .value-proposition {
     padding: 50px 0;
   }
-  
+
   .cta-vet {
     padding: 60px 0;
   }
-  
+
   .cta-heading {
     font-size: 1.8rem;
   }
-  
+
   .cta-text {
     font-size: 1.05rem;
   }
-  
+
   .cta-buttons-wrap {
     flex-direction: column;
     align-items: center;
   }
-  
-  .btn-cta-primary-vet, .btn-cta-secondary-vet {
+
+  .btn-cta-primary-vet,
+  .btn-cta-secondary-vet {
     width: 100%;
     max-width: 300px;
   }
@@ -749,40 +744,40 @@
   .hero-heading {
     font-size: 1.5rem;
   }
-  
+
   .section-heading {
     font-size: 1.4rem;
   }
-  
+
   .benefit-icon-vet {
     width: 60px;
     height: 60px;
     font-size: 1.8rem;
   }
-  
+
   .step-number-vet {
     width: 50px;
     height: 50px;
     font-size: 1.6rem;
   }
-  
+
   .stat-num-vet {
     font-size: 1.8rem;
   }
-  
+
   .impact-number {
     font-size: 2.2rem;
   }
-  
+
   .feature-img-wrap {
     width: 80px;
     height: 80px;
   }
-  
+
   .trust-heading-vet {
     font-size: 1.6rem;
   }
-  
+
   .trust-text-vet {
     font-size: 1rem;
   }

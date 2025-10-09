@@ -145,29 +145,44 @@ export default function Consumer() {
       <section className="why-matters">
         <div className="container">
           <h2 className="section-heading text-white">Why Food Traceability Matters</h2>
-          <div className="row g-4 ">
+          <div className="row g-4">
             <div className="col-lg-4">
               <div className="matter-card">
-                <div className="matter-icon">⚠️</div>
+                <div className="matter-icon">
+                  <span className="material-symbols-outlined gradient-red">
+                    cardiology
+                  </span>
+                </div>
                 <h4>Health Risks</h4>
                 <p>Antimicrobial residues in food can cause allergies, resistance, and long-term health issues</p>
               </div>
             </div>
+
             <div className="col-lg-4">
               <div className="matter-card">
-                <div className="matter-icon">👨‍👩‍👧‍👦</div>
+                <div className="matter-icon">
+                  <span className="material-symbols-outlined gradient-blue">
+                    family_restroom
+                  </span>
+                </div>
                 <h4>Family Safety</h4>
                 <p>Children and elderly are more vulnerable to contaminated food products</p>
               </div>
             </div>
+
             <div className="col-lg-4">
               <div className="matter-card">
-                <div className="matter-icon">🦠</div>
+                <div className="matter-icon">
+                  <span className="material-symbols-outlined gradient-green">
+                    microbiology
+                  </span>
+                </div>
                 <h4>AMR Crisis</h4>
                 <p>Overuse of antibiotics in livestock contributes to antibiotic resistance</p>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
