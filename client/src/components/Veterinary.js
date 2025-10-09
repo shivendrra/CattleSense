@@ -99,7 +99,7 @@ export default function Veterinary() {
                 </div>
                 <ul className="problem-list-vet">
                   {challenges.map((item, idx) => (
-                    <li key={idx}><span class="pe-2 material-symbols-outlined">close</span>{item}</li>
+                    <li key={idx}><span className="pe-2 material-symbols-outlined">close</span>{item}</li>
                   ))}
                 </ul>
               </div>
@@ -112,21 +112,21 @@ export default function Veterinary() {
                 </div>
                 <div className="solution-points-vet">
                   <div className="point-item-vet">
-                    <span class="material-symbols-outlined">check</span>
+                    <span className="material-symbols-outlined">check</span>
                     <div>
                       <strong>Digital Workflow</strong>
                       <p>Automated prescription management and tracking</p>
                     </div>
                   </div>
                   <div className="point-item-vet">
-                    <span class="material-symbols-outlined">check</span>
+                    <span className="material-symbols-outlined">check</span>
                     <div>
                       <strong>Real-Time Monitoring</strong>
                       <p>Instant alerts and compliance notifications</p>
                     </div>
                   </div>
                   <div className="point-item-vet">
-                    <span class="material-symbols-outlined">check</span>
+                    <span className="material-symbols-outlined">check</span>
                     <div>
                       <strong>Data-Driven Insights</strong>
                       <p>Comprehensive analytics for better decision-making</p>
@@ -147,7 +147,7 @@ export default function Veterinary() {
             <div className="col-lg-4">
               <div className="value-card">
                 <div className="value-icon">
-                  <span class="material-symbols-outlined" style={{ color: "#842A3B", fontSize: "5.5rem", fontWeight: "700"}}>
+                  <span className="material-symbols-outlined" style={{ color: "#842A3B", fontSize: "5.5rem", fontWeight: "700"}}>
                     target
                   </span>
                 </div>
@@ -158,7 +158,7 @@ export default function Veterinary() {
             <div className="col-lg-4">
               <div className="value-card">
                 <div className="value-icon">
-                  <span class="material-symbols-outlined" style={{ color: "#3A6F43", fontSize: "5.5rem", fontWeight: "700"}}>
+                  <span className="material-symbols-outlined" style={{ color: "#3A6F43", fontSize: "5.5rem", fontWeight: "700"}}>
                     multiline_chart
                   </span>
                 </div>
@@ -169,7 +169,7 @@ export default function Veterinary() {
             <div className="col-lg-4">
               <div className="value-card">
                 <div className="value-icon">
-                  <span class="material-symbols-outlined" style={{ color: "#3E3F5B", fontSize: "5.5rem", fontWeight: "700"}}>
+                  <span className="material-symbols-outlined" style={{ color: "#3E3F5B", fontSize: "5.5rem", fontWeight: "700"}}>
                     balance
                   </span>
                 </div>

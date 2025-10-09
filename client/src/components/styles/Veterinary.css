@@ -99,7 +99,7 @@
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
 }
 
-.section-heading {
+.veterinary-lander .section-heading {
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
@@ -651,7 +651,7 @@
     font-size: 2rem;
   }
 
-  .section-heading {
+  .veterinary-lander .section-heading {
     font-size: 1.8rem;
   }
 
@@ -696,7 +696,7 @@
     justify-content: center;
   }
 
-  .section-heading {
+  .veterinary-lander .section-heading {
     font-size: 1.6rem;
   }
 
@@ -745,7 +745,7 @@
     font-size: 1.5rem;
   }
 
-  .section-heading {
+  .veterinary-lander .section-heading {
     font-size: 1.4rem;
   }
 

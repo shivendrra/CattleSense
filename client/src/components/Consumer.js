@@ -75,13 +75,13 @@ export default function Consumer() {
                 <button className="btn-secondary-consumer">Learn More</button>
               </div>
               <div className="hero-badges mt-4">
-                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                <div className="badge-item d-flex"><span className="pe-2 material-symbols-outlined">
                   check
                 </span> 100% Transparent</div>
-                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                <div className="badge-item d-flex"><span className="pe-2 material-symbols-outlined">
                   check
                 </span> Verified Safe</div>
-                <div className="badge-item d-flex"><span class="pe-2 material-symbols-outlined">
+                <div className="badge-item d-flex"><span className="pe-2 material-symbols-outlined">
                   check
                 </span> Instant Access</div>
               </div>
@@ -297,25 +297,25 @@ export default function Consumer() {
               <p className="trust-text">Food transparency isn't a luxury—it's your fundamental right as a consumer. CattleSense empowers you with verified, real-time information about the animal products you consume.</p>
               <div className="trust-features">
                 <div className="trust-feature-item">
-                  <span class="material-symbols-outlined check-icon">
+                  <span className="material-symbols-outlined check-icon">
                     check
                   </span>
                   <span>No hidden information</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span class="material-symbols-outlined check-icon">
+                  <span className="material-symbols-outlined check-icon">
                     check
                   </span>
                   <span>Verified by experts</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span class="material-symbols-outlined check-icon">
+                  <span className="material-symbols-outlined check-icon">
                     check
                   </span>
                   <span>Updated in real-time</span>
                 </div>
                 <div className="trust-feature-item">
-                  <span class="material-symbols-outlined check-icon">
+                  <span className="material-symbols-outlined check-icon">
                     check
                   </span>
                   <span>Easy to understand</span>

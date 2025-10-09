@@ -40,12 +40,16 @@ const Footer = () => {
   const renderLink = (link, children) => {
     if (link.external) {
       return (
-        <a href={link.href} target="_blank" rel="noopener noreferrer">
+        <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label || link.name}>
           {children}
         </a>
       );
     }
-    return <Link to={link.href}>{children}</Link>;
+    return (
+      <Link to={link.href} aria-label={link.label || link.name}>
+        {children}
+      </Link>
+    );
   };
 
   return (
@@ -55,14 +59,19 @@ const Footer = () => {
           <div className="col-lg-6 col-md-6 mb-4">
             <img src={cow1} alt="" className='logo-cow' />
             <p className='web-title'>CattleSense</p>
-            <p className='web-title-des'>by <a className='web-title-url' href="https://shivendrra.vercel.app/" target="_blank" rel="noopener noreferrer">@shivendrra</a></p>
+            <p className='web-title-des'>
+              by{' '}
+              <a className='web-title-url' href="https://shivendrra.vercel.app/" target="_blank" rel="noopener noreferrer">
+                @shivendrra
+              </a>
+            </p>
           </div>
 
           <div className="col-lg-2 footer-section col-md-6 col-sm-6 mb-4">
             <h5 className="footer-title">COMPANY</h5>
             <ul className="footer-links">
               {companyLinks.map((link, index) => (
-                <li key={index}>{renderLink(link, link.name)}</li>
+                <li key={`company-${index}`}>{renderLink(link, link.name)}</li>
               ))}
             </ul>
           </div>
@@ -71,7 +80,7 @@ const Footer = () => {
             <h5 className="footer-title">HELP CENTER</h5>
             <ul className="footer-links">
               {helpLinks.map((link, index) => (
-                <li key={index}>{renderLink(link, link.name)}</li>
+                <li key={`help-${index}`}>{renderLink(link, link.name)}</li>
               ))}
             </ul>
           </div>
@@ -80,7 +89,7 @@ const Footer = () => {
             <h5 className="footer-title">LEGAL</h5>
             <ul className="footer-links">
               {legalLinks.map((link, index) => (
-                <li key={index}>{renderLink(link, link.name)}</li>
+                <li key={`legal-${index}`}>{renderLink(link, link.name)}</li>
               ))}
             </ul>
           </div>
@@ -89,15 +98,19 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="row align-items-center">
             <div className="col-md-4">
-              <p className="copyright">© 2025 <span className='web-title-footer'>CattleSense</span>™ by <strong>TwoFold</strong></p>
+              <p className="copyright">
+                © 2025 <span className='web-title-footer'>CattleSense</span>™ by <strong>TwoFold</strong>
+              </p>
             </div>
             <div className="col-md-4">
-              <p class="middle">Made for responsible livestock stewardship • India</p>
+              <p className="middle">Made for responsible livestock stewardship • India</p>
             </div>
             <div className="col-md-4">
               <div className="social-links">
                 {socialLinks.map((social, index) => (
-                  renderLink(social, <i className={social.icon}></i>, social.label)
+                  <span key={`social-${index}`}>
+                    {renderLink(social, <i className={social.icon}></i>)}
+                  </span>
                 ))}
               </div>
             </div>

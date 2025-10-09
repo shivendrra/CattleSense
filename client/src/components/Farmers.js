@@ -88,16 +88,16 @@ export default function Farmers() {
                 <span className="material-symbols-outlined problem-icon">report_problem</span>
                 <h3>Current Challenges</h3>
                 <ul className="problem-list">
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     close
                   </span>Manual record-keeping is time-consuming and error-prone</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     close
                   </span>Risk of excessive antimicrobial usage without proper tracking</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     close
                   </span>Missing export opportunities due to compliance issues</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     close
                   </span>No real-time alerts for withdrawal periods</li>
                 </ul>
@@ -108,16 +108,16 @@ export default function Farmers() {
                 <span className="material-symbols-outlined solution-icon">verified</span>
                 <h3>How We Help</h3>
                 <ul className="solution-list">
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     check
                   </span>Digital profiles for every animal with automated tracking</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     check
                   </span>Smart alerts prevent overdosing and ensure safety</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     check
                   </span>Meet MRL standards for better market access</li>
-                  <li><span class="pe-2 material-symbols-outlined">
+                  <li><span className="pe-2 material-symbols-outlined">
                     check
                   </span>Get instant notifications before sale or processing</li>
                 </ul>

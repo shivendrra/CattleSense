@@ -96,7 +96,7 @@
   filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
 }
 
-.section-heading {
+.consumer-lander .section-heading {
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
@@ -502,7 +502,7 @@
   color: #FFB823;
 }
 
-.stat-label {
+.consumer-lander .stat-label {
   color: #b8b8b8;
   font-size: 0.95rem;
   opacity: 0.9;
@@ -589,7 +589,7 @@
     justify-content: center;
   }
 
-  .section-heading {
+  .consumer-lander .section-heading {
     font-size: 1.8rem;
   }
 
@@ -628,7 +628,7 @@
     justify-content: center;
   }
 
-  .section-heading {
+  .consumer-lander .section-heading {
     font-size: 1.6rem;
   }
 

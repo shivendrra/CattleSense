@@ -99,7 +99,7 @@ export default function Navbar() {
         <a className="navbar-brand fw-bold text-dark fs-4" href="/">CattleSense</a>
 
         <button className="navbar-toggler border-0" type="button" onClick={toggleMainMenu} aria-expanded={mainMenuOpen}>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             dehaze
           </span>
         </button>
