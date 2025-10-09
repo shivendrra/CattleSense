@@ -54,10 +54,10 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/auth/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/auth/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+      <Route path="/for/farmers" element={<PublicRoute><Farmers /></PublicRoute>} />
+      <Route path="/for/veterinary" element={<PublicRoute><Veterinary /></PublicRoute>} />
+      <Route path="/for/consumer" element={<PublicRoute><Consumer /></PublicRoute>} />
 
-      <Route path="/for/farmers" element={<ProtectedRoute><Farmers /></ProtectedRoute>} />
-      <Route path="/for/veterinary" element={<ProtectedRoute><Veterinary /></ProtectedRoute>} />
-      <Route path="/for/consumer" element={<ProtectedRoute><Consumer /></ProtectedRoute>} />
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
