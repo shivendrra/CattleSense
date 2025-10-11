@@ -42,8 +42,11 @@
   gap: 12px;
 }
 
-.livestock-icon {
-  font-size: 32px;
+.livestock-overlay .livestock-icon-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  display: block;
 }
 
 .livestock-title {
@@ -272,8 +275,8 @@
 }
 
 .livestock-medication-badge {
-  padding: 6px 12px;
-  background: #57B4BA;
+  padding: 6px 15px;
+  background: #92A9BD;
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -291,7 +294,7 @@
 
 .livestock-amu-icon {
   font-size: 20px;
-  color: #10b981;
+  color: #57B4BA;
   margin-top: 2px;
 }
 

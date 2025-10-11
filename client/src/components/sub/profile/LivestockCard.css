@@ -19,9 +19,13 @@
   margin-bottom: 15px;
 }
 
-.livestock-icon {
-  font-size: 32px;
-  margin-right: 10px;
+.livestock-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 .livestock-header h6 {
@@ -46,8 +50,11 @@
 }
 
 .health-status {
-  display: inline-block;
-  padding: 5px 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
   border-radius: 0;
   font-size: 13px;
   font-weight: 500;
@@ -71,7 +78,7 @@
 
 .livestock-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
   font-size: 14px;
 }
@@ -94,12 +101,11 @@
 }
 
 .medication-badge {
-  background: #57B4BA;
+  background: #92A9BD;
   color: white;
-  padding: 3px 8px;
+  padding: 5px 10px;
   border-radius: 0;
   font-size: 12px;
-  margin: 2px;
   display: inline-block;
 }
 
