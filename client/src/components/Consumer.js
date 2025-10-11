@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Consumer.css';
 
-import consumer from '../assets/svg/consumer.svg';
+import consumer from '../assets/svg/consumer-girl.svg';
 import scanqr from '../assets/svg/scanqr.svg';
 import analytics from '../assets/svg/analytics.svg';
 import livestock from '../assets/svg/livestock.svg';

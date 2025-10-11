@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Farmers.css';
 
-import farmer from '../assets/svg/farmers.svg';
+import farmer from '../assets/svg/farmer1.svg';
 import livestock from '../assets/svg/livestock.svg';
 import scanqr from '../assets/svg/scanqr.svg';
 import phonealerts from '../assets/svg/phonealert.svg';
