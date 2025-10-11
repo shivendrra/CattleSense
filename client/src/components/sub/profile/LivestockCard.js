@@ -61,7 +61,7 @@ export default function LivestockCard({ animal }) {
             />
             <div>
               <h6 className="mb-0">{animal.breed}</h6>
-              <small className="text-muted">{animal.age}</small>
+              <small>{animal.age}</small>
             </div>
           </div>
           <span className="livestock-id">{animal.id}</span>

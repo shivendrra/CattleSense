@@ -26,7 +26,7 @@
   overflow: hidden;
 }
 
-.livestock-header {
+.livestock-overlay .livestock-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
