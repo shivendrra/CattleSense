@@ -115,21 +115,27 @@ export default function Consumer() {
                 <h3>How CattleSense Helps You</h3>
                 <div className="solution-points">
                   <div className="point-item">
-                    <span className="point-icon">🔒</span>
+                    <div className="point-icon">
+                      <span className="material-symbols-outlined gradient-blue my-auto">lock</span>
+                    </div>
                     <div>
                       <strong>Verified Information</strong>
                       <p>All data verified by veterinarians and authorities</p>
                     </div>
                   </div>
                   <div className="point-item">
-                    <span className="point-icon">📱</span>
+                    <div className="point-icon">
+                      <span className="material-symbols-outlined gradient-red my-auto">mobile_arrow_up_right</span>
+                    </div>
                     <div>
                       <strong>Instant Access</strong>
                       <p>Scan QR codes right at the store or home</p>
                     </div>
                   </div>
                   <div className="point-item">
-                    <span className="point-icon">🌾</span>
+                    <div className="point-icon">
+                      <span className="material-symbols-outlined gradient-green my-auto">nature_people </span>
+                    </div>
                     <div>
                       <strong>Farm Details</strong>
                       <p>Know where your food comes from and how it was raised</p>

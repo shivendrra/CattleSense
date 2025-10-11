@@ -38,7 +38,6 @@
   opacity: 0.95;
 }
 
-
 .btn-primary-farmer,
 .btn-secondary-farmer {
   padding: 14px 32px;
@@ -181,6 +180,7 @@
   color: #E43636;
   /* margin: auto; */
 }
+
 .solution-list li .material-symbols-outlined {
   color: #98CD00;
   /* margin: auto; */
@@ -546,6 +546,11 @@
 }
 
 @media (max-width: 768px) {
+  .btn-primary-farmer,
+  .btn-secondary-farmer {
+    width: 100%;
+  }
+
   .farmer-hero {
     padding: 60px 0;
   }
@@ -613,36 +618,5 @@
   .timeline-marker {
     width: 30px;
     height: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-heading {
-    font-size: 1.5rem;
-  }
-
-  .farmer-lander .section-heading {
-    font-size: 1.4rem;
-  }
-
-  .benefit-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-  }
-
-  .step-number {
-    width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-  }
-
-  .big-num {
-    font-size: 1.6rem;
-  }
-
-  .feature-img-wrap {
-    width: 80px;
-    height: 80px;
   }
 }

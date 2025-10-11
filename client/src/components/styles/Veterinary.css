@@ -741,6 +741,11 @@
 }
 
 @media (max-width: 480px) {
+  .btn-primary-vet,
+  .btn-secondary-vet {
+    width: 100%;
+  }
+
   .hero-heading {
     font-size: 1.5rem;
   }
