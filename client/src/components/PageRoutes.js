@@ -9,7 +9,8 @@ import Signup from './Signup';
 import Home from './Home';
 import About from './About';
 import Blog from './Blog';
-import BlogPost from './BlogPage';
+import BlogPost from './sub/blog/BlogPage';
+import Dashboard from './Dashboard';
 import NotFound from './NotFound';
 import Contact from './Conatct';
 import Account from './Account';
@@ -61,6 +62,7 @@ export default function PageRoutes() {
       <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
       <Route path="/faq" element={<FAQ />} />
       <Route path="/help" element={<Help />} />
