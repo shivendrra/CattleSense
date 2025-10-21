@@ -193,7 +193,7 @@ export default function Farmers() {
 
       <section className="trust-section">
         <div className="container">
-          <h2 className="section-heading">Trusted by Farmers, Verified by Experts</h2>
+          <h2 className="section-heading text-light">Trusted by Farmers, Verified by Experts</h2>
           <div className="row g-4 align-items-center">
             <div className="col-lg-6">
               <div className="trust-content">
