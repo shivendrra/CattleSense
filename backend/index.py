@@ -6,7 +6,7 @@
 # if __name__ == "__main__":
 #   app.run(debug=True) # debug=True enables auto-reloading and a debugger
 
-from flask import Flask, jsonify
+from flask import Flask, render_template_string
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
@@ -27,6 +27,9 @@ CORS(app)
 
 @app.route('/')
 def home():
-  return jsonify({'message': 'Cattlesense Flask Backend is running'}), 200
+  with open('./home.html', 'r', encoding="utf-8") as f:
+    html_content = f.read()
+  return render_template_string(html_content)
 
-app.run(debug=True, host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+  app.run(debug=True, host='0.0.0.0', port=5000)
