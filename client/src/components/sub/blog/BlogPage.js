@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import blogs from "./BlogData";
-import "./styles/Blog.css";
+import blogs from "./BlogData.js";
+import "../../styles/Blog.css";
 
 export default function BlogPost() {
   const { id } = useParams();

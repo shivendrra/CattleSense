@@ -1,0 +1,80 @@
+.chart-card {
+  background: white;
+  border: 1px solid #DDD;
+  padding: 24px;
+  height: 100%;
+}
+
+.chart-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #F6EFD2;
+}
+
+.chart-title {
+  margin: 0 0 4px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chart-subtitle {
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.alert-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  background: #F8F9FA;
+  border-left: 4px solid;
+}
+
+.alert-icon {
+  font-size: 24px;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-issue {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.alert-farm {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.alert-time {
+  font-size: 12px;
+  color: #999;
+}
+
+.alert-button {
+  padding: 6px 12px;
+  color: white;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  height: fit-content;
+}

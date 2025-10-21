@@ -72,7 +72,7 @@
 
 .hero-badges {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -157,11 +157,11 @@
 .concerns-list li::before {
   content: '?';
   position: absolute;
-  top: 11px;
-  left: 10px;
+  top: 3px;
+  left: 5px;
   color: #E43636;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .solution-points {
@@ -173,12 +173,17 @@
 .point-item {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.point-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
+.point-icon .material-symbols-outlined {
+  font-size: 2.5rem;
+  font-weight: 800;
+  display: inline-block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .point-item strong {
@@ -240,7 +245,6 @@
 .gradient-green {
   background: linear-gradient(135deg, #399918, #185c01);
 }
-
 
 .matter-card h4 {
   font-size: 1.3rem;
@@ -612,6 +616,11 @@
 }
 
 @media (max-width: 768px) {
+  .btn-primary-consumer,
+  .btn-secondary-consumer {
+    width: 100%;
+  }
+
   .consumer-hero {
     padding: 60px 0;
   }
@@ -628,11 +637,21 @@
     justify-content: center;
   }
 
+  .badge-item {
+    font-size: 0.95rem;
+  }
+
   .consumer-lander .section-heading {
     font-size: 1.6rem;
   }
 
   .section-subtext {
     font-size: 1rem;
+  }
+
+  .cta-consumer .btn-cta-secondary-consumer,
+  .cta-consumer .btn-cta-primary-consumer {
+    width: 100%;
+    max-width: 300px;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Blog.css';
-import blogs from './BlogData';
+import blogs from './sub/blog/BlogData.js'
 
 export default function Blog() {
   const allBlogs = [

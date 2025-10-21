@@ -1,15 +1,24 @@
 import React from 'react';
 import './LivestockInfo.css';
 
+import cow1 from '../../../assets/svg/cow1.svg';
+import cow2 from '../../../assets/svg/cow2.svg';
+import hen from '../../../assets/svg/hen.svg';
+import buffalo from '../../../assets/svg/buffalo1.svg';
+import goat from '../../../assets/svg/goat.svg';
+import pig from '../../../assets/svg/pig.svg';
+
 export default function LivestockInfo({ animal, isOpen, onClose }) {
   if (!isOpen) return null;
 
   const getAnimalIcon = (type) => {
     switch (type) {
-      case 'cow': return '🐄';
-      case 'buffalo': return '🐃';
-      case 'poultry': return '🐔';
-      default: return '🐄';
+      case 'cow': return cow1;
+      case 'buffalo': return buffalo;
+      case 'poultry': return hen;
+      case 'goat': return goat;
+      case 'pig': return pig;
+      default: return cow2;
     }
   };
 
@@ -46,7 +55,11 @@ export default function LivestockInfo({ animal, isOpen, onClose }) {
       <div className="livestock-modal" onClick={(e) => e.stopPropagation()}>
         <div className="livestock-header">
           <div className="livestock-header-info">
-            <span className="livestock-icon">{getAnimalIcon(animal.type)}</span>
+            <img
+              src={getAnimalIcon(animal.type)}
+              alt={animal.type}
+              className="livestock-icon-img"
+            />
             <div>
               <h3 className="livestock-title">{animal.breed}</h3>
               <span className="livestock-badge">{animal.id}</span>

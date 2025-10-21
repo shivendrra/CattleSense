@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Farmers.css';
 
-import farmer from '../assets/svg/farmers.svg';
+import farmer from '../assets/svg/farmer1.svg';
 import livestock from '../assets/svg/livestock.svg';
 import scanqr from '../assets/svg/scanqr.svg';
 import phonealerts from '../assets/svg/phonealert.svg';
@@ -193,7 +193,7 @@ export default function Farmers() {
 
       <section className="trust-section">
         <div className="container">
-          <h2 className="section-heading">Trusted by Farmers, Verified by Experts</h2>
+          <h2 className="section-heading text-light">Trusted by Farmers, Verified by Experts</h2>
           <div className="row g-4 align-items-center">
             <div className="col-lg-6">
               <div className="trust-content">

@@ -1,42 +1,66 @@
 .livestock-card {
+  position: relative;
   background: white;
   border-radius: 0;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid #b45253;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   border: 1px solid #ddd;
-  border-left: 5px solid #8FA31E;
+  overflow: hidden;
+}
+
+.livestock-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, #b45253, #234c6a);
+  border-radius: 0;
+  z-index: 1;
+}
+
+.livestock-card > * {
+  position: relative;
+  z-index: 2;
 }
 
 .livestock-card:hover {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-.livestock-header {
+.livestock-card .livestock-header {
+  background: linear-gradient(135deg, #b45253, #234c6a);
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 0px;
 }
 
-.livestock-icon {
-  font-size: 32px;
-  margin-right: 10px;
+.livestock-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: inline-block;
+  margin-right: 15px;
+  vertical-align: middle;
 }
 
-.livestock-header h6 {
+.livestock-card .livestock-header h6 {
   margin: 0;
-  color: #234c6a;
+  color: white;
   font-weight: 600;
   font-size: 16px;
 }
 
-.livestock-header small {
-  color: #666;
+.livestock-card .livestock-header small {
+  color: whitesmoke;
   font-size: 13px;
 }
 
-.livestock-id {
+.livestock-card .livestock-id {
   background: #f6efd2;
   color: #333;
   padding: 4px 10px;
@@ -46,8 +70,11 @@
 }
 
 .health-status {
-  display: inline-block;
-  padding: 5px 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
   border-radius: 0;
   font-size: 13px;
   font-weight: 500;
@@ -71,7 +98,7 @@
 
 .livestock-details {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 10px;
   font-size: 14px;
 }
@@ -94,12 +121,11 @@
 }
 
 .medication-badge {
-  background: #57B4BA;
+  background: #92A9BD;
   color: white;
-  padding: 3px 8px;
+  padding: 5px 10px;
   border-radius: 0;
   font-size: 12px;
-  margin: 2px;
   display: inline-block;
 }
 
