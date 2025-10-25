@@ -179,6 +179,7 @@
 .feature-box {
   text-align: center;
   padding: 20px;
+  cursor: pointer;
 }
 
 .feature-icon {
@@ -194,6 +195,10 @@
 .feature-icon .feature-img {
   font-size: 1.8rem;
   color: white;
+}
+
+.feature-box:hover h3 {
+  text-decoration: underline;
 }
 
 .feature-box h3 {

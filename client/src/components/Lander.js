@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles/Lander.css';
 
 import consumer from '../assets/svg/consumer.svg';
@@ -14,6 +14,7 @@ export default function Lander() {
   function handleDemo() {
     window.open("https://www.youtube.com/watch?v=--Zeedyfh0A", '_blank');
   }
+  const navigate = useNavigate();
 
   return (
     <div className="lander">
@@ -134,7 +135,7 @@ export default function Lander() {
           </p>
           <div className="row g-3">
             <div className="col-lg-4">
-              <div className="feature-box">
+              <div className="feature-box" onClick={() => navigate("/for/farmers")}>
                 <div className="feature-icon">
                   <img src={farmer} alt="" className='feature-img' />
                 </div>
@@ -145,7 +146,7 @@ export default function Lander() {
               </div>
             </div>
             <div className="col-lg-4">
-              <div className="feature-box">
+              <div className="feature-box" onClick={() => navigate("/for/veterinary")}>
                 <div className="feature-icon">
                   <img src={veterinary} alt="" className='feature-img' />
                 </div>
@@ -156,7 +157,7 @@ export default function Lander() {
               </div>
             </div>
             <div className="col-lg-4">
-              <div className="feature-box">
+              <div className="feature-box" onClick={() => navigate("/for/consumer")}>
                 <div className="feature-icon">
                   <img src={consumer} alt="" className='feature-img' />
                 </div>
