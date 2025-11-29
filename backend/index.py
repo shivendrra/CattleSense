@@ -1,24 +1,22 @@
-from flask import Flask, render_template_string
+from flask import Flask
 from flask_cors import CORS
-from config import Config
-from utils.db import db
-from routes.auth import auth_bp
-from routes.livestock import livestock_bp
+import os
+from dotenv import load_dotenv
+from .config import config
+from .database import init_db
 
-app = Flask(__name__)
-app.config.from_object(Config)
-CORS(app)
+load_dotenv()
 
-db.init_app(app)
+def create_app(config_name='default'):
+  app = Flask(__name__)
+  app.config.from_object(config[config_name])
 
-app.register_blueprint(auth_bp, url_prefix='/api/auth')
-app.register_blueprint(livestock_bp, url_prefix='/api')
+  CORS(app, resources={r"/api/*": {"origins": app.config['CORS_ORIGINS']}})
+  init_db(app)
+  return app
 
-@app.route('/')
-def home():
-  with open('./home.html', 'r', encoding="utf-8") as f: html_content = f.read()
-  return render_template_string(html_content)
+config_name = os.getenv('FLASK_ENV', 'development')
+app = create_app(config_name)
 
-with app.app_context(): db.create_all()  # creates tables if not exist
-
-if __name__ == "__main__": app.run(debug=True, host='0.0.0.0', port=5000)
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=5000, debug=True)
