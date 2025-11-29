@@ -225,16 +225,6 @@ export default function Navbar() {
                     </li>
                     <li><hr className="dropdown-divider" /></li>
                     <li className='dropdown-item'>
-                      <Link to='/for/farmers' onClick={() => setUserMenuOpen(false)}>For Farmers</Link>
-                    </li>
-                    <li className='dropdown-item'>
-                      <Link to='/for/consumer' onClick={() => setUserMenuOpen(false)}>For Consumer</Link>
-                    </li>
-                    <li className='dropdown-item'>
-                      <Link to='/for/veterinary' onClick={() => setUserMenuOpen(false)}>For Veterinary</Link>
-                    </li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li className='dropdown-item'>
                       <Link to='/auth/login' onClick={() => setUserMenuOpen(false)}>Login/Signup</Link>
                     </li>
                     <li><hr className="dropdown-divider" /></li>

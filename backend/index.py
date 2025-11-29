@@ -1,35 +1,31 @@
-# from flask import Flask
-# app = Flask(__name__)
-# @app.route("/")
-# def hello():
-#   return "Hello World!"
-# if __name__ == "__main__":
-#   app.run(debug=True) # debug=True enables auto-reloading and a debugger
-
-from flask import Flask, render_template_string
-from flask_cors import CORS
 import os
 from dotenv import load_dotenv
+from flask import Flask, render_template
+from flask_cors import CORS
+from config import config
+from database import init_db
 
 load_dotenv()
 
-class Config:
-  SQLALCHEMY_DATABASE_URI = (
-    f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@"
-    f"{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-  )
-  SQLALCHEMY_TRACK_MODIFICATIONS = False
-  FIREBASE_CRED = os.getenv("FIREBASE_CRED")
+def create_app(config_name='default'):
+  app = Flask(__name__)
+  app.config.from_object(config[config_name])  
+  CORS(app, resources={r"/api/*": {"origins": app.config['CORS_ORIGINS']}})
+  init_db(app)
 
-app = Flask(__name__)
-app.config.from_object(Config)
-CORS(app)
+  from models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
+  from models.records import Alert, DataRequest, InspectionLog, RegionalAnalytics, TraceabilityLog, WithdrawalPeriod
+  from models.functional import AntimicrobialRecord, ConsultationRequest, HealthRecord, Livestock, Prescription
 
-@app.route('/')
-def home():
-  with open('./home.html', 'r', encoding="utf-8") as f:
-    html_content = f.read()
-  return render_template_string(html_content)
+  @app.route('/')
+  def home(): return render_template('home.html')
 
-if __name__ == "__main__":
-  app.run(debug=True, host='0.0.0.0', port=5000)
+  @app.route('/api/health', methods=['GET'])
+  def health_check(): return {'status': 'healthy', 'service': 'CattleSense API'}, 200
+  return app
+
+config_name = os.getenv('FLASK_ENV', 'development')
+app = create_app(config_name)
+
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=5000, debug=True)
