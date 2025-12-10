@@ -3,7 +3,8 @@ from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 from .config.settings import get_config
-from extensions import db, migrate
+from .extensions import db, migrate
+from .routes import register_blueprints
 
 load_dotenv()
 
@@ -26,6 +27,7 @@ def create_app(config_name=None):
 
   db.init_app(app)
   migrate.init_app(app, db)
+  register_blueprints(app)
 
   @app.route('/')
   def home():
