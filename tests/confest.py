@@ -4,7 +4,7 @@ from ..backend.index import create_app
 from ..backend.database import db
 from ..backend.models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
 from ..backend.models.functional import Livestock, AntimicrobialRecord, Prescription, HealthRecord, ConsultationRequest
-from ..backend.models.records import WithdrawalPeriod, Alert, TraceabilityLog, DataRequest, InspectionLog, RegionalAnalytics
+from ..backend.models.requests import WithdrawalPeriod, Alert, TraceabilityLog, DataRequest, InspectionLog, RegionalAnalytics
 from ..backend.utils.encryption import aadhaar_encryption
 
 @pytest.fixture(scope='session')

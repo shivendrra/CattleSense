@@ -1,5 +1,5 @@
 import pytest
-from ...backend.models.records import WithdrawalPeriod, Alert, TraceabilityLog, DataRequest, InspectionLog, RegionalAnalytics
+from ...backend.models.requests import WithdrawalPeriod, Alert, TraceabilityLog, DataRequest, InspectionLog, RegionalAnalytics
 from datetime import datetime, timedelta
 import hashlib, json
 
