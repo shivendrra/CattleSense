@@ -1,6 +1,5 @@
-from typing import *
-from datetime import datetime
-from ..database import db
+from datetime import datetime, timezone
+from ..extensions import db
 
 class User(db.Model):
   __tablename__ = 'users'
@@ -16,8 +15,8 @@ class User(db.Model):
   is_active = db.Column(db.Boolean, default=True)
   is_profile_complete = db.Column(db.Boolean, default=False)
   onboarding_step = db.Column(db.Integer, default=0)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
   farmer = db.relationship('Farmer', backref='user', uselist=False, cascade='all, delete-orphan')
   veterinarian = db.relationship('Veterinarian', backref='user', uselist=False, cascade='all, delete-orphan')
@@ -38,18 +37,18 @@ class Farmer(db.Model):
   state = db.Column(db.String(100))
   district = db.Column(db.String(100))
   pincode = db.Column(db.String(10))
-  latitude = db.Column(db.Float)
-  longitude = db.Column(db.Float)
+  latitude, longitude = db.Column(db.Float), db.Column(db.Float)
   registration_number = db.Column(db.String(100), unique=True)
   farm_size_acres = db.Column(db.Float)
   farm_type = db.Column(db.Enum('dairy', 'poultry', 'mixed', 'goat', 'sheep', 'pig', name='farm_type'))
   primary_veterinarian_id = db.Column(db.Integer, db.ForeignKey('veterinarians.id'))
-  created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
   livestock = db.relationship('Livestock', backref='farmer', lazy='dynamic', cascade='all, delete-orphan')
   prescriptions = db.relationship('Prescription', backref='farmer', lazy='dynamic')
   alerts = db.relationship('Alert', backref='farmer', lazy='dynamic')
+  consultation_requests = db.relationship('ConsultationRequest', backref='farmer', lazy='dynamic')
 
   def __repr__(self):
     return f'<Farmer {self.farm_name}>'
@@ -67,15 +66,13 @@ class Veterinarian(db.Model):
   age = db.Column(db.Integer)
   clinic_hospital_name = db.Column(db.String(255))
   clinic_address = db.Column(db.Text)
-  state = db.Column(db.String(100))
-  district = db.Column(db.String(100))
-  pincode = db.Column(db.String(10))
+  state, district, pincode = db.Column(db.String(100)), db.Column(db.String(100)), db.Column(db.String(10))
   consultation_fee = db.Column(db.Float)
   available_for_emergency = db.Column(db.Boolean, default=True)
   verification_status = db.Column(db.Enum('pending', 'verified', 'rejected', name='verification_status'), default='pending')
   verified_at = db.Column(db.DateTime)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
   prescriptions = db.relationship('Prescription', backref='veterinarian', lazy='dynamic')
   assigned_farms = db.relationship('Farmer', backref='primary_veterinarian', foreign_keys=[Farmer.primary_veterinarian_id])
@@ -93,14 +90,13 @@ class GovernmentOfficial(db.Model):
   department_name = db.Column(db.String(255), nullable=False)
   department_id = db.Column(db.String(100))
   designation = db.Column(db.String(255))
-  jurisdiction_state = db.Column(db.String(100))
-  jurisdiction_district = db.Column(db.String(100))
+  jurisdiction_state, jurisdiction_district = db.Column(db.String(100)), db.Column(db.String(100))
   jurisdiction_regions = db.Column(db.JSON)
   office_address = db.Column(db.Text)
   verification_status = db.Column(db.Enum('pending', 'verified', 'rejected', name='verification_status'), default='pending')
   verified_at = db.Column(db.DateTime)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
   inspection_logs = db.relationship('InspectionLog', backref='inspector', lazy='dynamic')
 
@@ -119,8 +115,8 @@ class Researcher(db.Model):
   research_area = db.Column(db.Text)
   verification_status = db.Column(db.Enum('pending', 'verified', 'rejected', name='verification_status'), default='pending')
   verified_at = db.Column(db.DateTime)
-  created_at = db.Column(db.DateTime, default=datetime.utcnow)
-  updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+  created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+  updated_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), onupdate=datetime.now(timezone.utc))
 
   data_requests = db.relationship('DataRequest', backref='researcher', lazy='dynamic')
 

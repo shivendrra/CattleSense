@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, g
-from ..database import db
-from ..models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
-from ..middleware.auth import verify_firebase_token
-from ..utils.encryption import aadhaar_encryption
+from extensions import db
+from models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
+from ..middlewares.auth import verify_firebase_token
+from ..utils.encryption import encrypt_aadhaar
 
 onboarding_bp = Blueprint('onboarding', __name__, url_prefix='/api/onboarding')
 
@@ -10,32 +10,35 @@ onboarding_bp = Blueprint('onboarding', __name__, url_prefix='/api/onboarding')
 @verify_firebase_token
 def initial_profile():
   data = request.get_json()
-  if g.current_user: return jsonify({'error': 'User profile already exists'}), 400
-  name = data.get('name')
-  role = data.get('role')
-  profile_image_url = data.get('profile_image_url')
-  aadhaar = data.get('aadhaar')
-  phone = data.get('phone')
+  if g.current_user:
+    return jsonify({'error': 'User profile already exists'}), 400
 
-  if not name or not role: return jsonify({'error': 'Name and role are required'}), 400
-  if role not in ['farmer', 'veterinary', 'government', 'researcher']: return jsonify({'error': 'Invalid role'}), 400
+  name, role = data.get('name'), data.get('role')
+  if not name or not role:
+    return jsonify({'error': 'Name and role are required'}), 400
+  if role not in ['farmer', 'veterinary', 'government', 'researcher']:
+    return jsonify({'error': 'Invalid role'}), 400
+
   aadhaar_encrypted = None
   if role in ['farmer', 'veterinary', 'government']:
-    if not aadhaar: return jsonify({'error': 'Aadhaar is required for this role'}), 400
-    try: aadhaar_encrypted = aadhaar_encryption.encrypt_aadhaar(aadhaar)
-    except ValueError as e: return jsonify({'error': str(e)}), 400
+    aadhaar = data.get('aadhaar')
+    if not aadhaar:
+      return jsonify({'error': 'Aadhaar is required for this role'}), 400
+    try:
+      aadhaar_encrypted = encrypt_aadhaar(aadhaar)
+    except ValueError as e:
+      return jsonify({'error': str(e)}), 400
 
   user = User(
     firebase_uid=g.firebase_uid,
     email=g.email,
     name=name,
     role=role,
-    profile_image_url=profile_image_url,
+    profile_image_url=data.get('profile_image_url'),
     aadhaar_encrypted=aadhaar_encrypted,
-    phone=phone,
+    phone=data.get('phone'),
     onboarding_step=1
   )
-
   db.session.add(user)
   db.session.commit()
 
@@ -49,11 +52,12 @@ def initial_profile():
 @onboarding_bp.route('/farmer', methods=['POST'])
 @verify_firebase_token
 def complete_farmer_profile():
-  if not g.current_user or g.current_user.role != 'farmer': return jsonify({'error': 'Invalid access'}), 403
-  if g.current_user.farmer: return jsonify({'error': 'Farmer profile already exists'}), 400
+  if not g.current_user or g.current_user.role != 'farmer':
+    return jsonify({'error': 'Invalid access'}), 403
+  if g.current_user.farmer:
+    return jsonify({'error': 'Farmer profile already exists'}), 400
 
   data = request.get_json()
-
   farmer = Farmer(
     user_id=g.current_user.id,
     farm_name=data.get('farm_name'),
@@ -68,8 +72,7 @@ def complete_farmer_profile():
     farm_size_acres=data.get('farm_size_acres'),
     farm_type=data.get('farm_type')
   )
-
-  g.current_user.onboarding_step = 2  
+  g.current_user.onboarding_step = 2
   db.session.add(farmer)
   db.session.commit()
 
@@ -82,10 +85,14 @@ def complete_farmer_profile():
 @onboarding_bp.route('/veterinary', methods=['POST'])
 @verify_firebase_token
 def complete_veterinary_profile():
-  if not g.current_user or g.current_user.role != 'veterinary': return jsonify({'error': 'Invalid access'}), 403
-  if g.current_user.veterinarian: return jsonify({'error': 'Veterinary profile already exists'}), 400
+  if not g.current_user or g.current_user.role != 'veterinary':
+    return jsonify({'error': 'Invalid access'}), 403
+  if g.current_user.veterinarian:
+    return jsonify({'error': 'Veterinary profile already exists'}), 400
+
   data = request.get_json()
-  if not data.get('license_number'): return jsonify({'error': 'License number is required'}), 400
+  if not data.get('license_number'):
+    return jsonify({'error': 'License number is required'}), 400
 
   veterinarian = Veterinarian(
     user_id=g.current_user.id,
@@ -103,12 +110,11 @@ def complete_veterinary_profile():
     consultation_fee=data.get('consultation_fee'),
     available_for_emergency=data.get('available_for_emergency', True)
   )
-
   g.current_user.is_profile_complete = True
   g.current_user.onboarding_step = 3
-  
   db.session.add(veterinarian)
-  db.session.commit()  
+  db.session.commit()
+
   return jsonify({
     'message': 'Veterinary profile created',
     'veterinarian_id': veterinarian.id,
@@ -118,11 +124,15 @@ def complete_veterinary_profile():
 @onboarding_bp.route('/government', methods=['POST'])
 @verify_firebase_token
 def complete_government_profile():
-  if not g.current_user or g.current_user.role != 'government': return jsonify({'error': 'Invalid access'}), 403
-  if g.current_user.government_official: return jsonify({'error': 'Government profile already exists'}), 400
-  data = request.get_json()  
-  if not data.get('government_id') or not data.get('department_name'): return jsonify({'error': 'Government ID and department name are required'}), 400
-  
+  if not g.current_user or g.current_user.role != 'government':
+    return jsonify({'error': 'Invalid access'}), 403
+  if g.current_user.government_official:
+    return jsonify({'error': 'Government profile already exists'}), 400
+
+  data = request.get_json()
+  if not data.get('government_id') or not data.get('department_name'):
+    return jsonify({'error': 'Government ID and department name are required'}), 400
+
   gov_official = GovernmentOfficial(
     user_id=g.current_user.id,
     government_id=data.get('government_id'),
@@ -134,10 +144,8 @@ def complete_government_profile():
     jurisdiction_regions=data.get('jurisdiction_regions'),
     office_address=data.get('office_address')
   )
-
   g.current_user.is_profile_complete = True
   g.current_user.onboarding_step = 3
-
   db.session.add(gov_official)
   db.session.commit()
 
@@ -150,10 +158,14 @@ def complete_government_profile():
 @onboarding_bp.route('/researcher', methods=['POST'])
 @verify_firebase_token
 def complete_researcher_profile():
-  if not g.current_user or g.current_user.role != 'researcher': return jsonify({'error': 'Invalid access'}), 403  
-  if g.current_user.researcher: return jsonify({'error': 'Researcher profile already exists'}), 400
+  if not g.current_user or g.current_user.role != 'researcher':
+    return jsonify({'error': 'Invalid access'}), 403
+  if g.current_user.researcher:
+    return jsonify({'error': 'Researcher profile already exists'}), 400
+
   data = request.get_json()
-  if not data.get('institution_name') or not data.get('project_name'): return jsonify({'error': 'Institution name and project name are required'}), 400
+  if not data.get('institution_name') or not data.get('project_name'):
+    return jsonify({'error': 'Institution name and project name are required'}), 400
 
   researcher = Researcher(
     user_id=g.current_user.id,
@@ -163,7 +175,6 @@ def complete_researcher_profile():
     project_name=data.get('project_name'),
     research_area=data.get('research_area')
   )
-
   g.current_user.is_profile_complete = True
   g.current_user.onboarding_step = 3
   db.session.add(researcher)
@@ -178,17 +189,25 @@ def complete_researcher_profile():
 @onboarding_bp.route('/complete-livestock', methods=['POST'])
 @verify_firebase_token
 def complete_farmer_onboarding():
-  if not g.current_user or g.current_user.role != 'farmer': return jsonify({'error': 'Invalid access'}), 403
-  if not g.current_user.farmer: return jsonify({'error': 'Complete farmer profile first'}), 400
+  if not g.current_user or g.current_user.role != 'farmer':
+    return jsonify({'error': 'Invalid access'}), 403
+  if not g.current_user.farmer:
+    return jsonify({'error': 'Complete farmer profile first'}), 400
+
   g.current_user.is_profile_complete = True
   g.current_user.onboarding_step = 3
-  db.session.commit()  
+  db.session.commit()
   return jsonify({'message': 'Onboarding completed'}), 200
 
 @onboarding_bp.route('/status', methods=['GET'])
 @verify_firebase_token
 def onboarding_status():
-  if not g.current_user: return jsonify({'is_profile_complete': False, 'onboarding_step': 0, 'role': None}), 200
+  if not g.current_user:
+    return jsonify({
+      'is_profile_complete': False,
+      'onboarding_step': 0,
+      'role': None
+    }), 200
 
   return jsonify({
     'is_profile_complete': g.current_user.is_profile_complete,

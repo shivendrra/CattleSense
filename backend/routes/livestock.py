@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, g
-from ..database import db
-from ..models.functional import Livestock
-from ..models.records import TraceabilityLog
-from ..middleware.auth import verify_firebase_token, require_role, require_profile_complete
+from ..extensions import db
+from ..models.livestock import Livestock
+from ..models.requests import TraceabilityLog
+from ..middlewares.auth import verify_firebase_token, require_role, require_profile_complete
 from datetime import datetime
 import hashlib, json
 

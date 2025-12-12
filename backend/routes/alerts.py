@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, g
-from ..database import db
-from ..models.records import Alert
-from ..models.functional import Livestock
-from ..middleware.auth import verify_firebase_token, require_role, require_profile_complete
+from ..extensions import db
+from ..models.requests import Alert
+from ..models.livestock import Livestock
+from ..middlewares.auth import verify_firebase_token, require_role, require_profile_complete
 from datetime import datetime, timezone
 
 alerts_bp = Blueprint('alerts', __name__, url_prefix='/api/alerts')

@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify, g
-from ..database import db
-from ..models.functional import Prescription, Livestock, AntimicrobialRecord
-from ..models.records import Alert, TraceabilityLog
+from ..extensions import db
+from ..models.livestock import Livestock
+from ..models.amu import AntimicrobialRecord, Prescription
+from ..models.requests import Alert, TraceabilityLog
 from ..models.user import Farmer
-from ..middleware.auth import verify_firebase_token, require_role, require_profile_complete
+from ..middlewares.auth import verify_firebase_token, require_role, require_profile_complete
 from datetime import datetime, timezone
 import random, string, hashlib, json
 

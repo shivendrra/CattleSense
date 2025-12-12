@@ -1,9 +1,9 @@
 from flask import Blueprint, request, jsonify, g
-from ..database import db
-from ..models.functional import ConsultationRequest, Livestock
+from ..extensions import db
+from ..models.livestock import Livestock
 from ..models.user import Veterinarian, Farmer
-from ..models.records import Alert
-from ..middleware.auth import verify_firebase_token, require_role, require_profile_complete
+from ..models.requests import Alert, ConsultationRequest
+from ..middlewares.auth import verify_firebase_token, require_role, require_profile_complete
 from datetime import datetime, timezone
 
 consultation_bp = Blueprint('consultation', __name__, url_prefix='/api/consultation')
