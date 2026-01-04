@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, g
-from ..extensions import db
-from ..models.user import User
-from ..middlewares.auth import verify_firebase_token
+from extensions import db
+from models.user import User
+from middlewares.auth import verify_firebase_token
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 

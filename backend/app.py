@@ -2,9 +2,9 @@ import os
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
-from .config.settings import get_config
-from .extensions import db, migrate
-from .routes import register_blueprints
+from config.settings import get_config
+from extensions import db, migrate
+from routes import register_blueprints
 
 load_dotenv()
 

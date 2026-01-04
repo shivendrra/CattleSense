@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, g
 from extensions import db
 from models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
-from ..middlewares.auth import verify_firebase_token
-from ..utils.encryption import encrypt_aadhaar
+from middlewares.auth import verify_firebase_token
+from utils.encryption import encrypt_aadhaar
 
 onboarding_bp = Blueprint('onboarding', __name__, url_prefix='/api/onboarding')
 

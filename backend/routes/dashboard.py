@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify, g
-from ..extensions import db
-from ..models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
-from ..models.livestock import Livestock
-from ..models.amu import AntimicrobialRecord
-from ..models.requests import Alert, ConsultationRequest
-from ..models.analytics import RegionalAnalytics, DataRequest
-from ..middlewares.auth import verify_firebase_token, require_role, require_profile_complete
-from ..services.gemini import gemini_service
+from extensions import db
+from models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
+from models.livestock import Livestock
+from models.amu import AntimicrobialRecord
+from models.requests import Alert, ConsultationRequest
+from models.analytics import RegionalAnalytics, DataRequest
+from middlewares.auth import verify_firebase_token, require_role, require_profile_complete
+from services.gemini import gemini_service
 from sqlalchemy import func, and_
 from datetime import datetime, timedelta, timezone
 
