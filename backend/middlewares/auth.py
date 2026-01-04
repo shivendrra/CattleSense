@@ -4,7 +4,7 @@ import firebase_admin
 from firebase_admin import credentials, auth
 import os
 
-cred = credentials.Certificate(os.getenv('FIREBASE_CREDENTIALS_PATH', 'firebase-credentials.json'))
+cred = credentials.Certificate(os.getenv('FIREBASE_CREDENTIALS_PATH', 'serviceAccountKey.json'))
 try:
   firebase_admin.initialize_app(cred)
 except ValueError:

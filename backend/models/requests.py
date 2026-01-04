@@ -31,7 +31,7 @@ class Alert(db.Model):
   title = db.Column(db.String(255), nullable=False)
   message = db.Column(db.Text, nullable=False)
   status = db.Column(db.Enum('unread', 'read', 'acknowledged', 'resolved', name='alert_status'), default='unread', index=True)
-  metadata = db.Column(db.JSON)
+  alert_metadata = db.Column(db.JSON)
   acknowledged_at = db.Column(db.DateTime)
   resolved_at = db.Column(db.DateTime)
   created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc), index=True)
