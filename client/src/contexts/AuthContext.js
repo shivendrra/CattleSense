@@ -17,53 +17,47 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Clear error when user starts typing or navigating
   const clearError = () => setError(null);
 
-  // Sign up with email and password
   const signup = async (email, password, displayName) => {
     try {
       clearError();
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-      // Update display name if provided
       if (displayName) {
-        await updateProfile(user, { displayName });
+        await updateProfile(userCredential.user, { displayName });
       }
 
-      return user;
+      return userCredential;
     } catch (error) {
       setError(error.message);
       throw error;
     }
   };
 
-  // Sign in with email and password
   const login = async (email, password) => {
     try {
       clearError();
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-      return user;
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      return userCredential;
     } catch (error) {
       setError(error.message);
       throw error;
     }
   };
 
-  // Sign in with Google
   const loginWithGoogle = async () => {
     try {
       clearError();
       const provider = new GoogleAuthProvider();
-      const { user } = await signInWithPopup(auth, provider);
-      return user;
+      const userCredential = await signInWithPopup(auth, provider);
+      return userCredential;
     } catch (error) {
       setError(error.message);
       throw error;
     }
   };
 
-  // Sign out
   const logout = async () => {
     try {
       clearError();
@@ -74,7 +68,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Reset password
   const resetPassword = async (email) => {
     try {
       clearError();
@@ -85,7 +78,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Listen for authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -94,6 +86,7 @@ export const AuthProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
+  
   const value = { currentUser, loading, error, clearError, signup, login, loginWithGoogle, logout, resetPassword };
 
   return (
