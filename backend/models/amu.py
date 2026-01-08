@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from ..extensions import db
+from extensions import db
 
 class AntimicrobialRecord(db.Model):
   __tablename__ = 'antimicrobial_records'

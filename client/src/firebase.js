@@ -10,6 +10,13 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
+console.log('Firebase Config:', {
+  apiKey: firebaseConfig.apiKey ? '***' : 'MISSING',
+  authDomain: firebaseConfig.authDomain || 'MISSING',
+  projectId: firebaseConfig.projectId || 'MISSING'
+});
+
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export default app;
+
+console.log('Firebase initialized successfully');

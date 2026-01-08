@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CattleSense API</title>
+
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --border: #e5e7eb;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --accent: #0f172a;
+      --success: #15803d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+    }
+
+    .title-group h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .title-group p {
+      margin-top: 6px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: var(--success);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid #bbf7d0;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    section h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .endpoint-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .endpoint {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: center;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9rem;
+    }
+
+    .method {
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .method.post {
+      color: #065f46;
+    }
+
+    .method.put {
+      color: #92400e;
+    }
+
+    .path {
+      color: var(--text-primary);
+    }
+
+    .view {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .view:hover {
+      text-decoration: underline;
+      color: var(--text-primary);
+    }
+
+    .actions {
+      margin-top: 32px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: #f9fafb;
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header>
+      <div class="title-group">
+        <h1>CattleSense API</h1>
+        <p>Livestock Management & AMU Tracking System</p>
+      </div>
+      <div class="status">API running</div>
+    </header>
+
+    <section>
+      <h2>Available Endpoints</h2>
+
+      <div class="endpoint-list">
+        <div class="endpoint">
+          <div class="method">GET</div>
+          <div class="path">/api/health</div>
+          <a href="/api/health" class="view">Open</a>
+        </div>
+
+        <div class="endpoint">
+          <div class="method post">POST</div>
+          <div class="path">/api/auth/verify</div>
+        </div>
+
+        <div class="endpoint">
+          <div class="method">GET</div>
+          <div class="path">/api/auth/profile</div>
+        </div>
+
+        <div class="endpoint">
+          <div class="method post">POST</div>
+          <div class="path">/api/onboarding/initial</div>
+        </div>
+
+        <div class="endpoint">
+          <div class="method">GET</div>
+          <div class="path">/api/livestock/list</div>
+        </div>
+
+        <div class="endpoint">
+          <div class="method post">POST</div>
+          <div class="path">/api/amu/record</div>
+        </div>
+
+        <div class="endpoint">
+          <div class="method">GET</div>
+          <div class="path">/api/dashboard/farmer</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="/api/health" class="button">Test health endpoint</a>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 CattleSense · API v1.0.0
+    </footer>
+  </main>
+</body>
+
+</html>

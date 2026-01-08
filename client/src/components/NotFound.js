@@ -15,7 +15,7 @@ export default function NotFound() {
             <p className="lead text-muted">The page you're looking for doesn't exist or is temporarily unavailable.</p>
             <div className="mt-4">
               <button className="btn btn-outline-dark go-back" onClick={() => window.history.back()}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                   arrow_back
                 </span>
                 Go Back
