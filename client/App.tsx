@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -26,6 +26,7 @@ import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 import FAQ from './pages/FAQ';
 import HelpSupport from './pages/HelpSupport';
+import NotFound from './pages/NotFound';
 import { PrivacyPolicy, TermsOfService, CookiePolicy } from './pages/Legal';
 
 // Route Guard Component
@@ -59,7 +60,7 @@ const OnboardingGuard: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <LanguageProvider>
         <AuthProvider>
           <DataProvider>
@@ -107,7 +108,7 @@ const App: React.FC = () => {
                   <Route path="/guide/researcher" element={<ResearcherGuide />} />
                   <Route path="/guide/policymaker" element={<PolicymakerGuide />} />
 
-                  <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
               <Footer />
@@ -115,7 +116,7 @@ const App: React.FC = () => {
           </DataProvider>
         </AuthProvider>
       </LanguageProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

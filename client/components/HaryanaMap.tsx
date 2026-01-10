@@ -14,91 +14,123 @@ const HaryanaMap: React.FC = () => {
   const mapInstanceRef = useRef<L.Map | null>(null);
 
   useEffect(() => {
-    if (mapContainerRef.current && !mapInstanceRef.current) {
-      // Initialize Map centered on Haryana
-      const map = L.map(mapContainerRef.current).setView([29.0588, 76.0856], 8);
+    // Cleanup existing map if strict mode double-invokes or re-renders
+    if (mapInstanceRef.current) {
+      mapInstanceRef.current.remove();
+      mapInstanceRef.current = null;
+    }
 
-      // Add Satellite Tile Layer (Esri World Imagery)
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-        maxZoom: 17
+    if (mapContainerRef.current) {
+      // Initialize Map centered on Haryana
+      // Coordinates: 29.0588° N, 76.0856° E
+      const map = L.map(mapContainerRef.current, {
+        center: [29.25, 76.2], // Slightly adjusted center
+        zoom: 8,
+        zoomControl: false, // Custom placement or minimal UI
+        attributionControl: false // Cleaner look (add attribution manually if needed)
+      });
+
+      // Google Maps Satellite Hybrid Tile Layer
+      // lyrs=y (Hybrid: Satellite + Roads/Labels), lyrs=s (Satellite only), lyrs=m (Standard Road)
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        attribution: 'Map data &copy; Google',
       }).addTo(map);
 
-      // Add Labels Tile Layer (Optional, improves readability)
-      L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd',
-        minZoom: 0,
-        maxZoom: 20,
-        ext: 'png',
-        opacity: 0.7
+      // Add zoom control to top-right
+      L.control.zoom({
+        position: 'topright'
       }).addTo(map);
 
       mapInstanceRef.current = map;
 
-      // --- Simulate Heatmap Data ---
-      // Generating 100 random points within Haryana's approx bounding box
-      // Lat: 27.6 to 30.9, Lng: 74.4 to 77.6
-      const heatmapPoints: MapPoint[] = Array.from({ length: 80 }).map((_, i) => ({
-        lat: 28.0 + Math.random() * 2.5,
-        lng: 75.0 + Math.random() * 2.0,
+      // --- Simulate Heatmap Data (Randomized points in Haryana) ---
+      // Haryana Bounding Box Approx: 
+      // North: 30.9, South: 27.6, West: 74.5, East: 77.6
+      const heatmapPoints: MapPoint[] = Array.from({ length: 60 }).map((_, i) => ({
+        lat: 27.8 + Math.random() * (30.5 - 27.8),
+        lng: 74.8 + Math.random() * (77.3 - 74.8),
         intensity: Math.floor(Math.random() * 100),
-        name: `Cluster #${1000 + i}`
+        name: `Cluster #${1024 + i}`
       }));
 
-      // Render Points
+      // Render Heatmap "Bubbles"
       heatmapPoints.forEach(point => {
-        let color = '#00ff00'; // Low usage
-        let radius = 800;
-        
-        if (point.intensity > 40) {
-            color = '#FFFF00'; // Medium
-            radius = 1200;
+        let color = '#4ade80'; // Green-400
+        let fillColor = '#22c55e'; // Green-500
+        let radius = 2000; // Meters
+
+        if (point.intensity > 50) {
+          color = '#facc15'; // Yellow-400
+          fillColor = '#eab308'; // Yellow-500
+          radius = 3500;
         }
-        if (point.intensity > 75) {
-            color = '#FF0000'; // High
-            radius = 1800;
+        if (point.intensity > 80) {
+          color = '#f87171'; // Red-400
+          fillColor = '#ef4444'; // Red-500
+          radius = 5000;
         }
 
-        L.circle([point.lat, point.lng], {
-          color: 'transparent',
-          fillColor: color,
-          fillOpacity: 0.6,
+        const circle = L.circle([point.lat, point.lng], {
+          color: color,
+          weight: 1,
+          fillColor: fillColor,
+          fillOpacity: 0.5,
           radius: radius
-        }).bindPopup(`
-          <div style="font-family: sans-serif; text-align: center;">
-            <strong style="color: #333;">${point.name}</strong><br/>
-            <span style="font-size: 10px; color: #666;">AMU Intensity: ${point.intensity}%</span>
+        }).addTo(map);
+
+        circle.bindPopup(`
+          <div class="p-2 min-w-[120px] text-center font-sans">
+            <h4 class="font-bold text-darkBlue text-sm mb-1">${point.name}</h4>
+            <div class="flex items-center justify-center gap-2">
+                <span class="text-xs font-semibold text-gray-500">AMU Level:</span>
+                <span class="text-xs font-bold ${point.intensity > 80 ? 'text-red-600' : point.intensity > 50 ? 'text-yellow-600' : 'text-green-600'}">${point.intensity}%</span>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-1">Updated: 2h ago</p>
           </div>
-        `).addTo(map);
+        `);
       });
-      
-      // Cleanup on unmount
+
+      // Invalidate size to ensure tiles load correctly after render
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 200);
+
       return () => {
-        map.remove();
-        mapInstanceRef.current = null;
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.remove();
+          mapInstanceRef.current = null;
+        }
       };
     }
   }, []);
 
   return (
-    <div className="relative w-full h-96 bg-gray-100 rounded border border-gray-200 overflow-hidden group">
+    <div className="relative w-full h-[500px] bg-gray-900 rounded-sm border border-gray-200 overflow-hidden shadow-inner">
       <div ref={mapContainerRef} className="w-full h-full z-0" style={{ zIndex: 0 }} />
-      
-      {/* Overlay Legend */}
-      <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded shadow-lg z-[400] text-xs">
-         <h4 className="font-bold mb-2 text-darkBlue">AMU Intensity</h4>
-         <div className="flex items-center gap-2 mb-1">
-           <span className="w-3 h-3 rounded-full bg-red-600 opacity-80"></span>
-           <span>Critical (&gt;75%)</span>
-         </div>
-         <div className="flex items-center gap-2 mb-1">
-           <span className="w-3 h-3 rounded-full bg-yellow-400 opacity-80"></span>
-           <span>Moderate (40-75%)</span>
-         </div>
-         <div className="flex items-center gap-2">
-           <span className="w-3 h-3 rounded-full bg-green-500 opacity-80"></span>
-           <span>Safe (&lt;40%)</span>
-         </div>
+
+      {/* Custom Legend Overlay */}
+      <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur shadow-xl p-4 rounded-sm z-[400] border-l-4 border-darkBlue min-w-[160px]">
+        <h4 className="font-serif text-lg text-darkBlue mb-3">AMU Intensity</h4>
+        <div className="space-y-2">
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-red-500 shadow-sm ring-2 ring-red-100"></span>
+            <span className="text-xs font-medium text-gray-600">High Risk (&gt;80%)</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-yellow-500 shadow-sm ring-2 ring-yellow-100"></span>
+            <span className="text-xs font-medium text-gray-600">Moderate (50-80%)</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-green-500 shadow-sm ring-2 ring-green-100"></span>
+            <span className="text-xs font-medium text-gray-600">Safe (&lt;50%)</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Map Badge */}
+      <div className="absolute top-4 left-4 z-[400] bg-darkBlue/80 backdrop-blur text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-widest shadow-lg border border-white/10">
+        Haryana • Satellite View
       </div>
     </div>
   );
