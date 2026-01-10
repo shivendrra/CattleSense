@@ -1,0 +1,5 @@
+{
+  "name": "CattleSense",
+  "description": "A centralized digital portal for monitoring Antimicrobial Usage (AMU) and ensuring Maximum Residue Limits (MRL) compliance in livestock to safeguard food safety and public health.",
+  "requestFramePermissions": []
+}
