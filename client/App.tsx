@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -27,6 +27,7 @@ import Careers from './pages/Careers';
 import FAQ from './pages/FAQ';
 import HelpSupport from './pages/HelpSupport';
 import NotFound from './pages/NotFound';
+import AdminDashboard from './pages/AdminDashboard';
 import { PrivacyPolicy, TermsOfService, CookiePolicy } from './pages/Legal';
 
 // Route Guard Component
@@ -43,10 +44,23 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   // If logged in but profile incomplete, force to onboarding
   // UNLESS we are already on the onboarding page
   if (!currentUser.is_profile_complete && location.pathname !== '/onboarding') {
-    return <Navigate to="/onboarding" replace />;
+     return <Navigate to="/onboarding" replace />;
   }
 
   return <>{children}</>;
+};
+
+// Admin Guard
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { currentUser, loading } = useAuth();
+  
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-white"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div></div>;
+  
+  if (currentUser?.email === 'shivharsh44@gmail.com') {
+     return <>{children}</>;
+  }
+  
+  return <Navigate to="/dashboard" replace />;
 };
 
 // Guard to prevent accessing onboarding if already complete
@@ -60,7 +74,7 @@ const OnboardingGuard: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <LanguageProvider>
         <AuthProvider>
           <DataProvider>
@@ -71,7 +85,7 @@ const App: React.FC = () => {
                 <Routes>
                   <Route path="/" element={<Lander />} />
                   <Route path="/login" element={<Auth />} />
-
+                  
                   <Route path="/onboarding" element={
                     <ProtectedRoute>
                       <OnboardingGuard>
@@ -86,16 +100,16 @@ const App: React.FC = () => {
                   {/* Protected Routes */}
                   <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                   <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-
+                  
                   <Route path="/about" element={<About />} />
-
+                  
                   {/* Informational Pages */}
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/careers" element={<Careers />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/support" element={<HelpSupport />} />
-
+                  
                   {/* Legal Pages */}
                   <Route path="/legal/privacy" element={<PrivacyPolicy />} />
                   <Route path="/legal/terms" element={<TermsOfService />} />
@@ -108,6 +122,13 @@ const App: React.FC = () => {
                   <Route path="/guide/researcher" element={<ResearcherGuide />} />
                   <Route path="/guide/policymaker" element={<PolicymakerGuide />} />
 
+                  {/* Admin Route */}
+                  <Route path="/admin" element={
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
+                  } />
+                  
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
@@ -116,7 +137,7 @@ const App: React.FC = () => {
           </DataProvider>
         </AuthProvider>
       </LanguageProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

@@ -19,7 +19,11 @@ const Auth: React.FC = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (currentUser) {
-      navigate('/dashboard', { replace: true });
+      if (currentUser.email === 'shivharsh44@gmail.com') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/dashboard', { replace: true });
+      }
     }
   }, [currentUser, navigate]);
 
