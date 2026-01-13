@@ -54,23 +54,30 @@ const Auth: React.FC = () => {
     <div className="min-h-screen flex bg-white font-sans">
       {/* Left Side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative bg-surface border-r border-gray-100">
-        <div className="absolute inset-0 bg-primary/5"></div>
-        <img
-          src={`${assetUrl}img/background.png`}
-          alt="Cattle Farming"
+         <div className="absolute inset-0 bg-primary/5"></div>
+        <img 
+          src={`${assetUrl}img/background.png`} 
+          alt="Cattle Farming" 
           className="absolute inset-0 w-full h-full object-cover p-0 opacity-90"
         />
         <div className="absolute inset-0 flex items-center justify-center p-16 bg-black/20">
-          <div className="text-darkBlue max-w-lg relative z-10 bg-white/95 p-10 backdrop-blur-md border border-white/50 shadow-2xl rounded-sm">
-            <div className="w-16 h-1 bg-primary mb-8"></div>
-            <h2 className="text-5xl font-serif mb-6 leading-tight">Public Data Portal</h2>
-            <p className="text-lg opacity-80 font-light leading-relaxed text-gray-700">Access real-time AMU data, MRL compliance trends, and national health reports.</p>
-          </div>
+           <div className="text-darkBlue max-w-lg relative z-10 bg-white/95 p-10 backdrop-blur-md border border-white/50 shadow-2xl rounded-sm">
+             <div className="w-16 h-1 bg-primary mb-8"></div>
+             <h2 className="text-5xl font-serif mb-6 leading-tight">Public Data Portal</h2>
+             <p className="text-lg opacity-80 font-light leading-relaxed text-gray-700">Access real-time AMU data, MRL compliance trends, and national health reports.</p>
+           </div>
         </div>
       </div>
 
       {/* Right Side - Form */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 lg:p-16 bg-white relative">
+        {/* Back to Home Button */}
+        <div className="absolute top-8 left-8">
+            <Link to="/" className="flex items-center gap-2 text-gray-500 hover:text-primary transition-colors text-sm font-medium">
+                <span className="material-symbols-outlined text-lg">arrow_back</span> Back to Home
+            </Link>
+        </div>
+
         <div className="max-w-md w-full mx-auto">
           <div className="mb-10">
             <h2 className="text-3xl font-serif text-darkBlue mb-2">{isLogin ? 'Welcome Back' : 'Create Access ID'}</h2>
@@ -89,38 +96,38 @@ const Auth: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             {!isLogin && (
               <div className="space-y-5">
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Full Name</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full p-3.5 bg-gray-50 border border-gray-200 text-darkBlue rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all shadow-sm"
-                    placeholder="John Doe"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Account Type</label>
-                  <div className="relative">
-                    <select
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                      className="w-full p-3.5 bg-gray-50 border border-gray-200 text-darkBlue rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all appearance-none shadow-sm cursor-pointer"
-                    >
-                      <option value="consumer">Consumer (Public Access)</option>
-                      <option value="researcher">Researcher (Data Access)</option>
-                    </select>
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none material-symbols-outlined text-gray-400">arrow_drop_down</span>
+                 <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Full Name</label>
+                    <input 
+                      type="text" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full p-3.5 bg-gray-50 border border-gray-200 text-darkBlue rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all shadow-sm"
+                      placeholder="John Doe"
+                      required
+                    />
                   </div>
-                </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Account Type</label>
+                    <div className="relative">
+                      <select 
+                        value={role} 
+                        onChange={(e) => setRole(e.target.value)}
+                        className="w-full p-3.5 bg-gray-50 border border-gray-200 text-darkBlue rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all appearance-none shadow-sm cursor-pointer"
+                      >
+                        <option value="consumer">Consumer (Public Access)</option>
+                        <option value="researcher">Researcher (Data Access)</option>
+                      </select>
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none material-symbols-outlined text-gray-400">arrow_drop_down</span>
+                    </div>
+                  </div>
               </div>
             )}
-
+            
             <div>
               <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Email Address</label>
-              <input
-                type="email"
+              <input 
+                type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-3.5 bg-gray-50 border border-gray-200 text-darkBlue rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all shadow-sm"
@@ -132,7 +139,7 @@ const Auth: React.FC = () => {
             <div>
               <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1.5">Password</label>
               <div className="relative">
-                <input
+                <input 
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -166,13 +173,13 @@ const Auth: React.FC = () => {
             </div>
           </div>
 
-          <button
+          <button 
             type="button"
             onClick={handleGoogleLogin}
             className="w-full bg-white border border-gray-200 text-darkBlue font-medium py-3.5 rounded-md hover:bg-gray-50 transition-colors flex items-center justify-center gap-3 shadow-sm hover:shadow-md"
           >
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
-            <span>Sign in with Google</span>
+             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-5 h-5" alt="Google" />
+             <span>Sign in with Google</span>
           </button>
 
           <p className="mt-8 text-center text-sm text-gray-500">
