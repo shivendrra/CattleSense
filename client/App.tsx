@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -22,6 +22,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 // New Pages
 import Blog from './pages/Blog';
+import BlogPostPage from './pages/BlogPostPage';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 import FAQ from './pages/FAQ';
@@ -74,7 +75,7 @@ const OnboardingGuard: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <LanguageProvider>
         <AuthProvider>
           <DataProvider>
@@ -105,6 +106,7 @@ const App: React.FC = () => {
                   
                   {/* Informational Pages */}
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:id" element={<BlogPostPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/careers" element={<Careers />} />
                   <Route path="/faq" element={<FAQ />} />
@@ -137,7 +139,7 @@ const App: React.FC = () => {
           </DataProvider>
         </AuthProvider>
       </LanguageProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

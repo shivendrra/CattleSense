@@ -89,6 +89,8 @@ export interface BlogPost {
   content: string; // HTML Content
   category: string;
   author: string;
+  authorUrl?: string; // Social Link
   date: string;
+  imageUrl?: string; // Blog Cover Image
   createdAt: any;
 }

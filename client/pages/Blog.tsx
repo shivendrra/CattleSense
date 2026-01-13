@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { db } from '../services/firebase';
 import { BlogPost } from '../types';
 
 const Blog: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -27,32 +27,6 @@ const Blog: React.FC = () => {
     fetchBlogs();
   }, []);
 
-  // Modal for reading full blog
-  const BlogModal = ({ blog, onClose }: { blog: BlogPost, onClose: () => void }) => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
-      <div className="bg-white w-full max-w-4xl min-h-[50vh] rounded-sm shadow-2xl relative flex flex-col my-10">
-        <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10">
-          <span className="material-symbols-outlined text-gray-600">close</span>
-        </button>
-        
-        <div className="p-8 md:p-12">
-          <div className="flex items-center gap-3 mb-4">
-             <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/5 px-2 py-1 rounded">{blog.category}</span>
-             <span className="text-xs text-gray-400">{blog.date}</span>
-          </div>
-          <h1 className="text-3xl md:text-5xl font-serif text-darkBlue mb-8 leading-tight">{blog.title}</h1>
-          
-          <div className="prose prose-lg max-w-none text-gray-600 font-light font-sans" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
-          
-          <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
-             <span>Author: {blog.author}</span>
-             <button onClick={onClose} className="text-darkBlue hover:underline">Close Article</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen bg-subtle py-20 font-sans">
       <div className="container mx-auto px-6">
@@ -72,31 +46,52 @@ const Blog: React.FC = () => {
             <p>No articles published yet.</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
             {blogs.map((blog) => (
-              <div 
+              <Link 
+                to={`/blog/${blog.id}`}
                 key={blog.id} 
-                onClick={() => setSelectedBlog(blog)}
-                className="bg-white p-8 border border-gray-100 hover:shadow-lg transition-all cursor-pointer group flex flex-col h-full"
+                className="bg-white border border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all duration-300 group flex flex-col h-full rounded-sm overflow-hidden"
               >
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-primary bg-primary/5 px-2 py-1 rounded">{blog.category}</span>
-                  <span className="text-xs text-gray-400">{blog.date}</span>
+                {/* Card Image */}
+                <div className="h-64 w-full bg-gray-100 overflow-hidden relative">
+                   {blog.imageUrl ? (
+                     <img src={blog.imageUrl} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                   ) : (
+                     <div className="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50">
+                        <span className="material-symbols-outlined text-5xl">image</span>
+                     </div>
+                   )}
+                   <div className="absolute top-4 left-4">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-darkBlue bg-white/90 backdrop-blur px-2 py-1 rounded shadow-sm">
+                        {blog.category}
+                      </span>
+                   </div>
                 </div>
-                <h2 className="text-2xl font-serif text-darkBlue mb-3 group-hover:text-primary transition-colors">{blog.title}</h2>
-                <p className="text-gray-500 font-light leading-relaxed mb-4 flex-grow line-clamp-3">{blog.excerpt}</p>
-                <div className="mt-auto pt-4 border-t border-gray-50">
-                   <span className="text-sm font-medium text-darkBlue flex items-center gap-1 group-hover:gap-2 transition-all">
-                     Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                   </span>
+
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="mb-4 text-xs text-gray-400 flex items-center gap-2">
+                     <span>{blog.date}</span>
+                     <span>•</span>
+                     <span>{blog.author}</span>
+                  </div>
+                  <h2 className="text-2xl font-serif text-darkBlue mb-3 group-hover:text-primary transition-colors leading-tight">
+                    {blog.title}
+                  </h2>
+                  <p className="text-gray-500 font-light leading-relaxed mb-6 flex-grow line-clamp-3">
+                    {blog.excerpt}
+                  </p>
+                  <div className="mt-auto pt-4 border-t border-gray-50">
+                     <span className="text-sm font-medium text-darkBlue flex items-center gap-1 group-hover:gap-2 transition-all">
+                       Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                     </span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
       </div>
-
-      {selectedBlog && <BlogModal blog={selectedBlog} onClose={() => setSelectedBlog(null)} />}
     </div>
   );
 };
