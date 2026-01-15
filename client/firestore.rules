@@ -1,3 +1,4 @@
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -10,23 +11,52 @@ service cloud.firestore {
     function isOwner(userId) {
       return isAuthenticated() && request.auth.uid == userId;
     }
+    
+    // Hardcoded Admin Check
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.email == 'shivharsh44@gmail.com';
+    }
 
     // --- User Core Collection ---
     match /users/{userId} {
-      allow read, create, update: if isOwner(userId);
+      allow read, create, update, delete: if isOwner(userId) || isAdmin();
     }
 
     // --- Role-Specific Profile Collections ---
     match /researchers/{userId} {
-      allow read, write: if isOwner(userId);
+      allow read, write: if isOwner(userId) || isAdmin();
     }
     
-    // --- Public/Aggregated Data (Read Only for web users) ---
+    // --- Public/Aggregated Data ---
     match /alerts/{alertId} {
       allow read: if isAuthenticated();
+      allow write: if isAdmin();
     }
     
-    // Legacy/Mobile App Collections (Restricted from web write)
+    // --- Support Tickets ---
+    match /tickets/{ticketId} {
+      allow create: if true; // Public submission
+      allow read, update, delete: if isAdmin();
+    }
+    
+    // --- Blogs ---
+    match /blogs/{blogId} {
+      allow read: if true; // Public read
+      allow write: if isAdmin();
+    }
+    
+    // --- Jobs & Applications ---
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /applications/{appId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+    
+    // Legacy/Mobile App Collections
     match /farmers/{userId} {
       allow read, write: if false; 
     }

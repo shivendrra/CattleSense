@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FeatureCard from '../components/FeatureCard';
@@ -39,7 +40,7 @@ const Lander: React.FC = () => {
                <Link to="/login" className="px-8 py-4 bg-primary text-white font-medium hover:bg-white hover:text-darkBlue transition-all duration-300 shadow-xl rounded-sm min-w-[180px]">
                   Get Started
                </Link>
-               <button onClick={() => window.open('https://youtube.com', '_blank')} className="px-8 py-4 bg-transparent border border-white/30 text-white font-medium hover:bg-white/10 transition-all rounded-sm min-w-[180px] flex items-center justify-center gap-2 backdrop-blur-sm">
+               <button onClick={() => window.open('https://youtu.be/WuULaBwaClc?si=jKsqmmeKKq2aQlZF', '_blank')} className="px-8 py-4 bg-transparent border border-white/30 text-white font-medium hover:bg-white/10 transition-all rounded-sm min-w-[180px] flex items-center justify-center gap-2 backdrop-blur-sm">
                   <span className="material-symbols-outlined">play_circle</span> Watch Video
                </button>
             </div>

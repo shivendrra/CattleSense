@@ -1,12 +1,11 @@
 
-
 export type Role = 'consumer' | 'researcher' | 'admin';
 
 export interface UserSettings {
   notifications?: {
     email: boolean;
     sms: boolean;
-    dataAlerts: boolean; // Renamed/New for researchers
+    dataAlerts: boolean;
   };
   preferences?: {
     language: string;
@@ -18,23 +17,18 @@ export interface UserSettings {
   };
 }
 
-// --- Schema Entities ---
-
 export interface User {
-  uid: string; // Maps to firebase_uid
+  uid: string;
   email: string;
-  displayName: string; // name
+  displayName: string;
   role: Role;
   photoURL?: string | null;
   phone?: string;
-  
-  // Status flags
   is_active: boolean;
   is_profile_complete: boolean;
   onboarding_step: number;
   created_at: string;
   updated_at: string;
-  
   settings?: UserSettings;
 }
 
@@ -57,29 +51,70 @@ export interface Alert {
   region?: string;
 }
 
-export interface ChartData {
-  name: string;
-  value: number;
-  limit?: number;
-}
-
 export interface Medication {
   name: string;
   dosage: string;
   status: 'active' | 'completed';
-  startDate?: string;
-  endDate?: string;
 }
 
 export interface Animal {
   id: string;
-  type: 'cow' | 'buffalo' | 'poultry' | 'goat' | 'pig';
+  type: string;
   breed: string;
-  age: string;
-  weight: number | string;
-  temperature: number;
-  production: string;
   status: 'healthy' | 'treatment' | 'critical';
+  age: string;
+  temperature: number;
+  weight: string;
+  production: string;
   medications: Medication[];
-  owner_id?: string;
+}
+
+// --- Admin Dashboard Types ---
+
+export interface Ticket {
+  id: string;
+  name: string;
+  email: string;
+  type: string;
+  message: string;
+  status: 'open' | 'in_progress' | 'closed';
+  createdAt: any; // Firestore Timestamp
+  source: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string; // HTML Content
+  category: string;
+  author: string;
+  authorUrl?: string; // Social Link
+  date: string;
+  imageUrl?: string; // Blog Cover Image
+  createdAt: any;
+}
+
+export interface Job {
+  id: string;
+  title: string;
+  type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
+  location: string;
+  department: string;
+  description: string;
+  is_active: boolean;
+  createdAt: any;
+}
+
+export interface JobApplication {
+  id: string;
+  jobId: string;
+  jobTitle: string;
+  applicantName: string;
+  email: string;
+  cvLink: string;
+  linkedInUrl: string;
+  githubUrl?: string;
+  introduction: string; // 150 words max
+  appliedAt: any;
 }

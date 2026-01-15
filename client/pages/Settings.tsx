@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { 
-  ProfileSection, 
-  PreferencesSection, 
-  SecuritySection 
+import {
+  ProfileSection,
+  PreferencesSection,
+  SecuritySection
 } from '../components/SettingsSections';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ const Settings: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('profile');
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [msg, setMsg] = useState({ type: '', text: '' });
 
   // Combined state for all sections
@@ -72,13 +73,20 @@ const Settings: React.FC = () => {
   };
 
   const handleDeleteAccount = async () => {
-    if(window.confirm("Are you sure you want to delete your account? This action is irreversible.")) {
+    if (window.confirm("Are you sure you want to delete your account? This action is irreversible.")) {
+      setIsDeleting(true);
+      setMsg({ type: '', text: '' });
       try {
         await deleteAccount();
         navigate('/');
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
-        setMsg({ type: 'error', text: 'Failed to delete account. You may need to re-login.' });
+        setIsDeleting(false);
+        if (error.code === 'auth/requires-recent-login') {
+          setMsg({ type: 'error', text: 'Security check failed. Please Log Out and Log In again to confirm your identity before deleting.' });
+        } else {
+          setMsg({ type: 'error', text: 'Failed to delete account. Please try again later.' });
+        }
       }
     }
   };
@@ -140,52 +148,52 @@ const Settings: React.FC = () => {
     <div className="min-h-screen bg-subtle py-10">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Sidebar */}
           <div className="lg:w-64 flex-shrink-0">
             <h1 className="text-3xl font-serif text-darkBlue mb-6">Account</h1>
             <div className="bg-white border border-gray-100 shadow-sm rounded-sm overflow-hidden">
-               {tabs.map(tab => (
-                 <button
-                   key={tab.id}
-                   onClick={() => setActiveTab(tab.id)}
-                   className={`w-full flex items-center gap-3 px-6 py-4 text-sm font-medium transition-colors border-l-4 ${activeTab === tab.id ? 'border-primary text-primary bg-primary/5' : 'border-transparent text-gray-600 hover:bg-gray-50'}`}
-                 >
-                   <span className="material-symbols-outlined text-lg">{tab.icon}</span>
-                   {tab.label}
-                 </button>
-               ))}
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`w-full flex items-center gap-3 px-6 py-4 text-sm font-medium transition-colors border-l-4 ${activeTab === tab.id ? 'border-primary text-primary bg-primary/5' : 'border-transparent text-gray-600 hover:bg-gray-50'}`}
+                >
+                  <span className="material-symbols-outlined text-lg">{tab.icon}</span>
+                  {tab.label}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Main Content */}
           <div className="flex-1">
-             <div className="bg-white border border-gray-100 shadow-sm p-8 min-h-[600px] relative rounded-sm">
-               
-               {/* Feedback Message */}
-               {msg.text && (
-                 <div className={`absolute top-0 left-0 w-full p-4 text-center text-sm font-medium ${msg.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
-                    {msg.text}
-                 </div>
-               )}
+            <div className="bg-white border border-gray-100 shadow-sm p-8 min-h-[600px] relative rounded-sm">
 
-               <div className="mb-10 mt-2">
-                  {activeTab === 'profile' && <ProfileSection formData={formData} onChange={handleChange} profileImage={formData.photoURL} onImageUpload={handleImageUpload} />}
-                  {activeTab === 'preferences' && <PreferencesSection formData={formData} onChange={handleChange} />}
-                  {activeTab === 'security' && <SecuritySection formData={formData} onChange={handleChange} onToggle={handleToggle} onDelete={handleDeleteAccount} />}
-               </div>
+              {/* Feedback Message */}
+              {msg.text && (
+                <div className={`absolute top-0 left-0 w-full p-4 text-center text-sm font-medium ${msg.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                  {msg.text}
+                </div>
+              )}
 
-               <div className="flex justify-end pt-6 border-t border-gray-100">
-                  <button 
-                    onClick={handleSave} 
-                    disabled={isSaving}
-                    className="bg-darkBlue text-white px-8 py-3 font-medium hover:bg-black transition-colors disabled:opacity-70 flex items-center gap-2 rounded-md shadow-lg"
-                  >
-                    {isSaving ? <span className="animate-spin material-symbols-outlined text-sm">progress_activity</span> : null}
-                    {activeTab === 'security' && formData.newPassword ? 'Update Password' : 'Save Changes'}
-                  </button>
-               </div>
-             </div>
+              <div className="mb-10 mt-2">
+                {activeTab === 'profile' && <ProfileSection formData={formData} onChange={handleChange} profileImage={formData.photoURL} onImageUpload={handleImageUpload} />}
+                {activeTab === 'preferences' && <PreferencesSection formData={formData} onChange={handleChange} />}
+                {activeTab === 'security' && <SecuritySection formData={formData} onChange={handleChange} onToggle={handleToggle} onDelete={handleDeleteAccount} isDeleting={isDeleting} />}
+              </div>
+
+              <div className="flex justify-end pt-6 border-t border-gray-100">
+                <button
+                  onClick={handleSave}
+                  disabled={isSaving || isDeleting}
+                  className="bg-darkBlue text-white px-8 py-3 font-medium hover:bg-black transition-colors disabled:opacity-70 flex items-center gap-2 rounded-md shadow-lg"
+                >
+                  {isSaving ? <span className="animate-spin material-symbols-outlined text-sm">progress_activity</span> : null}
+                  {activeTab === 'security' && formData.newPassword ? 'Update Password' : 'Save Changes'}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
