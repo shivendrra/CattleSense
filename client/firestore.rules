@@ -19,7 +19,7 @@ service cloud.firestore {
 
     // --- User Core Collection ---
     match /users/{userId} {
-      allow read, create, update: if isOwner(userId) || isAdmin();
+      allow read, create, update, delete: if isOwner(userId) || isAdmin();
     }
 
     // --- Role-Specific Profile Collections ---
@@ -43,6 +43,17 @@ service cloud.firestore {
     match /blogs/{blogId} {
       allow read: if true; // Public read
       allow write: if isAdmin();
+    }
+    
+    // --- Jobs & Applications ---
+    match /jobs/{jobId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /applications/{appId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
     }
     
     // Legacy/Mobile App Collections

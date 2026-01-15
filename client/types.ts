@@ -94,3 +94,27 @@ export interface BlogPost {
   imageUrl?: string; // Blog Cover Image
   createdAt: any;
 }
+
+export interface Job {
+  id: string;
+  title: string;
+  type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
+  location: string;
+  department: string;
+  description: string;
+  is_active: boolean;
+  createdAt: any;
+}
+
+export interface JobApplication {
+  id: string;
+  jobId: string;
+  jobTitle: string;
+  applicantName: string;
+  email: string;
+  cvLink: string;
+  linkedInUrl: string;
+  githubUrl?: string;
+  introduction: string; // 150 words max
+  appliedAt: any;
+}
