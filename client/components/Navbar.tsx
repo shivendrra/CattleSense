@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-4">
             
             {/* Language Switcher */}
-            <div className="relative" ref={langRef}>
+            <div className="relative notranslate" ref={langRef}>
               <button 
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-darkBlue transition-colors rounded-md hover:bg-gray-50 border border-transparent hover:border-gray-200"
@@ -205,7 +205,7 @@ const Navbar: React.FC = () => {
                 <Link to="/admin" onClick={() => setIsOpen(false)} className="block text-lg font-medium text-primary">Admin Dashboard</Link>
             )}
 
-            <div className="pt-4 border-t border-gray-100">
+            <div className="pt-4 border-t border-gray-100 notranslate">
               <p className="text-xs uppercase text-gray-400 font-bold mb-2">Language</p>
               <div className="grid grid-cols-2 gap-2">
                  {languages.map((lang) => (

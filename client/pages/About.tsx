@@ -7,10 +7,10 @@ const About: React.FC = () => {
   const team = [
     { name: 'Shivendra', role: 'Team Lead & Fullstack Dev', img: 'shiv.svg', desc: 'Architecting the scalable infrastructure.' },
     { name: 'Sachin', role: 'Frontend Engineer', img: 'sachin.svg', desc: 'Crafting intuitive user interfaces.' },
-    { name: 'Prashant', role: 'Backend Engineer', img: 'prashant.svg', desc: 'Ensuring data integrity and security.' },
     { name: 'Shailesh', role: 'Data Scientist', img: 'shailesh.svg', desc: 'Analyzing trends and AMU patterns.' },
+    { name: 'Savita', role: 'Backend Engineer', img: 'savita.svg', desc: 'Ensuring data integrity and security.' },
     { name: 'Riya', role: 'UI/UX Designer', img: 'riya.svg', desc: 'Designing for accessibility in rural areas.' },
-    { name: 'Savita', role: 'Quality Assurance', img: 'savita.svg', desc: 'Testing for reliability in field conditions.' },
+    { name: 'Prashant', role: 'Quality Assurance', img: 'prashant.svg', desc: 'Testing for reliability in field conditions.' },
   ];
 
   return (

@@ -23,16 +23,16 @@ const FormField: React.FC<{ label: string; children: React.ReactNode; full?: boo
 );
 
 const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
-  <input 
+  <input
     className="w-full p-3 border border-gray-200 bg-gray-50 rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all text-sm text-darkBlue shadow-sm placeholder-gray-400"
-    {...props} 
+    {...props}
   />
 );
 
 const Select = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => (
-  <select 
+  <select
     className="w-full p-3 border border-gray-200 bg-gray-50 rounded-md focus:outline-none focus:border-darkBlue focus:bg-white transition-all text-sm text-darkBlue shadow-sm cursor-pointer"
-    {...props} 
+    {...props}
   />
 );
 
@@ -40,14 +40,14 @@ const Toggle: React.FC<{ label: string; desc: string; icon: string; checked: boo
   <div className="flex justify-between items-center p-4 bg-gray-50/50 border border-gray-100 rounded-md hover:bg-white hover:border-gray-200 transition-colors">
     <div className="flex gap-4 items-start">
       <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${checked ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-gray-400'}`}>
-         <span className="material-symbols-outlined text-xl">{icon}</span>
+        <span className="material-symbols-outlined text-xl">{icon}</span>
       </div>
       <div>
         <h4 className="text-sm font-semibold text-darkBlue mb-1">{label}</h4>
         <p className="text-xs text-gray-500 font-light">{desc}</p>
       </div>
     </div>
-    <div 
+    <div
       onClick={onChange}
       className={`relative w-12 h-6 rounded-full cursor-pointer transition-colors duration-300 ease-in-out ${checked ? 'bg-primary' : 'bg-gray-200'}`}
     >
@@ -61,17 +61,17 @@ const Toggle: React.FC<{ label: string; desc: string; icon: string; checked: boo
 export const ProfileSection: React.FC<SectionProps & { profileImage?: string; onImageUpload?: (e: React.ChangeEvent<HTMLInputElement>) => void }> = ({ formData, onChange, profileImage, onImageUpload }) => (
   <div>
     <SectionHeader title="Profile Information" subtitle="Manage your account details" />
-    
+
     <div className="flex items-center gap-6 mb-8 p-6 bg-gray-50 border border-gray-100 rounded-md">
       <div className="w-24 h-24 bg-gradient-to-br from-primary to-darkBlue flex items-center justify-center overflow-hidden border-4 border-white shadow-sm rounded-full">
         {profileImage ? <img src={profileImage} alt="Profile" className="w-full h-full object-cover" /> : <span className="material-symbols-outlined text-white text-5xl">person</span>}
       </div>
       <div>
-         <input type="file" id="photo" accept="image/*" onChange={onImageUpload} hidden />
-         <label htmlFor="photo" className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-darkBlue text-sm font-medium hover:bg-gray-50 cursor-pointer transition-colors shadow-sm mb-2 rounded-md">
-           <span className="material-symbols-outlined text-lg">cloud_upload</span> Upload Photo
-         </label>
-         <p className="text-xs text-gray-400">JPG or PNG (max 2MB)</p>
+        <input type="file" id="photo" accept="image/*" onChange={onImageUpload} hidden />
+        <label htmlFor="photo" className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-darkBlue text-sm font-medium hover:bg-gray-50 cursor-pointer transition-colors shadow-sm mb-2 rounded-md">
+          <span className="material-symbols-outlined text-lg">cloud_upload</span> Upload Photo
+        </label>
+        <p className="text-xs text-gray-400">JPG or PNG (max 2MB)</p>
       </div>
     </div>
 
@@ -79,10 +79,10 @@ export const ProfileSection: React.FC<SectionProps & { profileImage?: string; on
       <FormField label="Display Name">
         <Input name="displayName" value={formData.displayName} onChange={onChange} />
       </FormField>
-       <FormField label="Email Address" full>
+      <FormField label="Email Address" full>
         <div className="relative">
-           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">email</span>
-           <Input name="email" type="email" value={formData.email} onChange={onChange} disabled className="pl-10 bg-gray-100 cursor-not-allowed opacity-70" />
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">email</span>
+          <Input name="email" type="email" value={formData.email} onChange={onChange} disabled className="pl-10 bg-gray-100 cursor-not-allowed opacity-70" />
         </div>
       </FormField>
       <FormField label="Phone Number">
@@ -129,19 +129,19 @@ export const PreferencesSection: React.FC<SectionProps> = ({ formData, onChange 
   </div>
 );
 
-export const SecuritySection: React.FC<SectionProps & { onDelete?: () => void }> = ({ formData, onChange, onToggle, onDelete }) => (
+export const SecuritySection: React.FC<SectionProps & { onDelete?: () => void; isDeleting?: boolean }> = ({ formData, onChange, onToggle, onDelete, isDeleting }) => (
   <div>
     <SectionHeader title="Security Settings" subtitle="Manage password and security preferences" />
-    
+
     <div className="grid grid-cols-1 gap-6 mb-8">
-       <div className="grid md:grid-cols-2 gap-6">
-          <FormField label="New Password">
-             <Input type="password" name="newPassword" value={formData.newPassword} onChange={onChange} placeholder="••••••••" />
-          </FormField>
-          <FormField label="Confirm Password">
-             <Input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={onChange} placeholder="••••••••" />
-          </FormField>
-       </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <FormField label="New Password">
+          <Input type="password" name="newPassword" value={formData.newPassword} onChange={onChange} placeholder="••••••••" />
+        </FormField>
+        <FormField label="Confirm Password">
+          <Input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={onChange} placeholder="••••••••" />
+        </FormField>
+      </div>
     </div>
 
     <div className="mb-8">
@@ -149,18 +149,23 @@ export const SecuritySection: React.FC<SectionProps & { onDelete?: () => void }>
     </div>
 
     <div className="border border-red-100 bg-red-50/50 p-6 flex justify-between items-center rounded-md">
-       <div className="flex gap-4 items-start">
-         <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
-            <span className="material-symbols-outlined text-xl">warning</span>
-         </div>
-         <div>
-           <h4 className="text-sm font-semibold text-darkBlue mb-1">Delete your Account</h4>
-           <p className="text-xs text-gray-500">Once done, this action cannot be undone and data will be lost.</p>
-         </div>
-       </div>
-       <button onClick={onDelete} className="bg-white border border-red-200 text-red-600 px-4 py-2 text-sm font-medium hover:bg-red-600 hover:text-white transition-colors rounded-md shadow-sm">
-         Delete Account
-       </button>
+      <div className="flex gap-4 items-start">
+        <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
+          <span className="material-symbols-outlined text-xl">warning</span>
+        </div>
+        <div>
+          <h4 className="text-sm font-semibold text-darkBlue mb-1">Delete your Account</h4>
+          <p className="text-xs text-gray-500">Once done, this action cannot be undone and data will be lost.</p>
+        </div>
+      </div>
+      <button
+        onClick={onDelete}
+        disabled={isDeleting}
+        className="bg-white border border-red-200 text-red-600 px-4 py-2 text-sm font-medium hover:bg-red-600 hover:text-white transition-colors rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+      >
+        {isDeleting ? <span className="material-symbols-outlined animate-spin text-sm">progress_activity</span> : null}
+        Delete Account
+      </button>
     </div>
   </div>
 );
