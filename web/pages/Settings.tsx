@@ -1,15 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useCookie } from '../context/CookieContext';
 import {
   ProfileSection,
   PreferencesSection,
-  SecuritySection
+  SecuritySection,
+  CookieSettingsSection
 } from '../components/SettingsSections';
 import { useNavigate } from 'react-router-dom';
 
 const Settings: React.FC = () => {
   const { currentUser, updateUserSettings, updateUserProfile, changePassword, deleteAccount } = useAuth();
+  const { preferences: cookiePreferences, updatePreferences: updateCookiePreferences } = useCookie();
+
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('profile');
   const [isSaving, setIsSaving] = useState(false);
@@ -96,11 +100,13 @@ const Settings: React.FC = () => {
     setMsg({ type: '', text: '' });
     try {
       // 1. Update Core Profile
-      await updateUserProfile({
-        displayName: formData.displayName,
-        phone: formData.phone,
-        photoURL: formData.photoURL
-      });
+      if (activeTab === 'profile') {
+        await updateUserProfile({
+          displayName: formData.displayName,
+          phone: formData.phone,
+          photoURL: formData.photoURL
+        });
+      }
 
       // 2. Handle Password Change if requested
       if (activeTab === 'security' && formData.newPassword) {
@@ -115,16 +121,23 @@ const Settings: React.FC = () => {
       }
 
       // 3. Update Settings nested object
-      await updateUserSettings({
-        preferences: {
-          language: formData.language,
-          timezone: formData.timezone,
-          dateFormat: formData.dateFormat,
-        },
-        security: {
-          twoFactor: formData.twoFactor
-        }
-      });
+      if (activeTab === 'preferences' || activeTab === 'security') {
+        await updateUserSettings({
+          preferences: {
+            language: formData.language,
+            timezone: formData.timezone,
+            dateFormat: formData.dateFormat,
+          },
+          security: {
+            twoFactor: formData.twoFactor
+          }
+        });
+      }
+
+      // 4. Cookies are auto-saved via context, but we can show success message here if on that tab.
+      if (activeTab === 'privacy') {
+        // Cookies are updated instantly via context, so this is just a dummy save for UX consistency
+      }
 
       setMsg({ type: 'success', text: activeTab === 'security' && formData.newPassword ? 'Password updated and settings saved!' : 'Settings saved successfully!' });
       setTimeout(() => setMsg({ type: '', text: '' }), 3000);
@@ -140,6 +153,7 @@ const Settings: React.FC = () => {
     { id: 'profile', label: 'Profile', icon: 'person' },
     { id: 'preferences', label: 'Preferences', icon: 'settings' },
     { id: 'security', label: 'Security', icon: 'lock' },
+    { id: 'privacy', label: 'Privacy & Cookies', icon: 'cookie' },
   ];
 
   if (!currentUser) return <div className="p-10 text-center">Loading...</div>;
@@ -181,6 +195,7 @@ const Settings: React.FC = () => {
                 {activeTab === 'profile' && <ProfileSection formData={formData} onChange={handleChange} profileImage={formData.photoURL} onImageUpload={handleImageUpload} />}
                 {activeTab === 'preferences' && <PreferencesSection formData={formData} onChange={handleChange} />}
                 {activeTab === 'security' && <SecuritySection formData={formData} onChange={handleChange} onToggle={handleToggle} onDelete={handleDeleteAccount} isDeleting={isDeleting} />}
+                {activeTab === 'privacy' && <CookieSettingsSection preferences={cookiePreferences} onUpdate={updateCookiePreferences} />}
               </div>
 
               <div className="flex justify-end pt-6 border-t border-gray-100">

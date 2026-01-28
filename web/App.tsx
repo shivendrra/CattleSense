@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { CookieProvider } from './context/CookieContext';
 import Navbar from './components/Navbar';
 import Lander from './pages/Lander';
 import Dashboard from './pages/Dashboard';
@@ -19,6 +20,7 @@ import ResearcherGuide from './pages/guides/ResearcherGuide';
 import PolicymakerGuide from './pages/guides/PolicymakerGuide';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import CookieBanner from './components/CookieBanner';
 
 // New Pages
 import Blog from './pages/Blog';
@@ -45,7 +47,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   // If logged in but profile incomplete, force to onboarding
   // UNLESS we are already on the onboarding page
   if (!currentUser.is_profile_complete && location.pathname !== '/onboarding') {
-     return <Navigate to="/onboarding" replace />;
+    return <Navigate to="/onboarding" replace />;
   }
 
   return <>{children}</>;
@@ -54,13 +56,13 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 // Admin Guard
 const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { currentUser, loading } = useAuth();
-  
+
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-white"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div></div>;
-  
+
   if (currentUser?.email === 'shivharsh44@gmail.com') {
-     return <>{children}</>;
+    return <>{children}</>;
   }
-  
+
   return <Navigate to="/dashboard" replace />;
 };
 
@@ -76,69 +78,72 @@ const OnboardingGuard: React.FC<{ children: React.ReactNode }> = ({ children }) 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <LanguageProvider>
-        <AuthProvider>
-          <DataProvider>
-            <ScrollToTop />
-            <div className="flex flex-col min-h-screen bg-white text-darkBlue">
-              <Navbar />
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<Lander />} />
-                  <Route path="/login" element={<Auth />} />
-                  
-                  <Route path="/onboarding" element={
-                    <ProtectedRoute>
-                      <OnboardingGuard>
-                        <Onboarding />
-                      </OnboardingGuard>
-                    </ProtectedRoute>
-                  } />
+      <CookieProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            <DataProvider>
+              <ScrollToTop />
+              <div className="flex flex-col min-h-screen bg-white text-darkBlue">
+                <Navbar />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Lander />} />
+                    <Route path="/login" element={<Auth />} />
 
-                  {/* Publicly Accessible Dashboard */}
-                  <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/onboarding" element={
+                      <ProtectedRoute>
+                        <OnboardingGuard>
+                          <Onboarding />
+                        </OnboardingGuard>
+                      </ProtectedRoute>
+                    } />
 
-                  {/* Protected Routes */}
-                  <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                  <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-                  
-                  <Route path="/about" element={<About />} />
-                  
-                  {/* Informational Pages */}
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPostPage />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/careers" element={<Careers />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/support" element={<HelpSupport />} />
-                  
-                  {/* Legal Pages */}
-                  <Route path="/legal/privacy" element={<PrivacyPolicy />} />
-                  <Route path="/legal/terms" element={<TermsOfService />} />
-                  <Route path="/legal/cookies" element={<CookiePolicy />} />
+                    {/* Publicly Accessible Dashboard */}
+                    <Route path="/dashboard" element={<Dashboard />} />
 
-                  {/* Guides */}
-                  <Route path="/guide/farmer" element={<FarmerGuide />} />
-                  <Route path="/guide/vet" element={<VetGuide />} />
-                  <Route path="/guide/consumer" element={<ConsumerGuide />} />
-                  <Route path="/guide/researcher" element={<ResearcherGuide />} />
-                  <Route path="/guide/policymaker" element={<PolicymakerGuide />} />
+                    {/* Protected Routes */}
+                    <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                    <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
-                  {/* Admin Route */}
-                  <Route path="/admin" element={
-                    <AdminRoute>
-                      <AdminDashboard />
-                    </AdminRoute>
-                  } />
-                  
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-            </div>
-          </DataProvider>
-        </AuthProvider>
-      </LanguageProvider>
+                    <Route path="/about" element={<About />} />
+
+                    {/* Informational Pages */}
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<BlogPostPage />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/support" element={<HelpSupport />} />
+
+                    {/* Legal Pages */}
+                    <Route path="/legal/privacy" element={<PrivacyPolicy />} />
+                    <Route path="/legal/terms" element={<TermsOfService />} />
+                    <Route path="/legal/cookies" element={<CookiePolicy />} />
+
+                    {/* Guides */}
+                    <Route path="/guide/farmer" element={<FarmerGuide />} />
+                    <Route path="/guide/vet" element={<VetGuide />} />
+                    <Route path="/guide/consumer" element={<ConsumerGuide />} />
+                    <Route path="/guide/researcher" element={<ResearcherGuide />} />
+                    <Route path="/guide/policymaker" element={<PolicymakerGuide />} />
+
+                    {/* Admin Route */}
+                    <Route path="/admin" element={
+                      <AdminRoute>
+                        <AdminDashboard />
+                      </AdminRoute>
+                    } />
+
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <CookieBanner />
+              </div>
+            </DataProvider>
+          </AuthProvider>
+        </LanguageProvider>
+      </CookieProvider>
     </BrowserRouter>
   );
 };
