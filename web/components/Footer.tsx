@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-baseline gap-2 mb-6">
-              <img src="https://raw.githubusercontent.com/shivendrra/CattleSense/main/client/favicon.ico" alt="" className="w-12 h-12"/>
+              <img src="https://raw.githubusercontent.com/shivendrra/CattleSense/main/web/favicon.ico" alt="" className="w-12 h-12"/>
               <h3 className="font-serif text-5xl">CattleSense</h3>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">

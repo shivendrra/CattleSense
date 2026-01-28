@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const LegalLayout: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
@@ -51,9 +52,27 @@ export const TermsOfService: React.FC = () => (
 
 export const CookiePolicy: React.FC = () => (
   <LegalLayout title="Cookie Policy">
-    <Section title="Use of Cookies">
-      <p>We use cookies to enhance your experience, specifically to maintain your login session and remember your dashboard preferences.</p>
-      <p>We do not use tracking cookies for advertising purposes.</p>
+    <p className="text-sm text-gray-400">Effective Date: October 26, 2024</p>
+
+    <Section title="What are cookies?">
+      <p>Cookies are small text files that are stored on your device (computer, tablet, or mobile) when you visit a website. They are widely used to make websites work more efficiently and provide information to the owners of the site.</p>
+    </Section>
+
+    <Section title="How We Use Cookies">
+      <p>We use cookies to improve your browsing experience, analyze our traffic, and personalize content. We categorize our cookies into the following types:</p>
+      <ul className="list-disc pl-5 mt-4 space-y-2">
+        <li><strong>Essential Cookies:</strong> These are necessary for the website to function (e.g., maintaining your login session, security tokens). These cannot be switched off in our systems.</li>
+        <li><strong>Analytics Cookies:</strong> These allow us to count visits and traffic sources so we can measure and improve the performance of our site. All information these cookies collect is aggregated and anonymous.</li>
+        <li><strong>Marketing Cookies:</strong> These may be set through our site by our advertising partners to build a profile of your interests and show you relevant adverts on other sites.</li>
+      </ul>
+    </Section>
+
+    <Section title="Managing Your Preferences">
+      <p>You can manage your cookie preferences at any time by visiting your <a href="/#/settings" className="text-primary hover:underline">Account Settings</a>. You can also block cookies via your browser settings, though this may impact the functionality of the website.</p>
+    </Section>
+
+    <Section title="Updates to this Policy">
+      <p>We may update our Cookie Policy from time to time. We encourage you to review this policy periodically for any changes.</p>
     </Section>
   </LegalLayout>
 );

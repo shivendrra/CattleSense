@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { CookiePreferences } from '../context/CookieContext';
 
 interface SectionProps {
   formData: any;
@@ -36,20 +37,23 @@ const Select = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => (
   />
 );
 
-const Toggle: React.FC<{ label: string; desc: string; icon: string; checked: boolean; onChange: () => void }> = ({ label, desc, icon, checked, onChange }) => (
-  <div className="flex justify-between items-center p-4 bg-gray-50/50 border border-gray-100 rounded-md hover:bg-white hover:border-gray-200 transition-colors">
+const Toggle: React.FC<{ label: string; desc: string; icon: string; checked: boolean; onChange: () => void; disabled?: boolean }> = ({ label, desc, icon, checked, onChange, disabled }) => (
+  <div className={`flex justify-between items-center p-4 bg-gray-50/50 border border-gray-100 rounded-md transition-colors ${disabled ? 'opacity-70' : 'hover:bg-white hover:border-gray-200'}`}>
     <div className="flex gap-4 items-start">
       <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${checked ? 'bg-primary/10 text-primary' : 'bg-gray-100 text-gray-400'}`}>
         <span className="material-symbols-outlined text-xl">{icon}</span>
       </div>
       <div>
-        <h4 className="text-sm font-semibold text-darkBlue mb-1">{label}</h4>
+        <h4 className="text-sm font-semibold text-darkBlue mb-1 flex items-center gap-2">
+          {label}
+          {disabled && <span className="text-[10px] bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded uppercase tracking-wider">Required</span>}
+        </h4>
         <p className="text-xs text-gray-500 font-light">{desc}</p>
       </div>
     </div>
     <div
-      onClick={onChange}
-      className={`relative w-12 h-6 rounded-full cursor-pointer transition-colors duration-300 ease-in-out ${checked ? 'bg-primary' : 'bg-gray-200'}`}
+      onClick={!disabled ? onChange : undefined}
+      className={`relative w-12 h-6 rounded-full transition-colors duration-300 ease-in-out ${checked ? 'bg-primary' : 'bg-gray-200'} ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
     >
       <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform duration-300 ease-in-out ${checked ? 'translate-x-6' : 'translate-x-0'}`}></div>
     </div>
@@ -166,6 +170,36 @@ export const SecuritySection: React.FC<SectionProps & { onDelete?: () => void; i
         {isDeleting ? <span className="material-symbols-outlined animate-spin text-sm">progress_activity</span> : null}
         Delete Account
       </button>
+    </div>
+  </div>
+);
+
+export const CookieSettingsSection: React.FC<{ preferences: CookiePreferences, onUpdate: (prefs: CookiePreferences) => void }> = ({ preferences, onUpdate }) => (
+  <div>
+    <SectionHeader title="Cookie Preferences" subtitle="Manage how we use data to improve your experience" />
+    <div className="space-y-4">
+      <Toggle
+        label="Essential Cookies"
+        desc="Strictly necessary for the website to function. Cannot be disabled."
+        icon="shield"
+        checked={true}
+        onChange={() => { }}
+        disabled={true}
+      />
+      <Toggle
+        label="Analytics Cookies"
+        desc="Help us understand how visitors interact with the website."
+        icon="analytics"
+        checked={preferences.analytics}
+        onChange={() => onUpdate({ ...preferences, analytics: !preferences.analytics })}
+      />
+      <Toggle
+        label="Marketing Cookies"
+        desc="Used to track visitors across websites to display relevant ads."
+        icon="ads_click"
+        checked={preferences.marketing}
+        onChange={() => onUpdate({ ...preferences, marketing: !preferences.marketing })}
+      />
     </div>
   </div>
 );
