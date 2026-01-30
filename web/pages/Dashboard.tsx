@@ -107,16 +107,41 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Heatmap Section */}
-      <div className="bg-white p-8 shadow-sm border border-gray-100 rounded-sm mb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <div>
-            <h3 className="text-xl font-serif text-darkBlue">Regional AMU Heatmap: Haryana</h3>
-            <p className="text-sm text-gray-400 mt-1">Satellite visualization of reported usage intensity.</p>
-          </div>
+      {/* Reference Materials & Heatmap */}
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-xl font-serif text-darkBlue">Resources & Monitoring</h3>
         </div>
-        <div className="w-full">
-          <HaryanaMap />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Reference Card */}
+          <div className="bg-white p-8 shadow-sm border border-gray-100 rounded-sm flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 mb-4">
+                <span className="material-symbols-outlined">menu_book</span>
+              </div>
+              <h4 className="text-lg font-bold text-darkBlue mb-2">Antimicrobial Reference Guide</h4>
+              <p className="text-sm text-gray-500 mb-6">
+                Access general information about antimicrobial drugs, WHO classifications (VCIA/VHIA), and standard dosage guidelines for Poultry, Dairy Cattle, and Sheep/Goats.
+              </p>
+            </div>
+            <Link to="/reference-guide" className="w-full text-center bg-white border border-gray-200 hover:border-darkBlue text-darkBlue font-medium py-3 rounded-sm transition-colors flex items-center justify-center gap-2">
+              View Dosage Guidelines <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </Link>
+          </div>
+
+          {/* Heatmap Card (Spans 2 columns) */}
+          <div className="lg:col-span-2 bg-white p-8 shadow-sm border border-gray-100 rounded-sm">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-lg font-bold text-darkBlue">Regional AMU Heatmap: Haryana</h3>
+                <p className="text-sm text-gray-400">Satellite visualization of reported usage intensity.</p>
+              </div>
+            </div>
+            <div className="w-full">
+              <HaryanaMap />
+            </div>
+          </div>
         </div>
       </div>
     </>
