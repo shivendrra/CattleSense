@@ -15,6 +15,7 @@ const AdminDashboard: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [applications, setApplications] = useState<JobApplication[]>([]);
   const [loading, setLoading] = useState(false);
+  const [expandedAppId, setExpandedAppId] = useState<string | null>(null);
 
   // Blog Editor State
   const [isEditingBlog, setIsEditingBlog] = useState(false);
@@ -76,6 +77,11 @@ const AdminDashboard: React.FC = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const formatDate = (timestamp: any) => {
+    if (!timestamp) return '-';
+    return timestamp.toDate().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
   // --- Ticket Actions ---
@@ -245,7 +251,7 @@ const AdminDashboard: React.FC = () => {
                             <option value="closed">Closed</option>
                           </select>
                         </td>
-                        <td className="px-6 py-4 text-gray-500">{ticket.createdAt?.toDate().toLocaleDateString()}</td>
+                        <td className="px-6 py-4 text-gray-500 whitespace-nowrap">{formatDate(ticket.createdAt)}</td>
                         <td className="px-6 py-4">
                           <div className="font-medium text-darkBlue">{ticket.name}</div>
                           <div className="text-xs text-gray-400">{ticket.email}</div>
@@ -405,26 +411,40 @@ const AdminDashboard: React.FC = () => {
                       <th className="px-6 py-4">Applicant</th>
                       <th className="px-6 py-4">Role Applied</th>
                       <th className="px-6 py-4">Links</th>
-                      <th className="px-6 py-4">Intro</th>
+                      <th className="px-6 py-4 w-1/3">Intro</th>
                       <th className="px-6 py-4">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
                     {applications.map(app => (
                       <tr key={app.id} className="hover:bg-gray-50/50">
-                        <td className="px-6 py-4 text-gray-500 whitespace-nowrap">{app.appliedAt?.toDate().toLocaleDateString()}</td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 text-gray-500 whitespace-nowrap align-top">{formatDate(app.appliedAt)}</td>
+                        <td className="px-6 py-4 align-top">
                           <div className="font-medium text-darkBlue">{app.applicantName}</div>
                           <div className="text-xs text-gray-400">{app.email}</div>
                         </td>
-                        <td className="px-6 py-4 text-gray-600">{app.jobTitle}</td>
-                        <td className="px-6 py-4 flex gap-2">
-                          {app.cvLink && <a href={app.cvLink} target="_blank" rel="noreferrer" className="text-primary hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">description</span> CV</a>}
-                          {app.linkedInUrl && <a href={app.linkedInUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">link</span> IN</a>}
-                          {app.githubUrl && <a href={app.githubUrl} target="_blank" rel="noreferrer" className="text-gray-700 hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">code</span> GH</a>}
+                        <td className="px-6 py-4 text-gray-600 align-top">{app.jobTitle}</td>
+                        <td className="px-6 py-4 align-top">
+                          <div className="flex flex-col gap-2">
+                            {app.cvLink && <a href={app.cvLink} target="_blank" rel="noreferrer" className="text-primary hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">description</span> CV</a>}
+                            {app.linkedInUrl && <a href={app.linkedInUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">link</span> IN</a>}
+                            {app.githubUrl && <a href={app.githubUrl} target="_blank" rel="noreferrer" className="text-gray-700 hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">code</span> GH</a>}
+                          </div>
                         </td>
-                        <td className="px-6 py-4 text-gray-600 max-w-xs truncate" title={app.introduction}>{app.introduction}</td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 text-gray-600 align-top">
+                          <div className={`transition-all duration-300 ${expandedAppId === app.id ? '' : 'line-clamp-2'}`}>
+                            {app.introduction}
+                          </div>
+                          {app.introduction && app.introduction.length > 100 && (
+                            <button
+                              onClick={() => setExpandedAppId(expandedAppId === app.id ? null : app.id)}
+                              className="text-xs text-primary font-bold hover:underline mt-1 focus:outline-none"
+                            >
+                              {expandedAppId === app.id ? 'Show Less' : 'Read More'}
+                            </button>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 align-top">
                           <button onClick={() => deleteApplication(app.id)} className="text-red-500 hover:text-red-700"><span className="material-symbols-outlined text-lg">delete</span></button>
                         </td>
                       </tr>
