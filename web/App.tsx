@@ -31,6 +31,7 @@ import FAQ from './pages/FAQ';
 import HelpSupport from './pages/HelpSupport';
 import NotFound from './pages/NotFound';
 import AdminDashboard from './pages/AdminDashboard';
+import ReferenceGuide from './pages/ReferenceGuide';
 import { PrivacyPolicy, TermsOfService, CookiePolicy } from './pages/Legal';
 
 // Route Guard Component
@@ -100,6 +101,9 @@ const App: React.FC = () => {
 
                     {/* Publicly Accessible Dashboard */}
                     <Route path="/dashboard" element={<Dashboard />} />
+
+                    {/* Public Reference Guide */}
+                    <Route path="/reference-guide" element={<ReferenceGuide />} />
 
                     {/* Protected Routes */}
                     <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />

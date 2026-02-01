@@ -3,6 +3,7 @@ from extensions import db
 from models.user import User, Farmer, Veterinarian, GovernmentOfficial, Researcher
 from middlewares.auth import verify_firebase_token
 from utils.encryption import encrypt_aadhaar
+import logging
 
 onboarding_bp = Blueprint('onboarding', __name__, url_prefix='/api/onboarding')
 
@@ -26,8 +27,9 @@ def initial_profile():
       return jsonify({'error': 'Aadhaar is required for this role'}), 400
     try:
       aadhaar_encrypted = encrypt_aadhaar(aadhaar)
-    except ValueError as e:
-      return jsonify({'error': str(e)}), 400
+    except ValueError:
+      logging.exception('Aadhaar encryption failed')
+      return jsonify({'error': 'Invalid Aadhaar details'}), 400
 
   user = User(
     firebase_uid=g.firebase_uid,

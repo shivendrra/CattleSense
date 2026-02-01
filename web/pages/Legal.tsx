@@ -23,7 +23,7 @@ const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title
 
 export const PrivacyPolicy: React.FC = () => (
   <LegalLayout title="Privacy Policy">
-    <p className="text-sm text-gray-400">Last Updated: October 26, 2024</p>
+    <p className="text-sm text-gray-400">Last Updated: Jan 30, 2026</p>
     <Section title="1. Information We Collect">
       <p>We collect information regarding livestock health, geolocation of farms, and user contact details. This data is used solely for the purpose of monitoring health trends and ensuring compliance.</p>
     </Section>
@@ -52,7 +52,7 @@ export const TermsOfService: React.FC = () => (
 
 export const CookiePolicy: React.FC = () => (
   <LegalLayout title="Cookie Policy">
-    <p className="text-sm text-gray-400">Effective Date: October 26, 2024</p>
+    <p className="text-sm text-gray-400">Effective Date: Jan 30, 2026</p>
 
     <Section title="What are cookies?">
       <p>Cookies are small text files that are stored on your device (computer, tablet, or mobile) when you visit a website. They are widely used to make websites work more efficiently and provide information to the owners of the site.</p>

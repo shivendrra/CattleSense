@@ -62,13 +62,18 @@ const Toggle: React.FC<{ label: string; desc: string; icon: string; checked: boo
 
 // --- Sections ---
 
+const isSafeSrc = (url: string | undefined): boolean => {
+  if (!url) return false;
+  return /^(https?:\/\/|data:image\/)/i.test(url);
+};
+
 export const ProfileSection: React.FC<SectionProps & { profileImage?: string; onImageUpload?: (e: React.ChangeEvent<HTMLInputElement>) => void }> = ({ formData, onChange, profileImage, onImageUpload }) => (
   <div>
     <SectionHeader title="Profile Information" subtitle="Manage your account details" />
 
     <div className="flex items-center gap-6 mb-8 p-6 bg-gray-50 border border-gray-100 rounded-md">
       <div className="w-24 h-24 bg-gradient-to-br from-primary to-darkBlue flex items-center justify-center overflow-hidden border-4 border-white shadow-sm rounded-full">
-        {profileImage ? <img src={profileImage} alt="Profile" className="w-full h-full object-cover" /> : <span className="material-symbols-outlined text-white text-5xl">person</span>}
+        {isSafeSrc(profileImage) ? <img src={profileImage} alt="Profile" className="w-full h-full object-cover" /> : <span className="material-symbols-outlined text-white text-5xl">person</span>}
       </div>
       <div>
         <input type="file" id="photo" accept="image/*" onChange={onImageUpload} hidden />

@@ -141,7 +141,8 @@ const Careers: React.FC = () => {
         )}
 
         <div className="mt-12 text-center text-gray-500 font-light">
-          Don't see a fit? Email your CV to <a href="mailto:careers@cattlesense.in" className="text-darkBlue underline">careers@cattlesense.in</a>
+          {/* Don't see a fit? Email your CV to <a href="mailto:careers@cattlesense.in" className="text-darkBlue underline">careers@cattlesense.in</a> */}
+          Don't see a fit? Email your CV to <a href="mailto:shivharsh44@gmail.com" className="text-darkBlue underline">shivharsh44@gmail.com</a>
         </div>
       </div>
 
